@@ -42,7 +42,7 @@
         <div class="contact-list">
           <div class="contact-win">
             <div class="contact-img">
-              <a href="{% url 'details' 'contact.id' %}"><img src="{% static 'img/post/1.jpg' %}" alt="" class="img-thumbnail"/></a>
+              <a href="{% url 'details' contact.id %}"><img src="{% static 'img/post/1.jpg' %}" alt="" class="img-thumbnail"/></a>
             </div>
             <div class="conct-sc-ic">
               <a class="btn" href="{{contact.facebook}}"><i class="notika-icon notika-facebook"></i></a>
@@ -52,7 +52,9 @@
           </div>
           <div class="contact-ctn">
             <div class="contact-ad-hd">
-              <a href="{% url 'details' '{{contact.id}}' %}"><h2>{{ contact.name }}</h2></a>
+              <a href="{% url 'details' contact.id %}"><h2>{{ contact.name }}</h2></a>
+              <p class="ctn-ads">{{ contact.function }}</p>
+              <p class="ctn-ads">{{ contact.company }}</p>
               <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
             </div>
           </div>

@@ -37,10 +37,21 @@ def add_contact(request):
 def details(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     context = {
-        "contacts": contact
+        "contact": contact
     }
     return render(request, "detail.html", context)
 
+def Set(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    contact.client=True
+    contact.save()
+    return HttpResponseRedirect("/clients/")
+
+def unset(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    contact.client=False
+    contact.save()
+    return HttpResponseRedirect("/prospects/")
 
 def thanks(request):
     return render(request, 'thanks.html')

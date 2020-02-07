@@ -36,13 +36,12 @@
 <!-- Contact area Start-->
 <div class="contact-area">
   <div class="container">
-    {% for contact in contacts %}
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <div class="contact-list">
           <div class="contact-win">
             <div class="contact-img">
-              <img src="{% static 'img/post/1.jpg' %}" alt="" class="img-fluid"/>
+              <img src="{% static 'img/post/1.jpg' %}" alt="" class="img-thumbnail"/>
             </div>
             <div class="conct-sc-ic">
               <a class="btn" href="{{contact.facebook}}"><i class="notika-icon notika-facebook"></i></a>
@@ -52,20 +51,25 @@
           </div>
           <div class="contact-ctn">
             <div class="contact-ad-hd">
-              <h2>{{ contact.name }}</h2>
-              <p class="ctn-ads">{{ contact.email }}</p>
-              <p class="ctn-ads">{{ contact.age }</p>
-              <p class="ctn-ads">{{ contact.phone_number }}</p>
+              <h2> Name : {{ contact.name }}</h2>
+              <p class="ctn-ads"><em>  Email :</em> {{ contact.email }}</p>
+              <p class="ctn-ads"><em>  Age :</em> {{ contact.age }}</p>
+              <p class="ctn-ads"><em>  Phone :</em> {{ contact.phone_number }}</p>
               <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
-              <p class="ctn-ads">{{ contact.function }}</p>
-              <p class="ctn-ads">{{ contact.company }}</p>
+              <p class="ctn-ads"><em>  Function :</em> {{ contact.function }}</p>
+              <p class="ctn-ads"><em>  Company :</em> {{ contact.company }}</p>
             </div>
-            <p>{{ contact.description }}.</p>
+            <p> Descritpion : {{ contact.description }}.</p>
+            <p class="ctn-ads"><em>  Is A Client? :</em> {{ contact.client }}</p>
+            {% if contact.client is False %}
+            <h4><a href="{% url 'set' contact.id %}">Set As A Client</a></h4>
+            {% else %}
+            <h4><a href="{% url 'unset' contact.id %}">Set As A Prospect</a></h4>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 <!-- Contact area End-->
