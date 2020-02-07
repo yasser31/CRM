@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Contacts(models.Model):
+class Contact(models.Model):
     name = models.CharField(max_length=100, default='', blank=False)
     email = models.EmailField(blank=True)
     phone_number = models.BigIntegerField(null=True)
