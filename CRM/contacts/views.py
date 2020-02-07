@@ -34,5 +34,13 @@ def add_contact(request):
     
     return render(request, 'add_contact.html')
 
+def details(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    context = {
+        "contacts": contact
+    }
+    return render(request, "detail.html", context)
+
+
 def thanks(request):
     return render(request, 'thanks.html')
