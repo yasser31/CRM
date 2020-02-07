@@ -1,22 +1,38 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import NewContactForm
+from .models import Contact
 
 def contacts(request):
-    return render(request, 'contact.html')
+    contacts = Contact.objects.all()
+    context = {
+        "contacts": contacts
+    }
+    return render(request, 'contact.html', context)
 
 def prospects(request):
-    return render(request, 'prospects.html')
+    contacts = Contact.objects.filter(client=False)
+    context = {
+        "contacts": contacts
+    }
+    return render(request, 'contact.html', context)
 
 def clients(request):
-    return render(request, 'clients.html')
+    contacts = Contact.objects.filter(client=True)
+    context = {
+        "contacts": contacts
+    }
+    return render(request, 'contact.html', context)
 
 def add_contact(request):
     if request.method == 'POST':
         form = NewContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'thanks.html')
-        else:
-            return render(request, NewContactForm(request.POST), 'add_contact.html')
-    else:
-        return render(request, 'add_contact.html')
+            return HttpResponseRedirect('/thanks/')
+        
+    
+    return render(request, 'add_contact.html')
+
+def thanks(request):
+    return render(request, 'thanks.html')
