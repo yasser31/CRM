@@ -61,6 +61,7 @@
             </div>
             <p> Descritpion : {{ contact.description }}.</p>
             <p class="ctn-ads"><em>  Is A Client? :</em> {{ contact.client }}</p>
+            <br>
             {% if contact.client is False %}
             <h4><a href="{% url 'set' contact.id %}">Set As A Client</a></h4>
             {% else %}
@@ -72,6 +73,7 @@
     </div>
   </div>
 </div>
+<br>
 <!-- Contact area End-->
 {% endblock %}
 
