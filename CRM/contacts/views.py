@@ -25,6 +25,7 @@ def clients(request):
     return render(request, 'contact.html', context)
 
 def add_contact(request):
+    print(request.POST)
     if request.method == 'POST':
         form = NewContactForm(request.POST)
         if form.is_valid():
