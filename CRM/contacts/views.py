@@ -32,7 +32,7 @@ def add_company(request):
         form = NewCompanyForm(request.POST)
         if form.is_valid():
             try:
-                Company.objects.get(cp_name=request.POST["cp_name"], city=request.POST["company_city"])
+                Company.objects.get(cp_name=request.POST["cp_name"], company_city=request.POST["company_city"])
             except Company.DoesNotExist:
                 form.save()
             else:
@@ -52,7 +52,7 @@ def add_departement(request):
             except Departement.DoesNotExist:
                 form.save()
                 departement = Departement.objects.get(dep_name=request.POST["dep_name"])
-                company = Company.objects.get(cp_name=r1["cp_name"], city=r1["company_city"])
+                company = Company.objects.get(cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement.cp = company
                 departement.save()
             else:
@@ -70,17 +70,14 @@ def add_contact(request):
             except Contact.DoesNotExist:
                 form.save()
                 contact = Contact.objects.get(name=request.POST.get("name"))
-                company = company = Company.objects.get(cp_name=r1["cp_name"], city=r1["company_city"])
-                departement = Departement.objects.get(dep_nam=r2["dep_name"])
+                company = company = Company.objects.get(cp_name=r1["cp_name"], company_city=r1["company_city"])
+                departement = Departement.objects.get(dep_name=r2["dep_name"])
                 contact.company = company
                 contact.departement = departement
                 contact.save()
+                return HttpResponseRedirect('/thanks/')
             else:
                 pass
-        else:
-            print(form.errors)
-            
-            return HttpResponseRedirect('/thanks/')
     return render(request, 'add_contact.html')
 
 def details(request, contact_id):

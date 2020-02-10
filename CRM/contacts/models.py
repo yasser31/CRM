@@ -4,8 +4,8 @@ from django.db import models
 class Company(models.Model):
     cp_name = models.CharField(max_length=100, blank=False, default="")
     address = models.TextField()
-    country = models.CharField(max_length=100, blank=False, default="")
-    city = models.CharField(max_length=100, blank=False, default="")
+    company_country = models.CharField(max_length=100, blank=False, default="")
+    company_city = models.CharField(max_length=100, blank=False, default="")
     field = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
@@ -27,8 +27,8 @@ class Contact(models.Model):
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, null=True)
     departement = models.ForeignKey(Departement, on_delete=models.DO_NOTHING, null=True)
     description = models.TextField(blank=True)
-    twitter = models.URLField(max_length=128, blank=True, unique=True)
-    facebook = models.URLField(max_length=128, blank=True, unique=True)
-    linkedin = models.URLField(max_length=128, blank=True, unique=True)
+    twitter = models.URLField(max_length=128, blank=True, unique=True,  null=True)
+    facebook = models.URLField(max_length=128, blank=True, unique=True, null=True)
+    linkedin = models.URLField(max_length=128, blank=True, unique=True, null=True)
     client = models.BooleanField(null=False, default='false')
     
