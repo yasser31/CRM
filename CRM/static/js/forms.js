@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var xhr = new XMLHttpRequest();
         var xhr1 = new XMLHttpRequest();
         var xhr2 = new XMLHttpRequest();
-        var for1 = new FormData(form1);
+        var for1 = new FormData([form1]);
         var for2 = new FormData(form2);
         var for3 = new FormData(form3);
         xhr.open("POST", "/add_company/");

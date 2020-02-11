@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
 from .models import Company, Departement, Contact
+from django.contrib.auth.models import User
+
 
 def contacts(request):
     contacts = Contact.objects.all()
@@ -72,8 +74,10 @@ def add_contact(request):
                 contact = Contact.objects.get(name=request.POST.get("name"))
                 company = company = Company.objects.get(cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement = Departement.objects.get(dep_name=r2["dep_name"])
+                user = User.objects.get(username=request.user.username)
                 contact.company = company
                 contact.departement = departement
+                contact.user = user
                 contact.save()
                 return HttpResponseRedirect('/thanks/')
             else:
