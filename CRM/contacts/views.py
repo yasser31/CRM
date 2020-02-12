@@ -40,8 +40,12 @@ def add_company(request):
             else:
                 pass
         else:
-            print(form.errors)   
-    return render(request, 'add_contact.html')
+            print(form.errors)
+    form = NewCompanyForm()
+    context = {
+        "form1" : form
+    }
+    return render(request, 'add_contact.html', context)
 
 def add_departement(request):
     if request.method == 'POST':
@@ -59,8 +63,11 @@ def add_departement(request):
                 departement.save()
             else:
                 pass
-            
-    return render(request, 'add_contact.html')
+    form = NewDepartementForm()
+    context = {
+        "form2" : form
+    }      
+    return render(request, 'add_contact.html', context)
 
 
 def add_contact(request):
@@ -82,7 +89,11 @@ def add_contact(request):
                 return HttpResponseRedirect('/thanks/')
             else:
                 pass
-    return render(request, 'add_contact.html')
+    form = NewContactForm()
+    context = {
+        "form" : form
+    }
+    return render(request, 'add_contact.html', context)
 
 def details(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
