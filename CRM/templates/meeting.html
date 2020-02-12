@@ -1,1 +1,11 @@
 {% extends 'base.html' %}
+{% block meeting %}
+<br>
+<div class="list-group"></div>
+{% for contact in contacts %}
+<a href="{% url 'contact_meetings' contact.id %}" class="list-group-item list-group-item-action active">
+  <h3 class="text-center">{{ contact.name }}</h3>
+</a>
+<br>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block contact_meetings %}
+<div class="list-group">
+    {% for meeting in meetings %}
+    <br>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+          <div class="d-flex w-100 justify-content-between">
+            <h2 class="mb-1"> {{ meeting.title|title }} </h2>
+            <small>{{ meeting.date }}</small>
+            <p class="mb-1"> {{ meeting.summary|truncatechars:50 }}</p>
+          </div>
+        </a>
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}

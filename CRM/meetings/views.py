@@ -7,11 +7,20 @@ from .forms import MeetingForm
 
 
 def meetings(request):
-    meetings = Meeting.objects.filter(user=request.user.username)
+    contacts = Contact.objects.all()
+    context = {
+        "contacts" : contacts
+    }
+    return render(request, "meeting.html", context)
+
+def contact_meetings(request, contact_id):
+    meetings = Meeting.objects.filter(user__username=request.user.username,
+                                       contact_id=contact_id).order_by('-date')
     context = {
         "meetings" : meetings
     }
-    return render(request, "meetings.html", context)
+    return render(request, "contact_meetings.html", context)
+
 
 
 def create_meeting(request):

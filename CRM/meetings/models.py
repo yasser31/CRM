@@ -9,3 +9,6 @@ class Meeting(models.Model):
     summary = models.TextField(null=True)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+
+    def __str__(self):
+        return self.title
