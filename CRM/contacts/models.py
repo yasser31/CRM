@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Company(models.Model):
     cp_name = models.CharField(max_length=100, blank=False, default="")
@@ -31,5 +32,5 @@ class Contact(models.Model):
     facebook = models.URLField(max_length=128, blank=True, unique=True, null=True)
     linkedin = models.URLField(max_length=128, blank=True, unique=True, null=True)
     client = models.BooleanField(null=False, default='false')
-    
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     

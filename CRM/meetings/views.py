@@ -25,4 +25,5 @@ def create_meeting(request):
             meeting.user = user
             meetings.contact = contact
             return HttpResponseRedirect("/thanks/")
-    return render(request, "create_meeting.html")
+    context = {"form" : MeetingForm()}
+    return render(request, "create_meeting.html", context)
