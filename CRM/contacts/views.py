@@ -72,7 +72,7 @@ def add_contact(request):
             except Contact.DoesNotExist:
                 form.save()
                 contact = Contact.objects.get(name=request.POST.get("name"))
-                company = company = Company.objects.get(cp_name=r1["cp_name"], company_city=r1["company_city"])
+                company = Company.objects.get(cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement = Departement.objects.get(dep_name=r2["dep_name"])
                 user = User.objects.get(username=request.user.username)
                 contact.company = company

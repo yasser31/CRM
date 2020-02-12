@@ -31,5 +31,5 @@ class Contact(models.Model):
     facebook = models.URLField(max_length=128, blank=True, unique=True, null=True)
     linkedin = models.URLField(max_length=128, blank=True, unique=True, null=True)
     client = models.BooleanField(null=False, default='false')
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    
     
