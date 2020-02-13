@@ -51,7 +51,8 @@
           </div>
           <div class="contact-ctn">
             <div class="contact-ad-hd">
-              <a href="{% url 'create_meeting' %}">Create Meeting report</a>
+              <a href="{% url 'create_meeting' %}">Create Meeting report</a><br>
+              <a href="{% url 'contact_meetings' contact.id %}">Check Mettings</a>
               <h2> Name : {{ contact.name }}</h2>
               <p class="ctn-ads"><em>  Email :</em> {{ contact.email }}</p>
               <p class="ctn-ads"><em>  Age :</em> {{ contact.age }}</p>

@@ -21,7 +21,14 @@ def contact_meetings(request, contact_id):
     }
     return render(request, "contact_meetings.html", context)
 
+def meeting_details(request, meeting_id):
+    
+    meeting = Meeting.objects.get(id=meeting_id)
+    context = {
+        "meeting": meeting
+    }
 
+    return render(request, "meeting_detail.html", context)
 
 def create_meeting(request):
     if request.method == "POST":
