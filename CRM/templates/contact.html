@@ -42,7 +42,7 @@
         <div class="contact-list">
           <div class="contact-win">
             <div class="contact-img">
-              <a href="{% url 'details' contact.id %}"><img src="{% static 'img/post/1.jpg' %}" alt="" class="img-thumbnail"/></a>
+              <a href="{% url 'details' contact.id %}"><img src="{{ contact.photo }}" alt="" class="img-thumbnail"/></a>
             </div>
             <div class="conct-sc-ic">
               <a class="btn" href="{{contact.facebook}}"><i class="notika-icon notika-facebook"></i></a>
