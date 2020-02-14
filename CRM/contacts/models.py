@@ -22,6 +22,7 @@ class Departement(models.Model):
 
 
 class Contact(models.Model):
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     name = models.CharField(max_length=100, default='', blank=False)
     country = models.CharField(max_length=100, default='', blank=False)
     city = models.CharField(max_length=100, default='', blank=False)

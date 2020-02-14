@@ -3,7 +3,20 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from contacts.models import Contact
 from .models import Meeting
-from .forms import MeetingForm
+from .forms import MeetingForm, SetMeetingForm
+
+
+def set_meeting(request):
+    if request.method == "POST":
+        form = SetMeetingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/thanks/")
+    form = SetMeetingForm()
+    context = {
+        "form" : form
+    }
+    return render(request, "set_meeting.html", context)
 
 
 def meetings(request):

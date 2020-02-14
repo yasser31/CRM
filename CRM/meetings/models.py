@@ -12,3 +12,12 @@ class Meeting(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SetMeeting(models.Model):
+    date = models.DateField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.date
