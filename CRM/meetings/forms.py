@@ -12,10 +12,10 @@ class MeetingForm(forms.Form):
 class SetMeetingForm(forms.ModelForm):
     class Meta:
         model = SetMeeting
-        fields = ["date", "contact"]
+        fields = ["date", "time", "contact"]
         widgets = {
-            "date": forms.DateInput(attrs={"class" : "datepicker"}),
-        }
+            "date": forms.TextInput(attrs={"type": "date"}),
+            "time": forms.TextInput(attrs={"type": "time"})}
     
     def __init__(self):
         super(SetMeetingForm, self).__init__()

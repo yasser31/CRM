@@ -16,6 +16,7 @@ class Meeting(models.Model):
 
 class SetMeeting(models.Model):
     date = models.DateTimeField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
 
