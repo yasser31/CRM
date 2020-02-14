@@ -14,7 +14,7 @@ class SetMeetingForm(forms.ModelForm):
         model = SetMeeting
         fields = ["date", "contact"]
         widgets = {
-            "date": forms.TextInput(attrs={"class" : "datepicker"}),
+            "date": forms.DateInput(attrs={"class" : "datepicker"}),
         }
     
     def __init__(self):
