@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block meeting_information %}
+{% for meeting in meetings %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item"><h3>Place : </h3> {{ meeting.place|title }}</li>
+                <li class="list-group-item"><h3>Date : </h3>{{ meeting.date }}</li>
+                <li class="list-group-item"><h3>Time : </h3>{{ meeting.time }}</li>
+                <li class="list-group-item"><h3>Contact : </h3>{{ meeting.contact|title}}</li>
+                </ul>
+                <div class="card-body">
+                <a href="{% url 'meeting_notes' meeting.id %}" class="card-link">See Notes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}

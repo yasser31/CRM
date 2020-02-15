@@ -10,11 +10,12 @@ def set_meeting(request):
     if request.method == "POST":
         form = SetMeetingForm(request.POST)
         if form.is_valid():
+            user = User.objects.get(user__username=request.user.username)
             place = form.cleaned_data["place"]
             date = form.cleaned_data["date"]
             time = form.cleaned_data["time"]
             contact = form.cleaned_data["contact"]
-            SetMeeting.objects.create(place=place, date=date, time=time, contact=contact)
+            SetMeeting.objects.create(place=place, date=date, time=time, contact=contact, user=user)
             return HttpResponseRedirect("/thanks/")
         else:
             print(form.errors)
@@ -66,3 +67,21 @@ def create_meeting(request):
             return HttpResponseRedirect("/thanks/")
     context = {"form" : MeetingForm()}
     return render(request, "create_meeting.html", context)
+
+def meeting_information(request):
+    
+    meetings = SetMeeting.objects.filter(user__username=request.user.username)
+    context = {
+        "meetings" : meetings
+    }
+
+    return render(request, "meeting_information.html", context)
+
+
+def meeting_notes(request, meeting_id):
+    meeting = SetMeeting.objects.get(id=meeting_id)
+    context = {
+        "meeting" : meeting
+    }
+
+    return render(request, "meeting_notes.html", context)
