@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from contacts.models import Contact
-from .models import Meeting
+from .models import Meeting, SetMeeting
 from .forms import MeetingForm, SetMeetingForm
 
 
@@ -10,8 +10,14 @@ def set_meeting(request):
     if request.method == "POST":
         form = SetMeetingForm(request.POST)
         if form.is_valid():
-            form.save()
+            place = form.cleaned_data["place"]
+            date = form.cleaned_data["date"]
+            time = form.cleaned_data["time"]
+            contact = form.cleaned_data["contact"]
+            SetMeeting.objects.create(place=place, date=date, time=time, contact=contact)
             return HttpResponseRedirect("/thanks/")
+        else:
+            print(form.errors)
     form = SetMeetingForm()
     context = {
         "form" : form

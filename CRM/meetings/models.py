@@ -15,10 +15,12 @@ class Meeting(models.Model):
 
 
 class SetMeeting(models.Model):
-    date = models.DateTimeField(null=True, blank=True)
+    place = models.CharField(null=True, blank=True, max_length=100)
+    date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
+    note = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.date
+        return str(self.date)

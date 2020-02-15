@@ -9,14 +9,10 @@ class MeetingForm(forms.Form):
     contact = forms.ModelChoiceField(queryset=Contact.objects.all())
 
 
-class SetMeetingForm(forms.ModelForm):
-    class Meta:
-        model = SetMeeting
-        fields = ["date", "time", "contact"]
-        widgets = {
-            "date": forms.TextInput(attrs={"type": "date"}),
-            "time": forms.TextInput(attrs={"type": "time"})}
+class SetMeetingForm(forms.Form):
+    place = forms.CharField(max_length=100, required=False)
+    date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d"))
+    time = forms.TimeField(widget=forms.TimeInput(attrs={"type": "time"}))
+    contact = forms.ModelChoiceField(queryset=Contact.objects.all())
+    note = forms.CharField(widget=forms.Textarea, required=False)
     
-    def __init__(self):
-        super(SetMeetingForm, self).__init__()
-        self.fields["contact"].queryset = Contact.objects.all()
