@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
 from .models import Company, Departement, Contact
@@ -113,6 +113,38 @@ def unset(request, contact_id):
     contact.client=False
     contact.save()
     return HttpResponseRedirect("/prospects/")
+
+def client_prospects_percent(request):
+    total_contact = Contact.objects.all().count()
+    total_client= Contact.objects.filter(client=True).count()
+    total_prospects = Contact.objects.filter(client=False).count()
+    prospects_percent = (total_prospects * total_client)/100
+    client_percent = (total_client * total_contact) / 100
+    data = {
+        "total_contact" : total_contact,
+        "total_client" : total_client,
+        "total_prospects" : total_prospects,
+        "client_percent" : client_percent,
+        "prospects_percent" : prospects_percent
+    }
+    return JsonResponse(data)
+
+def contact_month(request):
+    contact_counts_month = []
+    client_counts_month = []
+    months = ('January', 'February', 'March', 'April', 'May',
+              'June', 'July', 'August', 'September', 'October', 
+              'November', 'December')
+    for month in months:
+        contact_count = Contact.objects.filter(date=month).count()
+        contact_counts_month.append(contact_count)
+        client_month = Contact.objects.filter(date=month, client=True).count()
+        client_counts_month.append(client_month)
+        data = {
+            "contact" : contact_counts_month,
+            "client" : contact_counts_month
+        }
+        return JsonResponse(data)
 
 def thanks(request):
     return render(request, 'thanks.html')
