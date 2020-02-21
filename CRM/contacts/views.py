@@ -1,3 +1,4 @@
+import datetime
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
@@ -130,21 +131,22 @@ def client_prospects_percent(request):
     return JsonResponse(data)
 
 def contact_month(request):
+    year = datetime.date.today().year
     contact_counts_month = []
     client_counts_month = []
-    months = ('January', 'February', 'March', 'April', 'May',
-              'June', 'July', 'August', 'September', 'October', 
-              'November', 'December')
+    months = ['0' + str(n) for n in range(1, 10)]
     for month in months:
-        contact_count = Contact.objects.filter(date=month).count()
+        date = str(year) + '-' + month
+        print(date)
+        contact_count = Contact.objects.filter(date__startswith=date).count()
         contact_counts_month.append(contact_count)
-        client_month = Contact.objects.filter(date=month, client=True).count()
+        client_month = Contact.objects.filter(date__startswith=date, client=True).count()
         client_counts_month.append(client_month)
-        data = {
-            "contact" : contact_counts_month,
-            "client" : contact_counts_month
-        }
-        return JsonResponse(data)
+    data = {
+        "contact" : contact_counts_month,
+        "client" : contact_counts_month,
+    }
+    return JsonResponse(data)
 
 def thanks(request):
     return render(request, 'thanks.html')

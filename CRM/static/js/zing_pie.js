@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 	fetch('/contact_percent/').then(function (response) {
 		response.text().then(function (text) {
+			var today = new Date();
+			var dd = String(today.getDate()).padStart(2, '0');
+			var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+			var yyyy = today.getFullYear();
+			today = mm + '/' + dd + '/' + yyyy;
 			var data = JSON.parse(text)
 			var myConfig = {
 				type: "pie",
@@ -46,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					fontColor: "#8e99a9",
 					fontFamily: "Open Sans",
 					fontSize: "16",
-					text: 'May 2016',
+					text: today,
 					align: "left"
 				},
 				plotarea: {
