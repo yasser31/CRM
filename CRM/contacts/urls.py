@@ -14,4 +14,5 @@ urlpatterns = [
     path('details/<int:contact_id>', views.details, name="details"),
     path('set/<int:contact_id>', views.Set, name="set"),
     path('unset/<int:contact_id>', views.unset, name="unset"),
+    path('contact_percent/', views.client_prospects_percent, name="contact_percent"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

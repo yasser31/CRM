@@ -124,7 +124,7 @@ def client_prospects_percent(request):
         "total_contact" : total_contact,
         "total_client" : total_client,
         "total_prospects" : total_prospects,
-        "client_percent" : client_percent,
+        "clients_percent" : client_percent,
         "prospects_percent" : prospects_percent
     }
     return JsonResponse(data)
