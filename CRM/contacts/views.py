@@ -147,5 +147,24 @@ def contact_month(request):
     }
     return JsonResponse(data)
 
+def recent_contact(request):
+    year = datetime.date.today().year
+    month = datetime.date.today().month
+    if month < 10:
+        date = str(year) + "-" + "0" + str(month)
+    else:
+        date = str(year) + "-" + str(month)
+    contact_query = Contact.objects.filter(date__startswith=date, client=False)[:6]
+    client_query = Contact.objects.filter(date__startswith=date, client=True)[:6]
+    contact = [{"name": contact.name, "date":contact.date, "company":contact.company
+    , "country":contact.country, "city": contact.city, "id":contact.id } for contact in contact_query]
+    client = [{"name": contact.name, "date":contact.date, "company":contact.company
+    , "country":contact.country, "city": contact.city, "id":contact.id } for contact in client_query]
+    data = {
+        "contact": contact,
+        "client": client
+    }
+    return JsonResponse(data)
+
 def thanks(request):
     return render(request, 'thanks.html')
