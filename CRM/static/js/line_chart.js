@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     fetch('/contact_month/').then(function (response) {
         response.text().then(function (text) {
-        console.log(text)
         var data = JSON.parse(text);
         var myLineConfig = 
         {
             "type": "line",
-            "utc": true,
             "title": {
-                "text": "Webpage Analytics",
+                "text": "Contact And Client Evolution",
                 "font-size": "24px",
                 "adjust-layout":true
             },
             "plotarea": {
-                "margin": "dynamic 45 60 dynamic",
+                "margin": "dynamic"
             },
             "legend": {
                 "layout": "float",
@@ -30,24 +28,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             },
             "scale-x": {
-                "min-value": 1577836800,
-                "max-value": 1609372800,
+                "labels": ["January", "Februray", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November",
+                            "December"],
+                "zooming": true,
+                "item": {
+                'font-size':10
+                },
                 "shadow": 0,
-                "step": 2592000,
-                "transform": {
-                    "type": "date",
-                    "all": "%D, %d %M<br />%h:%i %A",
-                    "guide": {
-                        "visible": false
-                    },
-                    "item": {
-                        "visible": false
-                    }
-                },
-                "label": {
-                    "visible": false
-                },
-                "minor-ticks": 0
+                
+            },
+            'scroll-x': {
+                
             },
             "scale-y": {
                 "line-color": "#f6f7f8",

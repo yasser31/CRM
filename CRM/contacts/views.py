@@ -134,10 +134,9 @@ def contact_month(request):
     year = datetime.date.today().year
     contact_counts_month = []
     client_counts_month = []
-    months = ['0' + str(n) for n in range(1, 10)]
+    months = ['0' + str(n) if n < 10 else str(n) for n in range(1, 13)]
     for month in months:
         date = str(year) + '-' + month
-        print(date)
         contact_count = Contact.objects.filter(date__startswith=date).count()
         contact_counts_month.append(contact_count)
         client_month = Contact.objects.filter(date__startswith=date, client=True).count()

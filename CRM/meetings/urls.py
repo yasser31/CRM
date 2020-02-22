@@ -9,5 +9,6 @@ urlpatterns = [
     path("meeting_details/<int:meeting_id>", views.meeting_details, name="meeting_details"),
     path("set_meeting/", views.set_meeting, name="set_meeting"),
     path("meeting_information/", views.meeting_information, name="meeting_information"),
-    path("meeting_notes/<int:meeting_id>", views.meeting_notes, name="meeting_notes")
+    path("meeting_notes/<int:meeting_id>", views.meeting_notes, name="meeting_notes"),
+    path("meeting_display/", views.dashboard_meeting_display, name="meeting_display"),
 ]

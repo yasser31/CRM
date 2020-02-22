@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+import datetime
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from contacts.models import Contact
@@ -85,3 +86,22 @@ def meeting_notes(request, meeting_id):
     }
 
     return render(request, "meeting_notes.html", context)
+
+def dashboard_meeting_display(request):
+    month = datetime.date.today().month
+    year = datetime.date.today().year
+    if month < 10:
+        query_date = str(year) + '-' + '0' + str(month)
+    else:
+        query_date = str(year) + '-' + str(month)
+    query_date = str(year) + '-' + '0' + str(month)
+    meetings = SetMeeting.objects.filter(date__startswith=query_date)
+    meeting = [{"date" : meeting.date, 
+                "time" : meeting.time, 
+                "place" : meeting.place, 
+                "name" : meeting.contact.name} for meeting in meetings
+                                               if meeting.date > datetime.date.today()]
+    data = {
+        "meeting" : meeting
+    }
+    return JsonResponse(data)
