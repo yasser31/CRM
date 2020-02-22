@@ -143,7 +143,7 @@ def contact_month(request):
         client_counts_month.append(client_month)
     data = {
         "contact" : contact_counts_month,
-        "client" : contact_counts_month,
+        "client" : client_counts_month,
     }
     return JsonResponse(data)
 
