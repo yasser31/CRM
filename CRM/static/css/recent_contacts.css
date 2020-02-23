@@ -16,6 +16,7 @@ h3{
   background: #f2f2f2;
   border: 1px solid #ddd;
   padding: 10px 20px;
+  height: 100%;
 }
 .sidebar.widget ul {
     margin: 0px;

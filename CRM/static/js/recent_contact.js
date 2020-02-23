@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
             <ul>
                 <li>
                     <div class="sidebar-content">
-                        <h5 class="animated bounceInRight"><a href="/details/${cont.id}">${cont.name}</a></h5>
+                        <h5 class="animated bounceInRight"><a href="/details/${cont.id}">${cont.name}</a>
+                        <span class="comment"><i class="fa fa-comment"></i>${cont.country}</span>
+                        <span class="comment"><i class="fa fa-comment"></i>${cont.city} </span>
+             </h5>
                     </div><!-- .Sidebar-thumb -->
                     <div class="sidebar-meta">
-                        <span class="time"><i class="fa fa-clock-o"></i>function :  ${cont.function}</span><br>
-                        <span class="comment"><i class="fa fa-comment"></i>country : ${cont.country}</span><br>
-                        <span class="comment"><i class="fa fa-comment"></i>city : ${cont.city} </span><br>
+                        <span class="time"><i class="fa fa-clock-o"></i>function :  ${cont.function}</span>
+                        
                     </div><!-- .Sidebar-meta ends here -->
                 </li><!-- .Li ends here -->
             </ul><!-- .Ul ends here -->

@@ -25,29 +25,29 @@
         display: none;
     }
 </style>
-<!-- Start Status area -->
-<div class="container">
-    <div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
-    <div id='my_line_chart'><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
-</div>
-<!-- End Realtime sts area-->
+<!-- Main Sidebar Container -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <!-- Start Status area -->
+        <div id='my_line_chart' class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
+        <div id='myChart'class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered by ZingChart</a></div>
+        <!-- End Realtime sts area-->
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
             <section class="tasks">
                 <header class="tasks-header">
                     <h2 class="tasks-title">Meetings</h2>
                 </header>
-                <fieldset class="tasks-list" id ="fieldset">
-                   
+                <fieldset class="tasks-list" id="fieldset">
+
                 </fieldset>
             </section>
         </div>
-        <div class="col-lg-3" id="recent_contact">
-           
+        <div class="col-lg-4" id="recent_contact">
         </div><!-- .Col ends here -->
-        <div class="col-lg-3" id="recent_client">
-           
+        <div class="col-lg-4" id="recent_client">
         </div><!-- .Col ends here -->
+    </div>
 </div>
-{% endblock %}
+    {% endblock %}
