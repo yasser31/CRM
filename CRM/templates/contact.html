@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block contact %}
 {% load static %}
+<style>
+.contact-list{
+  background-image: url("../static/images/card.jpg");
+}
+
+</style>
+<br>
 <!-- Breadcomb area Start-->
 <div class="breadcomb-area">
   <div class="container">
@@ -36,35 +43,34 @@
 <!-- Contact area Start-->
 <div class="contact-area">
   <div class="container">
-    {% for contact in contacts %}
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+    {% for contact in contacts %}
+     <div class="col-lg-4">
         <div class="contact-list">
           <div class="contact-win">
-            <div class="contact-img">
-              <a href="{% url 'details' contact.id %}"><img src="{{ contact.photo }}" alt="" class="img-thumbnail"/></a>
-            </div>
             <div class="conct-sc-ic">
-              <a class="btn" href="{{contact.facebook}}"><i class="notika-icon notika-facebook"></i></a>
-              <a class="btn" href="{{contact.twitter}}"><i class="notika-icon notika-twitter"></i></a>
+              <a class="btn" href="{{contact.facebook}}"><i class="fab fa-facebook-square"></i></a>
               <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+              <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-twitter"></i></a>
             </div>
           </div>
           <div class="contact-ctn">
             <div class="contact-ad-hd">
               <a href="{% url 'details' contact.id %}"><h2>{{ contact.name }}</h2></a>
-              <p class="ctn-ads">{{ contact.function }}</p>
-              <p class="ctn-ads">{{ contact.company }}</p>
+              <p class="ctn-ads"> function : {{ contact.function }}</p>
+              <p class="ctn-ads">company : {{ contact.company }}</p>
               <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
     {% endfor %}
+  </div>
   </div>
 </div>
 <br>
+
 <!-- Contact area End-->
 {% endblock %}
 

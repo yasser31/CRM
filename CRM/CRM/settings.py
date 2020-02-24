@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'meetings',
     'dashboards',
     'crispy_forms',
-]
+    ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

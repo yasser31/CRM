@@ -119,11 +119,12 @@ def client_prospects_percent(request):
     total_contact = Contact.objects.all().count()
     total_client= Contact.objects.filter(client=True).count()
     total_prospects = Contact.objects.filter(client=False).count()
-    prospects_percent = (total_prospects * total_client)/100
-    client_percent = (total_client * total_contact) / 100
+    prospects_percent = (total_prospects / total_contact) * 100
+    client_percent = (total_client / total_contact) * 100
+    print(client_percent)
     data = {
-        "total_contact" : total_contact,
-        "total_client" : total_client,
+        "total_contacts" : total_contact,
+        "total_clients" : total_client,
         "total_prospects" : total_prospects,
         "clients_percent" : client_percent,
         "prospects_percent" : prospects_percent
@@ -156,9 +157,9 @@ def recent_contact(request):
         date = str(year) + "-" + str(month)
     contact_query = Contact.objects.filter(date__startswith=date, client=False)[:6]
     client_query = Contact.objects.filter(date__startswith=date, client=True)[:6]
-    contact = [{"name": contact.name, "date":contact.date, "company":contact.company
+    contact = [{"name": contact.name, "date":contact.date, "function":contact.function
     , "country":contact.country, "city": contact.city, "id":contact.id } for contact in contact_query]
-    client = [{"name": contact.name, "date":contact.date, "company":contact.company
+    client = [{"name": contact.name, "date":contact.date, "function":contact.function
     , "country":contact.country, "city": contact.city, "id":contact.id } for contact in client_query]
     data = {
         "contact": contact,
