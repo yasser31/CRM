@@ -80,7 +80,7 @@
                                 <a href="{% url 'meetings' %}" class="nav-link">
                                     <i class="nav-icon fas fa-copy"></i>
                                     <p>
-                                        Meeting
+                                        Meetings Reports
                                     </p>
                                 </a>
                             </li>
@@ -92,8 +92,22 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item has-treeview">
+                                    <a href="{% url 'meeting_information' %}"><p class="text-white ml-3 mt-4"> Meetings</p></a>
+                                <ol>
+                                    <li>
+                                        <p class="text-white ml-3 mt-4"> Next Meetings</p>    
+                                            <ol>
+                                                <li>
+                                                    <fieldset class="tasks-list" id="fieldset"></fieldset>
+                                                </li>
+                                            </ol>
+                                    </li>
+                                </ol>
+                            <li>
                         </ul>
                     </nav>
+
             </aside>
         </div>
         <div class="col-lg-9">
@@ -111,19 +125,9 @@
                 </div>
                 <!-- End Realtime sts area-->
                 <div class="row">
-                    <div class="col-lg-4">
-                        <section class="tasks">
-                            <header class="tasks-header">
-                                <h2 class="tasks-title">Meetings</h2>
-                            </header>
-                            <fieldset class="tasks-list" id="fieldset">
-
-                            </fieldset>
-                        </section>
-                    </div>
-                    <div class="col-lg-4" id="recent_contact">
+                    <div class="col-lg-6" id="recent_contact">
                     </div><!-- .Col ends here -->
-                    <div class="col-lg-4" id="recent_client">
+                    <div class="col-lg-6" id="recent_client">
                     </div><!-- .Col ends here -->
                 </div>
             </div>

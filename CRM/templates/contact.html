@@ -2,71 +2,51 @@
 {% block contact %}
 {% load static %}
 <style>
-.contact-list{
-  background-image: url("../static/images/card.jpg");
-}
+  .contact-list {
+    background-image: url("../static/images/card.jpg");
+  }
 
+  #contact {
+    color: mediumslateblue;
+  }
 </style>
 <br>
-<!-- Breadcomb area Start-->
-<div class="breadcomb-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="breadcomb-list">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-              <div class="breadcomb-wp">
-                <div class="breadcomb-icon">
-                  <i class="notika-icon notika-support"></i>
-                </div>
-                <div class="breadcomb-ctn">
-                  <h2>Contact</h2>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
-              <div class="breadcomb-report">
-                <form method="GET" action="/add_contact">
-                  <button data-toggle="tooltip" data-placement="left" title="add contact" class="btn-success"> Add
-                    Contact</button>
-                </form>
-              </div>
-            </div>
+<!-- Contact area Start-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 id="contact">Contact</h2>
+    </div>
+    <div class="col-lg-6">
+      <form method="GET" action="/add_contact">
+        <button data-toggle="tooltip" data-placement="left" title="add contact" class="btn-success"> Add
+          Contact</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    {% for contact in contacts %}
+    <div class="col-lg-4">
+      <div class="contact-list">
+        <div class="contact-win">
+          <div class="conct-sc-ic">
+            <a class="btn" href="{{contact.facebook}}"><i class="fab fa-facebook-square"></i></a>
+            <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="contact-ctn">
+          <div class="contact-ad-hd">
+            <a href="{% url 'details' contact.id %}">
+              <h2>{{ contact.name|lower|title }}</h2>
+            </a>
+            <p class="ctn-ads"> Function : {{ contact.function }}</p>
+            <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- Breadcomb area End-->
-<!-- Contact area Start-->
-<div class="contact-area">
-  <div class="container">
-    <div class="row">
-    {% for contact in contacts %}
-     <div class="col-lg-4">
-        <div class="contact-list">
-          <div class="contact-win">
-            <div class="conct-sc-ic">
-              <a class="btn" href="{{contact.facebook}}"><i class="fab fa-facebook-square"></i></a>
-              <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
-              <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-twitter"></i></a>
-            </div>
-          </div>
-          <div class="contact-ctn">
-            <div class="contact-ad-hd">
-              <a href="{% url 'details' contact.id %}"><h2>{{ contact.name }}</h2></a>
-              <p class="ctn-ads"> function : {{ contact.function }}</p>
-              <p class="ctn-ads">company : {{ contact.company }}</p>
-              <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    
     {% endfor %}
-  </div>
   </div>
 </div>
 <br>

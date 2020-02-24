@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% block meeting_information %}
-{% for meeting in meetings %}
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <div class="card" style="width: 18rem;">
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item"><h3>Place : </h3> {{ meeting.place|title }}</li>
-                <li class="list-group-item"><h3>Date : </h3>{{ meeting.date }}</li>
-                <li class="list-group-item"><h3>Time : </h3>{{ meeting.time }}</li>
-                <li class="list-group-item"><h3>Contact : </h3>{{ meeting.contact|title}}</li>
-                </ul>
-                <div class="card-body">
-                <a href="{% url 'meeting_notes' meeting.id %}" class="card-link">See Notes</a>
-                </div>
-            </div>
+<div class="table100 ver2 m-b-110">
+        <div class="table100-head">
+            <table>
+                <thead>
+                    <tr class="row100 head">
+                        <th class="cell100 column1">Contact</th>
+                        <th class="cell100 column2">Date</th>
+                        <th class="cell100 column3">Time</th>
+                        <th class="cell100 column4">Place</th>
+                        <th class="cell100 column5">Notes</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+       <div class="table100-body js-pscroll">
+            <table>
+                <tbody>
+                    {% for meeting in meetings %}
+                    <tr class="row100 body">
+                        <td class="cell100 column4"><a href="{% url 'details' meeting.contact.id %}">{{ meeting.contact|title}}</a></td>
+                        <td class="cell100 column2">{{ meeting.date }}</td>
+                        <td class="cell100 column3">{{ meeting.time }}</td>
+                        <td class="cell100 column1">{{ meeting.place|lower|title }}</td>
+                        <td class="cell100 column5"><a href="{% url 'meeting_notes' meeting.id %}" class="card-link">Notes</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
-<br>
-{% endfor %}
 {% endblock %}

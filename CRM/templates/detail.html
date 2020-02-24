@@ -1,58 +1,63 @@
 {% extends 'base.html' %}
 {% block contact %}
 {% load static %}
-<br>
-<div class="breadcomb-ctn">
-  <h2>Contact</h2>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
-  <div class="breadcomb-report">
-    <form method="GET" action="/add_contact">
-      <button data-toggle="tooltip" data-placement="left" title="add contact" class="btn-success"> Add
-        Contact</button>
-    </form>
-  </div>
-</div>
+<style>
+  #detail{
+    background-image: url("../static/images/card.jpg");
+  }
 
-<!-- Breadcomb area End-->
+  .links {
+    color:mediumpurple;
+  }
+
+  h2 {
+    color:midnightblue;
+  }
+</style>
+<br>
 <!-- Contact area Start-->
-<div class="contact-area">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="contact-list">
-          <div class="contact-win">
-            <div class="conct-sc-ic">
-              <a class="btn" href="{{contact.facebook}}"><i class="fab fa-facebook-square"></i></a>
-              <a class="btn" href="{{contact.twitter}}"><i class="fab fa-twitter"></i></a></a>
-              <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-          <div class="contact-ctn">
-            <div class="contact-ad-hd">
-              <a href="{% url 'create_meeting' %}">Create Meeting report</a><br>
-              <a href="{% url 'contact_meetings' contact.id %}">Check Mettings</a>
-              <h2> Name : {{ contact.name }}</h2>
-              <p class="ctn-ads"><em> Email :</em> {{ contact.email }}</p>
-              <p class="ctn-ads"><em> Age :</em> {{ contact.age }}</p>
-              <p class="ctn-ads"><em> Phone :</em> {{ contact.phone_number }}</p>
-              <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>
-              <p class="ctn-ads"><em> Function :</em> {{ contact.function }}</p>
-              <p class="ctn-ads"><em> Company :</em> {{ contact.company }}</p>
-            </div>
-            <p> Descritpion : {{ contact.description }}.</p>
-            <p class="ctn-ads"><em> Is A Client? :</em> {{ contact.client }}</p>
-            <br>
-            {% if contact.client is False %}
-            <h4><a href="{% url 'set' contact.id %}">Set As A Client</a></h4>
-            {% else %}
-            <h4><a href="{% url 'unset' contact.id %}">Set As A Prospect</a></h4>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+<div class="container mt-5" id="detail">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Contact</h2>
+    </div>
+    <div class="col-lg-6">
+      <form method="GET" action="/add_contact">
+        <button data-toggle="tooltip" data-placement="left" title="add contact" class="btn-success"> Add
+          Contact</button>
+      </form>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <a class="btn" href="{{contact.facebook}}"><i class="fab fa-facebook-square"></i></a>
+      <a class="btn" href="{{contact.twitter}}"><i class="fab fa-twitter"></i></a></a>
+      <a class="btn" href="{{contact.linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+      <h2> Name : {{ contact.name|lower|title }}</h2>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-lg-3"><p><em> Email :</em> {{ contact.email }}</p></div>
+      <div class="col-lg-3"><p><em> Age :</em> {{ contact.age }}</p></div>
+      <div class="col-lg-3"><p><em> Phone :</em> {{ contact.phone_number }}</p></div>
+      <div class="col-lg-3"><p>{{ contact.country }}, {{ contact.city }}</p></div>
+      <div class="col-lg-3"><p><em> Function :</em> {{ contact.function }}</p></div>
+      <div class="col-lg-3"><p><em> Company :</em> {{ contact.company }}</p></div>
+      <div class="col-lg-3"><p> Descritpion : {{ contact.description }}.</p></div>
+      <div class="col-lg-3"><p><em> Is A Client :</em> {{ contact.client }}</p></div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-lg-4">
+        {% if contact.client is False %}
+        <h4><a href="{% url 'set' contact.id %}" class="links">Set As A Client</a></h4>
+        {% else %}
+        <h4><a href="{% url 'unset' contact.id %}" class="links">Set As A Prospect</a></h4>
+        {% endif %}</div>
+      <div class="col-lg-4"><a href="{% url 'contact_meetings' contact.id %}" class="links">Check Mettings</a></div>
+      <div class="col-lg-4"><a href="{% url 'create_meeting' %}" class="links">Create Meeting report</a><br></div>
+  </div>
+</div>
+</div>
 </div>
 <br>
 <!-- Contact area End-->

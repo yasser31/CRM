@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h5 class="animated bounceInRight"><a href="/details/${cont.id}">${cont.name}</a>
                         <span>${cont.country}</span>
                         <span>${cont.city} </span><br>
-                        <span>${cont.date} </span>
              </h5>
                     </div><!-- .Sidebar-thumb -->
                     <div class="sidebar-meta">
@@ -34,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h5 class="animated bounceInRight"><a href="/details/${clt.id}">${clt.name}</a>
                         <span> ${clt.country}</span>
                         <span>${clt.city} </span><br>
-                        <span>${clt.date} </span>
                         </h5>
                     </div><!-- .Sidebar-thumb -->
                     <div class="sidebar-meta">

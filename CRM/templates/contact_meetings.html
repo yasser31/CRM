@@ -1,18 +1,58 @@
 {% extends 'base.html' %}
 {% block contact_meetings %}
-<div class="list-group">
-    {% for meeting in meetings %}
-    <br>
-        <a href="{% url 'meeting_details' meeting.id %}" class="list-group-item list-group-item-action flex-column align-items-start active">
-          <div class="d-flex w-100 justify-content-between">
-            <h2 class="mb-1"> {{ meeting.title|title }} </h2>
-            <small>{{ meeting.date }}</small>
-            <p class="mb-1"> {{ meeting.summary|truncatechars:50 }}</p>
-            <small> User : {{ meeting.user }}</small><br>
-            <small> Contact : {{ meeting.contact }}</small>
-          </div>
-        </a>
-    <br>
-    {% endfor %}
-</div>
-{% endblock %}
+<div class="limiter">
+  <div class="container-table100">
+    <div class="wrap-table100">
+      <div class="table100 ver1 m-b-110">
+        <div class="table100-head">
+          <table>
+            <thead>
+              <tr class="row100 head">
+                <th class="cell100 column1">Title</th>
+                <th class="cell100 column2">Date</th>
+                <th class="cell100 column3">Summary</th>
+                <th class="cell100 column4">User</th>
+                <th class="cell100 column5">Contact</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="table100-body js-pscroll">
+          <table>
+            <tbody>
+                {% for meeting in meetings %}
+              <tr class="row100 body">
+                <td class="cell100 column1"><a href="{% url 'meeting_details' meeting.id %}">{{ meeting.title|title }}</a></td>
+                <td class="cell100 column2">{{ meeting.date }}</td>
+                <td class="cell100 column3">{{ meeting.summary|truncatechars:50 }}</td>
+                <td class="cell100 column4">{{ meeting.user }}</td>
+                <td class="cell100 column5">{{ meeting.contact }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="list-group mt-5">
+       
+        <br>
+        <table>
+          <ol>
+            <li>
+              
+                <div class="d-flex w-100 justify-content-between">
+                  <h2 class="mb-1">  </h2>
+                  <small></small>
+                  <p class="mb-1"> </p>
+                  <small> small><br>
+                  <small> Contact : </small>
+                </div>
+              </a>
+            </li>
+          </ol>
+          <br>
+          
+      </div>
+      {% endblock %}
