@@ -10,9 +10,11 @@ def registration(request):
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=email, password=raw_password)
+            user = authenticate(email=email, password=raw_password)
             login(request, user)
             return redirect('/dashboard/')
+        else:
+            print(form.errors)
     form = RegisterForm()
     context = {
         "form" : form

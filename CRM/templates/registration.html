@@ -1,24 +1,27 @@
 {% extends 'base.html' %}
 {% block registration %}
 <div id="bg">
+    
+    {% if context.error2 %}
+        <ul class="position-absolute" id="passworderror">
+                <li></li>
+                    <strong>{{ context.error2 }}</strong>
+                </li>
+        </ul>
+    {% endif %}
     <div class="module">
         <ul>
             <li class="tab activeTab"><i class="fas fa-user"></i></li>
         </ul>
         <form class="form" method="post", action="{% url 'registration' %}">
             {% csrf_token %}
-            {% for field in form%}
-            <p> {{field}} </p>
-            {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
-            </p>
-            {% endfor %}
+            {{ form.email }}
+            {{ form.password1 }}
+            {{ form.password2 }}
             <input type="submit" value="Next" class="button" />
         </form>
     </div>
 </div>
 {% endblock %}
+
+

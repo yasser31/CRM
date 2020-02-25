@@ -22,7 +22,7 @@ a{
   .module{
     position:relative;
     top:15%;    
-    height:70%;
+    height:85%;
     width:450px;
     margin-left:auto;
     margin-right:auto;
@@ -122,4 +122,23 @@ a{
   .button:hover{
     background:#80b438;
     
+  }
+
+  #usererror {
+    top: 30%;
+    color: deeppink;
+    left: -10%
+  }
+
+  #emailerror {
+    top: 50%;
+    color: deeppink;
+    left: -10%
+  }
+
+
+  #passworderror{
+    top: 65%;
+    color:  deeppink;
+    left: -30%;
   }
