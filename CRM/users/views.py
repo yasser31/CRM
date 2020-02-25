@@ -13,7 +13,11 @@ def registration(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/dashboard/')
-    return render(request, "registration.html")
+    form = UserCreationForm()
+    context = {
+        "form" : form
+    }
+    return render(request, "registration.html", context)
 
 
 def Login(request):
@@ -24,5 +28,5 @@ def Login(request):
             password = form.cleaned_data["password"]
             user = authenticate(username=username, password=password)
             login(request, user)
-        return redirect('/dashboard/')
+            return redirect('/dashboard/')
     return render(request, "login.html")

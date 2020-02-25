@@ -26,6 +26,7 @@
         display: none;
     }
 </style>
+<title>Dashbaord</title>
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
@@ -42,9 +43,10 @@
                         <div class="image">
                             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
-                        <div class="info">
+                        <div class="info text-white">
                             {{ request.user.username }}
                         </div>
+
                     </div>
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
@@ -93,18 +95,28 @@
                                 </a>
                             </li>
                             <li class="nav-item has-treeview">
-                                    <a href="{% url 'meeting_information' %}"><p class="text-white ml-3 mt-4"> Meetings</p></a>
+                                <a href="{% url 'meeting_information' %}" class="nav-link">
+                                    <p class="text-white ml-3 mt-4"> Meetings</p>
+                                </a>
                                 <ol>
                                     <li>
-                                        <p class="text-white ml-3 mt-4"> Next Meetings</p>    
-                                            <ol>
-                                                <li>
-                                                    <fieldset class="tasks-list" id="fieldset"></fieldset>
-                                                </li>
-                                            </ol>
+                                        <p class="text-white ml-3 mt-4"> Next Meetings</p>
+                                        <ol>
+                                            <li>
+                                                <fieldset class="tasks-list" id="fieldset"></fieldset>
+                                            </li>
+                                        </ol>
                                     </li>
                                 </ol>
+                            </li>
+                            {% if user.is_authenticated %}
                             <li>
+                                <a href="{% url 'password_change' %}" class="nav-link"> Change Password</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt" title="logout"></i></a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </nav>
 
