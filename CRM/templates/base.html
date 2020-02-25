@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="{% static 'css/recent_contacts.css' %}">
   <!-- Table style -->
   <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <!-- Table style -->
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -71,7 +73,11 @@
     {% endblock %}
     {% block meeting_notes %}
     {% endblock %}
-<!-- jQuery -->
+    {% block registration %}
+    {% endblock %}
+    {% block login %}
+    {% endblock %}
+    <!-- jQuery -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
