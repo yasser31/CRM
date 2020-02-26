@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'contacts',
     'meetings',
     'dashboards',
+    'users',
     'crispy_forms',
     ]
 

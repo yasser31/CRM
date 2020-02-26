@@ -19,7 +19,7 @@
     </div>
     <div class="col-lg-6">
       <form method="GET" action="/add_contact">
-        <button data-toggle="tooltip" data-placement="left" title="add contact" class="btn-success"> Add
+        <button data-toggle="tooltip" data-placement="left" title="add contact" class=" m-2 btn btn-success"> Add
           Contact</button>
       </form>
     </div>
@@ -38,7 +38,7 @@
         <div class="contact-ctn">
           <div class="contact-ad-hd">
             <a href="{% url 'details' contact.id %}">
-              <h2>{{ contact.name|lower|title }}</h2>
+              <h2 class="text-left">{{ contact.name|lower|title }}</h2>
             </a>
             <p class="ctn-ads"> Function : {{ contact.function }}</p>
             <p class="ctn-ads">{{ contact.country }}, {{ contact.city }}</p>

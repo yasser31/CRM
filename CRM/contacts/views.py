@@ -40,9 +40,8 @@ def add_company(request):
                 form.save()
             else:
                 pass
-        else:
-            print(form.errors)
-    form = NewCompanyForm()
+    else:        
+        form = NewCompanyForm()
     context = {
         "form1" : form
     }
@@ -64,7 +63,8 @@ def add_departement(request):
                 departement.save()
             else:
                 pass
-    form = NewDepartementForm()
+    else:
+        form = NewDepartementForm()
     context = {
         "form2" : form
     }      
@@ -87,10 +87,11 @@ def add_contact(request):
                 contact.departement = departement
                 contact.user = user
                 contact.save()
-                return HttpResponseRedirect('/thanks/')
+                return ('/thanks/')
             else:
-                pass
-    form = NewContactForm()
+               pass
+    else:
+        form = NewContactForm()
     context = {
         "form" : form
     }

@@ -125,15 +125,15 @@ a{
   }
 
   #usererror {
-    top: 30%;
+    top: 35%;
     color: deeppink;
-    left: -10%
+    left: -30%
   }
 
   #emailerror {
     top: 50%;
     color: deeppink;
-    left: -10%
+    left: -30%
   }
 
 

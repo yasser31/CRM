@@ -1,21 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from . forms import LoginForm, RegisterForm
+
 
 def registration(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw_password)
+            username = form.cleaned_data["username"]
+            email = form.cleaned_data["email"]
+            raw_password = form.cleaned_data["password1"]
+            User.objects.create_user(email=email, username=username, password=raw_password)
+            user = authenticate(email=email, username=username, password=raw_password)
             login(request, user)
             return redirect('/dashboard/')
-        else:
-            print(form.errors)
-    form = RegisterForm()
+    else:
+        form = RegisterForm()
     context = {
         "form" : form
     }
@@ -26,12 +27,13 @@ def Login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data["email"]
+            username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/dashboard/')
-    form = LoginForm()
+    else:
+        form = LoginForm()
     context = {
         "form": form
     }

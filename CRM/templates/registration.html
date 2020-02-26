@@ -1,20 +1,41 @@
 {% extends 'base.html' %}
 {% block registration %}
 <div id="bg">
+    {% if form.username.errors %}
+    <ul class="position-absolute" id="usererror">
     
-    {% if context.error2 %}
-        <ul class="position-absolute" id="passworderror">
-                <li></li>
-                    <strong>{{ context.error2 }}</strong>
-                </li>
-        </ul>
+        {% for error in form.username.errors %}
+        <li></li>
+        <strong>{{ error|escape }}</strong>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if form.email.errors%}
+    <ul class="position-absolute" id="emailerror">
+        {% for error in form.email.errors %}
+        <li></li>
+        <strong>{{ error|escape }}</strong>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if form.non_field_errors %}
+    <ul class="position-absolute" id="passworderror">
+        {% for error in form.non_field_errors %}
+        <li></li>
+        <strong>{{ error|escape }}</strong>
+        </li>
+        {% endfor %}
+    </ul>
     {% endif %}
     <div class="module">
         <ul>
             <li class="tab activeTab"><i class="fas fa-user"></i></li>
         </ul>
-        <form class="form" method="post", action="{% url 'registration' %}">
+        <form class="form" method="post" , action="{% url 'registration' %}">
             {% csrf_token %}
+            {{ form.username }}
             {{ form.email }}
             {{ form.password1 }}
             {{ form.password2 }}
@@ -23,5 +44,3 @@
     </div>
 </div>
 {% endblock %}
-
-
