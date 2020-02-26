@@ -5,9 +5,8 @@ from django.db import IntegrityError
 
 
 class LoginForm(forms.Form):
-    
-    username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"class":"input100", "name":"username"}))
-    password = forms.CharField(max_length=31, widget=forms.PasswordInput(attrs={"class":"input100", "name":"password"}))
+    username = forms.CharField(max_length=100, widget=forms.TextInput(attrs={"class":"input100", "name":"username", "placeholder":"Username"}))
+    password = forms.CharField(max_length=31, widget=forms.PasswordInput(attrs={"class":"input100", "name":"password", "placeholder": "Password"}))
 
     def clean(self):
         cleaned_data = super().clean()
@@ -59,3 +58,23 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError("Username already taken")
         
         return username
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={"placeholder": "Old Password","name": "old_password", "class": "text"}))
+    new_password = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={"placeholder": "New Password","name": "new_password", "class": "text"}))
+    confirm_password = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","name": "confirm_password", "class": "text"}))
+   
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data["new_password"]
+        password2 = cleaned_data["confirm_password"]
+        if  not is_same_password(password1, password2):
+                raise forms.ValidationError("The passwords are not identical")
+    
+    def clean_old_password(self):
+        old_password = self.cleaned_data["old_password"]
+        try:
+            User.objects.get(password=old_password)
+        except User.DoesNotExist:
+            raise forms.ValidationError("Password is not correct")
+        return old_password
