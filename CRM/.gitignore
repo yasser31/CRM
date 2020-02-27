@@ -1,6 +1,5 @@
 __init__.py
 .pyc
 __pycache__
-staticfiles/
 env/
 .vscode/
