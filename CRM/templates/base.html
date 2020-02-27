@@ -60,14 +60,8 @@
     {% endblock %}
     {% block change_password %}
     {% endblock %}
-    <!-- jQuery -->
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{% static 'js/jquery-ui/jquery-ui.min.js' %}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
+<!-- jQuery -->
+<script src="{% static 'js/jquery.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'js/adminlte.js' %}"></script>
 <!-- Zing CDN-->
@@ -82,7 +76,5 @@
 <script src="{% static 'js/recent_contact.js' %}"></script>
 <!-- Dashboard Contact -->
 <script src="{% static 'js/contacts_dashboard.js' %}"></script>
-<!-- Aside js -->
-<script src="{% static 'js/aside.js' %}"></script>
 </body>
 </html>
