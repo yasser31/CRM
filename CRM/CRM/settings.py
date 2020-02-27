@@ -138,7 +138,6 @@ MEDIA_URL = "/media/"
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = 'Login'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
     os.path.join(BASE_DIR, "static"),
 ]
 
