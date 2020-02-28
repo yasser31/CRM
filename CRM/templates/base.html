@@ -28,7 +28,7 @@
         <a class="nav-link" id="push" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{% url 'dashboard' %}" class="nav-link">Home</a>
       </li>
     </ul>
   </nav>
@@ -59,6 +59,18 @@
     {% block login %}
     {% endblock %}
     {% block change_password %}
+    {% endblock %}
+    {% block change_done %}
+    {% endblock %}
+    {% block reset_done %}
+    {% endblock %}
+    {% block thanks %}
+    {% endblock %}
+    {% block meeting_added %}
+    {% endblock %}
+    {% block add_company %}
+    {% endblock %}
+    {% block add_departement %}
     {% endblock %}
 <!-- jQuery -->
 <script src="{% static 'js/jquery.js' %}"></script>

@@ -11,8 +11,8 @@ class MeetingForm(forms.Form):
 
 class SetMeetingForm(forms.Form):
     place = forms.CharField(max_length=100, required=False)
-    date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d"))
+    date = forms.DateField(widget=forms.DateInput(
+        attrs={"type": "date"}, format="%Y-%m-%d"))
     time = forms.TimeField(widget=forms.TimeInput(attrs={"type": "time"}))
     contact = forms.ModelChoiceField(queryset=Contact.objects.all())
     note = forms.CharField(widget=forms.Textarea, required=False)
-    

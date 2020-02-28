@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/contact_month/').then(function (response) {
         response.text().then(function (text) {
             var data = JSON.parse(text);
-            console.log(data)
             var myLineConfig =
             {
                 "type": "line",
