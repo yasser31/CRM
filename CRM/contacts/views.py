@@ -87,7 +87,7 @@ def add_departement(request):
 
 
 @login_required(login_url='/')
-def add_contact(request, last):
+def add_contact(request):
     if request.method == 'POST':
         form = NewContactForm(request.POST)
         if form.is_valid():

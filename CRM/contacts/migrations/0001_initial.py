@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 ('twitter', models.URLField(blank=True, max_length=128, null=True, unique=True)),
                 ('facebook', models.URLField(blank=True, max_length=128, null=True, unique=True)),
                 ('linkedin', models.URLField(blank=True, max_length=128, null=True, unique=True)),
-                ('client', models.BooleanField(default='false')),
+                ('client', models.BooleanField(default=False)),
                 ('company', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Company')),
                 ('departement', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Departement')),
                 ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),

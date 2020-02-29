@@ -44,7 +44,7 @@ class Contact(models.Model):
         max_length=128, blank=True, unique=True, null=True)
     linkedin = models.URLField(
         max_length=128, blank=True, unique=True, null=True)
-    client = models.BooleanField(null=False, default=False)
+    client = models.BooleanField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):

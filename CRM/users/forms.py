@@ -67,6 +67,40 @@ class RegisterForm(forms.Form):
 
         return username
 
+    def clean_password1(self):
+        count_digit = 0
+        count_sp_char = 0
+        count_up = 0
+        count_low = 0
+        count_alpha = 0
+        errors = []
+        password1 = self.cleaned_data["password1"]
+        if len(password1) < 8:
+            raise forms.ValidationError(
+                "Password should contain at least 8 characters")
+        for st in password1:
+            if st.isdigit():
+                count_digit += 1
+            elif not st.isdigit() and not st.isalpha():
+                count_sp_char += 1
+            elif st.islower():
+                count_low += 1
+            elif st.isupper():
+                count_up += 1
+
+        if count_digit == 0:
+            errors.append("Password must contain a digit")
+        if count_up == 0:
+            errors.append(
+                "Password must contain an upper case")
+        if count_sp_char == 0:
+            errors.append("Password must contain a special character")
+        if count_low == 0:
+            errors.append("Password must contain a lower case")
+        if len(errors) > 0:
+            raise forms.ValidationError(errors)
+        return password1
+
 
 class ChangePasswordForm(forms.Form):
     username = forms.CharField(max_length=100, widget=forms.TextInput(
@@ -88,13 +122,43 @@ class ChangePasswordForm(forms.Form):
         cleaned_data = super().clean()
         password1 = cleaned_data["new_password"]
         password2 = cleaned_data["confirm_password"]
+        count_digit = 0
+        count_sp_char = 0
+        count_up = 0
+        count_low = 0
+        count_alpha = 0
+        errors = []
+        if len(password1) < 8:
+            raise forms.ValidationError(
+                "Password should contain at least 8 characters")
+        for st in password1:
+            if st.isdigit():
+                count_digit += 1
+            elif not st.isdigit() and not st.isalpha():
+                count_sp_char += 1
+            elif st.islower():
+                count_low += 1
+            elif st.isupper():
+                count_up += 1
+        if count_digit == 0:
+            errors.append("Password must contain a digit")
+        if count_up == 0:
+            errors.append(
+                "Password must contain an upper case")
+        if count_sp_char == 0:
+            errors.append("Password must contain a special character")
+        if count_low == 0:
+            errors.append("Password must contain a lower case")
+        if len(errors) > 0:
+            raise forms.ValidationError(errors)
         if not is_same_password(password1, password2):
             raise forms.ValidationError("The passwords are not identical")
+
+        return password1
 
     def clean_old_password(self):
         old_password = self.cleaned_data["old_password"]
         username = self.cleaned_data["username"]
-        print(old_password)
         user = authenticate(username=username, password=old_password)
         if user is None:
             raise forms.ValidationError("Password or Username is not correct")

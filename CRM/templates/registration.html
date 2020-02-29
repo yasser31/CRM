@@ -140,7 +140,7 @@
   }
 
 
-  #passworderror{
+  .passworderror{
     top: 65%;
     color:  deeppink;
     left: -30%;
@@ -152,7 +152,7 @@
     <ul class="position-absolute" id="usererror">
     
         {% for error in form.username.errors %}
-        <li></li>
+        <li>
         <strong>{{ error|escape }}</strong>
         </li>
         {% endfor %}
@@ -161,16 +161,25 @@
     {% if form.email.errors%}
     <ul class="position-absolute" id="emailerror">
         {% for error in form.email.errors %}
-        <li></li>
+        <li>
         <strong>{{ error|escape }}</strong>
         </li>
         {% endfor %}
     </ul>
     {% endif %}
     {% if form.non_field_errors %}
-    <ul class="position-absolute" id="passworderror">
+    <ul class="position-absolute passworderror" >
         {% for error in form.non_field_errors %}
-        <li></li>
+        <li>
+        <strong>{{ error|escape }}</strong>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if form.password1.errors %}
+    <ul class="position-absolute passworderror">
+        {% for error in form.password1.errors %}
+        <li>
         <strong>{{ error|escape }}</strong>
         </li>
         {% endfor %}

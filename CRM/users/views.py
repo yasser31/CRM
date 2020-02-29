@@ -18,6 +18,7 @@ def registration(request):
                 email=email, username=username, password=raw_password)
             login(request, user)
             return redirect('/dashboard/')
+        print(form.errors)
     else:
         form = RegisterForm()
     context = {
@@ -36,8 +37,7 @@ def Login(request):
             login(request, user)
             return redirect('/dashboard/')
     else:
-        user = User.objects.get(username=request.user.username)
-        if user.is_authenticated:
+        if request.user.is_authenticated:
             return redirect("/dashboard/")
         else:
             form = LoginForm()

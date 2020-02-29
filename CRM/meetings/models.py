@@ -21,7 +21,7 @@ class SetMeeting(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
     note = models.TextField(null=True, blank=True)
-    attended = models.BooleanField(default=False, null=True, blank=True)
+    attended = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.date)
