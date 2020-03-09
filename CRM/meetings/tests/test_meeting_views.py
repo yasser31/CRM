@@ -41,8 +41,9 @@ class TestGetMeeting(TestCase):
 
     def setUp(self):
         self.client = Client()
-        user = User.objects.create_user(username="yasser",
-                                        password="secret")
+        self.user = User.objects.create_user(username="yasser",
+                                             password="secret")
+        self.client.force_login(self.user)
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
                                client=False)
@@ -50,8 +51,13 @@ class TestGetMeeting(TestCase):
         Meeting.objects.create(title="title",
                                summary="summary",
                                contact=self.contact,
-                               user=user)
-        self.client.force_login(user)
+                               user=self.user)
+
+        SetMeeting.objects.create(place="oran",
+                                  date="2020-03-20",
+                                  time="10:20:15",
+                                  contact=self.contact,
+                                  user=self.user)
 
     def test_met_cl_lst(self):
         response = self.client.get("/meetings/")
@@ -62,7 +68,27 @@ class TestGetMeeting(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["meetings"][0].title, "title")
 
-    def test_met_rep_det(self):
-        meeting = Meeting.objects.get(title="title")
-        response = self.client.get(f"meeting_details/{meeting.id}")
+    def test_meeting_information(self):
+        response = self.client.get("/meeting_information/")
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["meetings"][0].place, "oran")
+
+    def test_meeting_notes(self):
+        meeting = SetMeeting.objects.get(place="oran")
+        response = self.client.get(f"/meeting_notes/{meeting.id}")
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_met_disp(self):
+        response = self.client.get("/meeting_display/")
+        data = response.json()
+        self.assertEqual(data["meeting"][0]["place"], "oran")
+
+    def test_meeting_added(self):
+        response = self.client.get("/meeting_added/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_meeting_details(self):
+        meeting = Meeting.objects.get(title="title")
+        response = self.client.get(f"/meeting_details/{meeting.id}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["meeting"].title, "title")
