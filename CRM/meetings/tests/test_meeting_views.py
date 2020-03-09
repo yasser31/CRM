@@ -35,3 +35,34 @@ class TestPostMetting(TestCase):
         })
         meeting = SetMeeting.objects.get(place="oran")
         self.assertEqual(meeting.place, "oran")
+
+
+class TestGetMeeting(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        user = User.objects.create_user(username="yasser",
+                                        password="secret")
+        Contact.objects.create(name="contact", country="Algeria",
+                               city="Oran", function="Developer",
+                               client=False)
+        self.contact = Contact.objects.get(name="contact")
+        Meeting.objects.create(title="title",
+                               summary="summary",
+                               contact=self.contact,
+                               user=user)
+        self.client.force_login(user)
+
+    def test_met_cl_lst(self):
+        response = self.client.get("/meetings/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_contact_meetings_rep(self):
+        response = self.client.get(f"/meetings/{self.contact.id}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["meetings"][0].title, "title")
+
+    def test_met_rep_det(self):
+        meeting = Meeting.objects.get(title="title")
+        response = self.client.get(f"meeting_details/{meeting.id}")
+        self.assertEqual(response.status_code, 200)

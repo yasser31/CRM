@@ -42,7 +42,7 @@ def meetings(request):
 @login_required(login_url='/')
 def contact_meetings(request, contact_id):
     meetings = Meeting.objects.filter(user__username=request.user.username,
-                                      contact_id=contact_id).order_by('-date')
+                                      contact__id=contact_id).order_by('-date')
     context = {
         "meetings": meetings
     }
