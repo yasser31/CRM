@@ -1,6 +1,10 @@
 __init__.py
 .pyc
-__pycache__
+contacts/__pycache__
+CRM/__pycache__
+tests/__pycache__
+dashboards/__pycache__
+users/__pycache__
 env/
 .vscode/
 staticfiles/

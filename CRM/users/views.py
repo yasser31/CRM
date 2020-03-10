@@ -18,7 +18,6 @@ def registration(request):
                 email=email, username=username, password=raw_password)
             login(request, user)
             return redirect('/dashboard/')
-        print(form.errors)
     else:
         form = RegisterForm()
     context = {
@@ -53,7 +52,7 @@ def change_password(request):
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
             username = request.POST["username"]
-            password = form.cleaned_data["new_password"]
+            password = form.cleaned_data
             user = User.objects.get(username=username)
             user.set_password(password)
             user.save()
