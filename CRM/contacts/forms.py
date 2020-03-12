@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from .models import Company, Departement, Contact
 
 
@@ -7,6 +7,12 @@ class NewCompanyForm(ModelForm):
         model = Company
         fields = ['cp_name', 'address', 'company_country',
                   'company_city', 'field', 'description']
+        widgets = {
+            'cp_name': Textarea(attrs={'id': "cp_name"}),
+            'address': Textarea(attrs={'id': "address"}),
+            'company_country': Textarea(attrs={'id': "company_country"}),
+            'company_city': Textarea(attrs={'id': "company_city"}),
+        }
 
 
 class NewDepartementForm(ModelForm):
