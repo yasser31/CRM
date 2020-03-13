@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         response.text().then(function (text) {
         var data = JSON.parse(text);
         var element = document.getElementById("contact_dashboard");
-        var elementToAdd = `<div class="col-lg-3 col-6">
+        var elementToAdd = `<div class="col-lg-4 col-6">
         <!-- small card -->
         <div class="small-box bg-info">
             <div class="inner">
@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
             <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer text-white">
+            <a href="/contacts/" class="small-box-footer text-white">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
         <!-- small card -->
         <div class="small-box bg-success">
             <div class="inner">
@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer text-white">
+            <a href="/clients/" class="small-box-footer text-white">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-4 col-6">
         <!-- small card -->
         <div class="small-box bg-warning">
             <div class="inner">
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
             <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer text-white">
+            <a href="/prospects/" class="small-box-footer text-white">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>

@@ -121,5 +121,4 @@ class TestStat(TestCase):
                                client=True)
         response = self.client.get("/recent_contact/")
         data = response.json()
-        self.assertEqual(data["contact"], [])
-        self.assertEqual(data["client"][0]["city"], "Oran")
+        self.assertEqual(data["contact"][0]["name"], "contact")

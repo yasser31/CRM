@@ -34,9 +34,9 @@ class Contact(models.Model):
     photo = models.ImageField(blank=True, upload_to='media')
     function = models.CharField(max_length=100, default='', blank=False)
     company = models.ForeignKey(
-        Company, on_delete=models.DO_NOTHING, null=True, blank=True)
+        Company, on_delete=models.SET_NULL, null=True, blank=True)
     departement = models.ForeignKey(
-        Departement, on_delete=models.DO_NOTHING, null=True, blank=True)
+        Departement, on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField(blank=True)
     twitter = models.URLField(
         max_length=128, blank=True, unique=True,  null=True)
@@ -45,7 +45,7 @@ class Contact(models.Model):
     linkedin = models.URLField(
         max_length=128, blank=True, unique=True, null=True)
     client = models.BooleanField(null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name

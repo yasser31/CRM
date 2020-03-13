@@ -23,4 +23,3 @@ class TestMeeting(LiveServerTestCase):
         password.send_keys("password")
         login.click()
         self.driver.get("%s%s" % (self.live_server_url, "/create_meeting/"))
-        

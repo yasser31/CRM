@@ -192,20 +192,15 @@ def recent_contact(request):
     else:
         date = str(year) + "-" + str(month)
     contact_query = Contact.objects.filter(
-        date__startswith=date, client=False)[:6]
-    client_query = Contact.objects.filter(
-        date__startswith=date, client=True)[:6]
+        date__startswith=date)[:6]
     contact = [{"name": contact.name, "date": contact.date,
                 "function": contact.function,
                 "country": contact.country, "city": contact.city,
-                "id": contact.id} for contact in contact_query]
-    client = [{"name": contact.name, "date": contact.date,
-               "function": contact.function,
-               "country": contact.country, "city": contact.city,
-               "id": contact.id} for contact in client_query]
+                "id": contact.id,
+                "client": contact.client} for contact in contact_query
+               ]
     data = {
-        "contact": contact,
-        "client": client
+        "contact": contact
     }
     return JsonResponse(data)
 

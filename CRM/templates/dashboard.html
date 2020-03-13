@@ -96,18 +96,14 @@
                             </li>
                             <li class="nav-item has-treeview">
                                 <a href="{% url 'meeting_information' %}" class="nav-link">
-                                    <p class="text-white ml-3 mt-4"> Meetings</p>
-                                </a>
-                                <ol>
-                                    <li>
                                         <p class="text-white ml-3 mt-4"> Next Meetings</p>
-                                        <ol>
+                                    </a>
+                                        <ul>
                                             <li>
                                                 <fieldset class="tasks-list" id="fieldset"></fieldset>
                                             </li>
-                                        </ol>
-                                    </li>
-                                </ol>
+                                        </ul>
+                                
                             </li>
                             {% if user.is_authenticated %}
                             <li>
@@ -137,9 +133,19 @@
                 </div>
                 <!-- End Realtime sts area-->
                 <div class="row">
-                    <div class="col-lg-6" id="recent_contact">
-                    </div><!-- .Col ends here -->
-                    <div class="col-lg-6" id="recent_client">
+                    <div class="col-lg-12" id="recent_contact">
+                        <table id="rc">
+                            <thead>
+                               <th class="rcth">id</th>
+                               <th class="rcth">name</th>
+                               <th class="rcth">country</th>
+                               <th class="rcth">city</th>
+                               <th class="rcth">function</th>
+                               <th class="rcth">client</th>
+                            </thead>
+                            <tbody id="rctbd">
+                            </tbody>
+                        </table>
                     </div><!-- .Col ends here -->
                 </div>
             </div>

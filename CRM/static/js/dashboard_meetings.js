@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var elementToAdd =  `<label class="tasks-list-item">
                 <input type="checkbox" class="tasks-list-cb">
                 <span class="tasks-list-mark"></span>
-                <span class="tasks-list-desc"> ${met.date} at ${met.time} with ${met.name} in ${met.place}</span>
+                <span class="tasks-list-desc"> ${met.date} <br> at ${met.time}<br> with ${met.name} in ${met.place}</span>
                 </label>`
                 element.insertAdjacentHTML("beforeend", elementToAdd);
             }
