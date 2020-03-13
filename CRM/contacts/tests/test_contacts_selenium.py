@@ -1,39 +1,76 @@
-from django.test import TestCase
+from django.contrib.staticfiles.testing import LiveServerTestCase
+from django.contrib.auth.models import User
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestAdd(TestCase):
+class TestAdd(LiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
-        self.driver.get("http://127.0.0.1:8000/registration/")
-        username = self.driver.find_element_by_name("username")
-        email = self.driver.find_element_by_name("email")
-        pass1 = self.driver.find_element_by_name("password1")
-        pass2 = self.driver.find_element_by_name("password2")
-        submit = self.driver.find_element_by_class_name("button")
-        username.send_keys("username")
-        email.send_keys("email@email.com")
-        pass1.send_keys("Password@1")
-        pass2.send_keys("Password@1")
-        submit.send_keys(Keys.RETURN)
+        self.user = User.objects.create_user(username="username",
+                                             password="password")
 
-    def test_add_comp(self):
-        self.driver.get("http://127.0.0.1:8000/add_company/")
+    def test_contact(self):
+        self.driver.get("%s%s" % (self.live_server_url, "/"))
         username = self.driver.find_element_by_name("username")
+        password = self.driver.find_element_by_name("password")
+        login = self.driver.find_element_by_class_name("login100-form-btn")
         username.send_keys("username")
-        pass1 = self.driver.find_element_by_name("password")
-        pass1.send_keys("Password@1")
-        submit = self.driver.find_element_by_class_name("login100-form-btn")
-        submit.send_keys(Keys.RETURN)
-        el0 = self.driver.find_element_by_id("cp_name")
-        el1 = self.driver.find_element_by_id("company_country")
-        el2 = self.driver.find_element_by_id("company_city")
-        el3 = self.driver.find_element_by_id("address")
-        el4 = self.driver.find_element_by_id("submit")
+        password.send_keys("password")
+        login.click()
+        self.driver.get("%s%s" % (self.live_server_url, "/add_company/"))
+        el0 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "cp_name"))
+        )
+        el1 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "address"))
+        )
+        el2 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "company_country"))
+        )
+        el3 = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "company_city"))
+        )
         el0.send_keys("company")
-        el1.send_keys("country")
-        el2.send_keys("city")
-        el3.send_keys("address")
-        el4.send_keys(Keys.RETURN)
+        el1.send_keys("address")
+        el2.send_keys("country")
+        el3.send_keys("city")
+        add_departement = self.driver.find_element_by_id("submit")
+        add_departement.click()
+        dep_name = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "dep_name"))
+        )
+        dep_name.send_keys("dep_name")
+        add_contact = self.driver.find_element_by_id("submit")
+        add_contact.click()
+        name = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "name"))
+        )
+        email = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "email"))
+        )
+        country = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "country"))
+        )
+        city = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "city"))
+        )
+        age = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "age"))
+        )
+        function = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "function"))
+        )
+        name.send_keys("name")
+        email.send_keys("email@email.com")
+        country.send_keys("country")
+        city.send_keys("city")
+        age.send_keys(29)
+        function.send_keys("function")
+        finish = self.driver.find_element_by_id("submit")
+        finish.click()
+        self.assertTrue("Contact added thanks" in self.driver.page_source)
