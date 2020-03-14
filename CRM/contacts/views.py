@@ -208,3 +208,11 @@ def recent_contact(request):
 @login_required(login_url='/')
 def thanks(request):
     return render(request, 'thanks.html')
+
+
+def p_404(request, exception):
+    return render(request, "404.html", status=404)
+
+
+def p_500(request):
+    return render(request, "500.html", status=500)
