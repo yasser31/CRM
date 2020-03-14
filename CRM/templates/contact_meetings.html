@@ -518,6 +518,10 @@ th, td {
   background-color: #cccccc;
 }
 
+a {
+  color:saddlebrown;
+}
+
 </style>
 <div class="limiter">
   <div class="container-table100">
@@ -527,10 +531,10 @@ th, td {
           <table>
             <thead>
               <tr class="row100 head">
-                <th class="cell100 column1">Title</th>
-                <th class="cell100 column2">Date</th>
-                <th class="cell100 column3">Summary</th>
-                <th class="cell100 column4">User</th>
+                <th class="cell100 column1"><a href="{% url 'create_meeting' %}"> Add report</a></th>
+                <th class="cell100 column2">Title</th>
+                <th class="cell100 column3">Date</th>
+                <th class="cell100 column4">Summary</th>
                 <th class="cell100 column5">Contact</th>
               </tr>
             </thead>
@@ -541,10 +545,10 @@ th, td {
             <tbody>
                 {% for meeting in meetings %}
               <tr class="row100 body">
-                <td class="cell100 column1"><a href="{% url 'meeting_details' meeting.id %}">{{ meeting.title|title }}</a></td>
-                <td class="cell100 column2">{{ meeting.date }}</td>
-                <td class="cell100 column3">{{ meeting.summary|truncatechars:50 }}</td>
-                <td class="cell100 column4">{{ meeting.user }}</td>
+                <td class="cell100 column1"></td>
+                <td class="cell100 column2"><a href="{% url 'meeting_details' meeting.id %}">{{ meeting.title|title }}</a></td>
+                <td class="cell100 column3">{{ meeting.date }}</td>
+                <td class="cell100 column4">{{ meeting.summary|truncatechars:50 }}</td>
                 <td class="cell100 column5">{{ meeting.contact }}</td>
               </tr>
               {% endfor %}
@@ -554,24 +558,4 @@ th, td {
       </div>
     </div>
   </div>
-      <div class="list-group mt-5">
-       
-        <br>
-        <table>
-          <ol>
-            <li>
-              
-                <div class="d-flex w-100 justify-content-between">
-                  <h2 class="mb-1">  </h2>
-                  <small></small>
-                  <p class="mb-1"> </p>
-                  <small> small><br>
-                  <small> Contact : </small>
-                </div>
-              </a>
-            </li>
-          </ol>
-          <br>
-          
-      </div>
       {% endblock %}

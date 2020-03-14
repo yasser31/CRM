@@ -75,7 +75,7 @@ def create_meeting(request):
                                                  summary=summary,
                                                  user=user)
             new_meeting.save()
-            return HttpResponseRedirect("/thanks/")
+            return HttpResponseRedirect("/meeting_added/")
     context = {"form": MeetingForm()}
     return render(request, "create_meeting.html", context)
 

@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block meeting %}
+<style>
+  h5 {
+    color:rgb(153, 119, 150);
+  }
+  h5:hover {
+    color:magenta;
+  }
+</style>
 <br>
 <div class="list-group mt-5"></div>
 {% for contact in contacts %}
 <ul>
   <li>
       <a href="{% url 'contact_meetings' contact.id %}">
-        <h3>{{ contact.name|lower|title }}</h3>
+        <h5 >{{ contact.name|lower|title }}</h5>
       </a>
   </li>
 </ul>

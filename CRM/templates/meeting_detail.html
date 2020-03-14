@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block meeting_detail %}
-<div class="list-group">
-  <br>
-  <div class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h2 class="mb-1 text-center"> {{ meeting.title|title }} </h2>
+{% load static %}
+<style>
+  section {
+    background-color: whitesmoke;
+    width: 50%;
+    height: 500px;
+  }
+</style>
+    <section class="mx-auto mt-5">
+      <h2 class="mb-4 text-center"> {{ meeting.title|title }} </h2>
       <small>{{ meeting.date }}</small>
       <p class="mb-1"> {{ meeting.summary }}</p>
-      <h3>{{ meeting.user }} : {{ meeting.contact }} </h3>
-    </div>
-  </div>
-  <br>
-</div>
+      <h3 class="mt-4"> Contact : {{ meeting.contact }} </h3>
+    </section>
 {% endblock %}

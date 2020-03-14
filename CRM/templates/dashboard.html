@@ -54,8 +54,8 @@
                             data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                     with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="{% url 'dashboard' %}" class="nav-link active">
+                            <li class="nav-item">
+                                <a href="{% url 'dashboard' %}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -70,15 +70,23 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item ml-1">
+                                    <a href="{% url 'clients' %}" class="nav-link">
+                                            <i class="far fa-smile"></i>
+                                        <p>
+                                            Clients
+                                        </p>
+                                    </a>
+                                </li>
+                            <li class="nav-item ml-1">
                                 <a href="{% url 'prospects' %}" class="nav-link">
-                                    <i class="nav-icon fas fa-copy"></i>
+                                    <i class="fas fa-address-book"></i>
                                     <p>
                                         Prospects
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item">
                                 <a href="{% url 'meetings' %}" class="nav-link">
                                     <i class="nav-icon fas fa-copy"></i>
                                     <p>
@@ -86,16 +94,25 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item">
+                                    <a href="{% url 'meetings' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-copy"></i>
+                                        <p>
+                                            Create Report
+                                        </p>
+                                    </a>
+                                </li>
+                            <li class="nav-item ml-1">
                                 <a href="{% url 'set_meeting' %}" class="nav-link">
-                                    <i class="nav-icon fas fa-copy"></i>
+                                    <i class="fab fa-meetup"></i>
                                     <p>
                                         Set A Meeting
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            <li class="nav-item">
                                 <a href="{% url 'meeting_information' %}" class="nav-link">
+                                        <i class="fas fa-bullhorn"></i>
                                         <p class="text-white ml-3 mt-4"> Next Meetings</p>
                                     </a>
                                         <ul>
@@ -106,10 +123,10 @@
                                 
                             </li>
                             {% if user.is_authenticated %}
-                            <li>
+                            <li class="nav-item">
                                 <a href="{% url 'change_password' %}" class="nav-link"> Change Password</a>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt" title="logout"></i></a>
                             </li>
                             {% endif %}
