@@ -65,6 +65,5 @@ def change_password(request):
     return render(request, "password_change.html", context)
 
 
-@login_required(login_url='/')
 def password_change_done(request):
     return render(request, "password_change_done.html")

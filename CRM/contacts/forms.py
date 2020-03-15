@@ -19,5 +19,5 @@ class NewContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'country', 'city', 'phone_number', 'age',
-                  'photo', 'function', 'description', 'twitter',
+                  'function', 'description', 'twitter',
                   'facebook', 'linkedin', 'client']
