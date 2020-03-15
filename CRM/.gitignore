@@ -7,5 +7,4 @@ dashboards/__pycache__
 users/__pycache__
 env/
 .vscode/
-staticfiles/
 .pytest_cache/
