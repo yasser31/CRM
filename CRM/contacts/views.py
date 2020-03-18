@@ -1,6 +1,6 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
 from .models import Company, Departement, Contact

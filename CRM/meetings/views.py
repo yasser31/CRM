@@ -1,6 +1,6 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from contacts.models import Contact
@@ -33,10 +33,13 @@ def set_meeting(request):
 @login_required(login_url='/')
 def meetings(request):
     contacts = Contact.objects.all()
-    context = {
-        "contacts": contacts
-    }
-    return render(request, "meeting.html", context)
+    if len(contacts) > 0:
+        context = {
+            "contacts": contacts
+        }
+        return render(request, "meeting.html", context)
+    else:
+        return HttpResponse("add contacts and reports first")
 
 
 @login_required(login_url='/')
