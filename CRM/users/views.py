@@ -6,6 +6,7 @@ from . forms import LoginForm, RegisterForm, ChangePasswordForm
 
 
 def registration(request):
+    ''' registration view '''
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -27,6 +28,7 @@ def registration(request):
 
 
 def Login(request):
+    ''' login view '''
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -48,6 +50,7 @@ def Login(request):
 
 @login_required(login_url='/')
 def change_password(request):
+    ''' change password view '''
     if request.method == "POST":
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
@@ -66,4 +69,5 @@ def change_password(request):
 
 
 def password_change_done(request):
+    ''' password change done view '''
     return render(request, "password_change_done.html")

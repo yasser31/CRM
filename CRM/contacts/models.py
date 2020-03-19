@@ -4,6 +4,7 @@ from django.conf import settings
 
 
 class Company(models.Model):
+    ''' company model '''
     cp_name = models.CharField(max_length=100, blank=False, default="")
     address = models.TextField()
     company_country = models.CharField(max_length=100, blank=False, default="")
@@ -16,6 +17,7 @@ class Company(models.Model):
 
 
 class Departement(models.Model):
+    ''' departement model '''
     dep_name = models.CharField(max_length=100, blank=True, null=True)
     cp = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
 
@@ -24,6 +26,7 @@ class Departement(models.Model):
 
 
 class Contact(models.Model):
+    ''' contact model '''
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     name = models.CharField(max_length=100, default='', blank=False)
     country = models.CharField(max_length=100, default='', blank=False)

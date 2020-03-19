@@ -4,6 +4,7 @@ from contacts.models import Contact
 
 
 class Meeting(models.Model):
+    ''' meeting report model '''
     date = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, unique=True, default='')
     summary = models.TextField(null=True)
@@ -15,6 +16,7 @@ class Meeting(models.Model):
 
 
 class SetMeeting(models.Model):
+    ''' setting a meeting model '''
     place = models.CharField(null=True, blank=True, max_length=100)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)

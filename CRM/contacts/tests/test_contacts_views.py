@@ -6,6 +6,7 @@ from contacts import views
 
 
 class TestGet(TestCase):
+    ''' tests get requests'''
 
     def setUp(self):
         self.client = Client()
@@ -13,18 +14,22 @@ class TestGet(TestCase):
         self.client.force_login(user)
 
     def test_get_contacts(self):
+        ''' test get contact page'''
         response1 = self.client.get("/contacts/")
         self.assertEqual(response1.status_code, 200)
 
     def test_prospects(self):
+        ''' test get prospects page '''
         response2 = self.client.get("/prospects/")
         self.assertEqual(response2.status_code, 200)
 
     def test_clients(self):
+        ''' test get clients page'''
         response3 = self.client.get("/clients/")
         self.assertEqual(response3.status_code, 200)
 
     def test_details(self):
+        ''' test get client details page '''
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
                                client=False)
@@ -34,24 +39,27 @@ class TestGet(TestCase):
         self.assertEqual(response4.status_code, 200)
 
     def test_thanks(self):
+        ''' test get thanks page '''
         response5 = self.client.get("/thanks/")
         self.assertEqual(response5.status_code, 200)
 
 
 class TestClientToProspect(TestCase):
-
+    ''' test set and unset client '''
     def setUp(self):
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
                                client=False)
 
     def test_set(self):
+        ''' test set prospect to client '''
         contact = Contact.objects.get(name="contact")
         contact.client = True
         contact.save()
         self.assertTrue(contact.client)
 
     def test_unset(self):
+        ''' test set client to prospect '''
         contact = Contact.objects.get(name="contact")
         contact.client = False
         contact.save()
@@ -59,13 +67,15 @@ class TestClientToProspect(TestCase):
 
 
 class TestPost(TestCase):
+    ''' test post requests '''
 
     def setUp(self):
         self.client = Client()
         user = User.objects.create_user(username="yasser", password="secret")
         self.client.force_login(user)
 
-    def test_create_company(self):
+    def test_create_contact(self):
+        ''' test create company departement contact '''
         response = self.client.post("/add_company/",
                                     {"cp_name": "company",
                                      "address": "address",
@@ -94,6 +104,7 @@ class TestPost(TestCase):
 
 
 class TestStat(TestCase):
+    ''' test statitstics '''
 
     def setUp(self):
         self.client = Client()
@@ -101,6 +112,8 @@ class TestStat(TestCase):
         self.client.force_login(user)
 
     def test_cl_pros_percent(self):
+
+        ''' test client prospects percent '''
         response = self.client.get("/contact_percent/")
         data = response.json()
         self.assertEqual(data['total_contacts'], 0)
@@ -110,12 +123,14 @@ class TestStat(TestCase):
         self.assertEqual(data["prospects_percent"], 0)
 
     def test_contact_month(self):
+        ''' test contacts per month '''
         response = self.client.get("/contact_month/")
         data = response.json()
         self.assertTrue(data)
         self.assertTrue(data)
 
     def test_recent_contact(self):
+        ''' test recent contact '''
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
                                client=True)

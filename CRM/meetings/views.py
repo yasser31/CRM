@@ -10,6 +10,7 @@ from .forms import MeetingForm, SetMeetingForm
 
 @login_required(login_url='/')
 def set_meeting(request):
+    ''' set a mmeting view '''
     if request.method == "POST":
         form = SetMeetingForm(request.POST)
         if form.is_valid():
@@ -32,6 +33,7 @@ def set_meeting(request):
 
 @login_required(login_url='/')
 def meetings(request):
+    ''' list of contacts for meetings view '''
     contacts = Contact.objects.all()
     if len(contacts) > 0:
         context = {
@@ -44,6 +46,7 @@ def meetings(request):
 
 @login_required(login_url='/')
 def contact_meetings(request, contact_id):
+    ''' list of meetings reports for a client view'''
     meetings = Meeting.objects.filter(user__username=request.user.username,
                                       contact__id=contact_id).order_by('-date')
     context = {
@@ -54,7 +57,7 @@ def contact_meetings(request, contact_id):
 
 @login_required(login_url='/')
 def meeting_details(request, meeting_id):
-
+    ''' meeting report details '''
     meeting = Meeting.objects.get(id=meeting_id)
     context = {
         "meeting": meeting
@@ -65,6 +68,7 @@ def meeting_details(request, meeting_id):
 
 @login_required(login_url='/')
 def create_meeting(request):
+    ''' creation of meeting report view '''
     if request.method == "POST":
         form = MeetingForm(request.POST)
         if form.is_valid():
@@ -85,7 +89,7 @@ def create_meeting(request):
 
 @login_required(login_url='/')
 def meeting_information(request):
-
+    ''' meetings with contacts information '''
     meetings = SetMeeting.objects.filter(user__username=request.user.username)
     context = {
         "meetings": meetings
@@ -96,6 +100,8 @@ def meeting_information(request):
 
 @login_required(login_url='/')
 def meeting_notes(request, meeting_id):
+    ''' meeting notes view, in case the user notes something for
+       the next meeting he has with his conacts '''
     meeting = SetMeeting.objects.get(id=meeting_id)
     context = {
         "meeting": meeting
@@ -106,6 +112,7 @@ def meeting_notes(request, meeting_id):
 
 @login_required(login_url='/')
 def dashboard_meeting_display(request):
+    ''' display of next meeting view '''
     month = datetime.date.today().month
     year = datetime.date.today().year
     if month < 10:
@@ -127,4 +134,5 @@ def dashboard_meeting_display(request):
 
 @login_required(login_url='/')
 def meeting_added(request):
+    ''' the last page redirected to when a meeting is added '''
     return render(request, "meeting_added.html")

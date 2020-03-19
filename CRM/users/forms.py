@@ -5,6 +5,7 @@ from django.db import IntegrityError
 
 
 class LoginForm(forms.Form):
+    ''' user login form '''
     username = forms.CharField(max_length=100, widget=forms.TextInput(
         attrs={"class": "input100", "name": "username",
                "placeholder": "Username"}))
@@ -13,6 +14,7 @@ class LoginForm(forms.Form):
                "placeholder": "Password"}))
 
     def clean(self):
+        ''' form validation '''
         cleaned_data = super().clean()
         username = cleaned_data.get("username")
         password = cleaned_data.get("password")
@@ -22,10 +24,12 @@ class LoginForm(forms.Form):
 
 
 def is_same_password(password1, password2):
+    ''' validate that the password are the same '''
     return password1 == password2
 
 
 class RegisterForm(forms.Form):
+    ''' registration form  '''
     username = forms.CharField(max_length=100, widget=forms.TextInput(
         attrs={"class": "textbox", "placeholder": "username",
                "name": "username"}))
@@ -39,6 +43,7 @@ class RegisterForm(forms.Form):
                "name": "password2"}))
 
     def clean(self):
+        ''' password validation '''
         cleaned_data = super().clean()
         password1 = cleaned_data.get("password1")
         password2 = cleaned_data.get("password2")
@@ -57,6 +62,7 @@ class RegisterForm(forms.Form):
         return email
 
     def clean_username(self):
+        ''' validate email does not exists'''
         username = self.cleaned_data.get("username")
         try:
             User.objects.get(username=username)
@@ -68,6 +74,7 @@ class RegisterForm(forms.Form):
         return username
 
     def clean_password1(self):
+        ''' validate passwords '''
         count_digit = 0
         count_sp_char = 0
         count_up = 0
@@ -103,6 +110,7 @@ class RegisterForm(forms.Form):
 
 
 class ChangePasswordForm(forms.Form):
+    ''' change password form '''
     username = forms.CharField(max_length=100, widget=forms.TextInput(
         attrs={"placeholder": "Username", "name": "username",
                "class": "text"}))
@@ -119,6 +127,7 @@ class ChangePasswordForm(forms.Form):
                                                   "class": "text"}))
 
     def clean(self):
+        ''' form validation '''
         cleaned_data = super().clean()
         password1 = cleaned_data["new_password"]
         password2 = cleaned_data["confirm_password"]
@@ -157,6 +166,7 @@ class ChangePasswordForm(forms.Form):
         return password1
 
     def clean_old_password(self):
+        ''' old password and username validation '''
         old_password = self.cleaned_data["old_password"]
         username = self.cleaned_data["username"]
         user = authenticate(username=username, password=old_password)

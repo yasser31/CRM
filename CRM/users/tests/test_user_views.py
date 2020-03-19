@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 
 
 class TestUserPost(TestCase):
-
+    ''' test user post requests'''
     def setUp(self):
         self.client = Client()
 
     def test_register(self):
+        ''' test regustration post request '''
         response = self.client.post("/registration/", {
             "username": "username",
             "email": "email@email.com",
@@ -21,6 +22,7 @@ class TestUserPost(TestCase):
         self.assertEqual(user.username, "username")
 
     def test_login(self):
+        ''' test login post request '''
         user = User.objects.create_user(username="username",
                                         password="Password@1")
         response = self.client.post("/", {
@@ -30,6 +32,7 @@ class TestUserPost(TestCase):
         self.assertTrue(response.redirect_chain[0][0], "/dashboard/")
 
     def test_change_password(self):
+        ''' test change password post request '''
         user = User.objects.create_user(username="username",
                                         password="Password@1")
         self.client.force_login(user)
@@ -44,21 +47,26 @@ class TestUserPost(TestCase):
 
 
 class TestUserGet(TestCase):
-
+    ''' test user get requests '''
     def setUp(self):
         self.client = Client()
 
     def test_get_reg(self):
+        ''' test get registration page '''
         response = self.client.get("/registration/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context["form"])
 
     def test_get_login(self):
+        ''' test get login page '''
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context["form"])
 
     def test_get_change_done(self):
+        ''' test the page redirected
+        to when a password change
+        has been done '''
         user = User.objects.create(username="username", password="password")
         self.client.force_login(user)
         response = self.client.get("/change_done/")

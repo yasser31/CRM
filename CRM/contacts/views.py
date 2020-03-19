@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 
 @login_required(login_url='/')
 def contacts(request):
+    ''' get contact page  view '''
     contacts = Contact.objects.all()
     context = {
         "contacts": contacts
@@ -18,6 +19,7 @@ def contacts(request):
 
 @login_required(login_url='/')
 def prospects(request):
+    ''' get prospects page view '''
     contacts = Contact.objects.filter(client=False)
     context = {
         "contacts": contacts
@@ -27,6 +29,7 @@ def prospects(request):
 
 @login_required(login_url='/')
 def clients(request):
+    ''' get clients page views '''
     contacts = Contact.objects.filter(client=True)
     context = {
         "contacts": contacts
@@ -36,6 +39,7 @@ def clients(request):
 
 @login_required(login_url='/')
 def add_company(request):
+    ''' add company view, use global variable because needed later '''
     if request.method == 'POST':
         global r1
         r1 = request.POST
@@ -60,6 +64,7 @@ def add_company(request):
 
 @login_required(login_url='/')
 def add_departement(request):
+    ''' add departement view, use global ariable because needed later'''
     if request.method == 'POST':
         global r2
         r2 = request.POST
@@ -88,6 +93,7 @@ def add_departement(request):
 
 @login_required(login_url='/')
 def add_contact(request):
+    ''' add contact view '''
     if request.method == 'POST':
         form = NewContactForm(request.POST)
         if form.is_valid():
@@ -117,6 +123,7 @@ def add_contact(request):
 
 @login_required(login_url='/')
 def details(request, contact_id):
+    ''' contact detail page '''
     contact = Contact.objects.get(id=contact_id)
     context = {
         "contact": contact
@@ -126,6 +133,7 @@ def details(request, contact_id):
 
 @login_required(login_url='/')
 def Set(request, contact_id):
+    ''' set prospect to client view '''
     contact = Contact.objects.get(id=contact_id)
     contact.client = True
     contact.save()
@@ -134,6 +142,7 @@ def Set(request, contact_id):
 
 @login_required(login_url='/')
 def unset(request, contact_id):
+    ''' set client to prospect view '''
     contact = Contact.objects.get(id=contact_id)
     contact.client = False
     contact.save()
@@ -142,6 +151,7 @@ def unset(request, contact_id):
 
 @login_required(login_url='/')
 def client_prospects_percent(request):
+    ''' client prospect percent '''
     total_contact = Contact.objects.all().count()
     total_client = Contact.objects.filter(client=True).count()
     total_prospects = Contact.objects.filter(client=False).count()
@@ -165,6 +175,7 @@ def client_prospects_percent(request):
 
 @login_required(login_url='/')
 def contact_month(request):
+    ''' contacts per month '''
     year = datetime.date.today().year
     contact_counts_month = []
     client_counts_month = []
@@ -185,6 +196,7 @@ def contact_month(request):
 
 @login_required(login_url='/')
 def recent_contact(request):
+    ''' recent contacts view, current month '''
     year = datetime.date.today().year
     month = datetime.date.today().month
     if month < 10:
@@ -207,12 +219,15 @@ def recent_contact(request):
 
 @login_required(login_url='/')
 def thanks(request):
+    ''' thanks page view '''
     return render(request, 'thanks.html')
 
 
 def p_404(request, exception):
+    ''' 404 view '''
     return render(request, "404.html", status=404)
 
 
 def p_500(request):
+    ''' 500 view '''
     return render(request, "500.html", status=500)

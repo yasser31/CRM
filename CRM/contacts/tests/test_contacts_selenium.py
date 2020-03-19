@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestAdd(LiveServerTestCase):
+    ''' Selenium tests'''
 
     def setUp(self):
         self.driver = webdriver.Firefox()
@@ -15,6 +16,7 @@ class TestAdd(LiveServerTestCase):
                                              password="password")
 
     def test_contact(self):
+        ''' test adding a company departement contact'''
         self.driver.get("%s%s" % (self.live_server_url, "/"))
         username = self.driver.find_element_by_name("username")
         password = self.driver.find_element_by_name("password")
