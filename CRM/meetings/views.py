@@ -140,5 +140,5 @@ def meeting_added(request):
 
 @login_required(login_url='/')
 def report_added(request):
-    ''' the last page redirected to when a meeting is set '''
+    ''' the last page redirected to when a report is created '''
     return render(request, "report_added.html")
