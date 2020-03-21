@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
 from .models import Company, Departement, Contact
 from django.contrib.auth.models import User
@@ -41,8 +41,7 @@ def clients(request):
 def add_company(request):
     ''' add company view, use global variable because needed later '''
     if request.method == 'POST':
-        global r1
-        r1 = request.POST
+        request.session["r1"] = request.POST
         form = NewCompanyForm(request.POST)
         if form.is_valid():
             try:
@@ -51,9 +50,9 @@ def add_company(request):
                     company_city=request.POST["company_city"])
             except Company.DoesNotExist:
                 form.save()
-                return HttpResponseRedirect("/add_departement/")
+                return redirect("/add_departement/")
             else:
-                return HttpResponseRedirect("/add_departement/")
+                return redirect("/add_departement/")
     else:
         form = NewCompanyForm()
     context = {
@@ -64,10 +63,12 @@ def add_company(request):
 
 @login_required(login_url='/')
 def add_departement(request):
+    r1 = request.session.get("r1")
     ''' add departement view, use global variable because needed later'''
     if request.method == 'POST':
-        global r2
         r2 = request.POST
+# request.session['r1'] = r1
+        request.session['r2'] = request.POST
         form = NewDepartementForm(request.POST)
         if form.is_valid():
             try:
@@ -80,9 +81,9 @@ def add_departement(request):
                     cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement.cp = company
                 departement.save()
-                return HttpResponseRedirect("/add_contact/")
+                return redirect("/add_contact/")
             else:
-                return HttpResponseRedirect("/add_contact/")
+                return redirect("/add_contact/")
     else:
         form = NewDepartementForm()
     context = {
@@ -92,9 +93,11 @@ def add_departement(request):
 
 
 @login_required(login_url='/')
-def add_contact(request):
+def add_contact(request, **kwargs):
     ''' add contact view '''
     if request.method == 'POST':
+        r1 = request.session.get("r1")
+        r2 = request.session.get("r2")
         form = NewContactForm(request.POST)
         if form.is_valid():
             try:
@@ -110,7 +113,7 @@ def add_contact(request):
                 contact.departement = departement
                 contact.user = user
                 contact.save()
-                return HttpResponseRedirect('/thanks/')
+                return redirect('/thanks/')
             else:
                 pass
     else:

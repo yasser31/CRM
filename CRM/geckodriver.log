@@ -1076,3 +1076,29 @@ observe@resource://gre/modules/AsyncShutdown.jsm:551:16
 
 1584802129838	Marionette	INFO	Stopped listening on port 44759
 1584802132081	Marionette	INFO	Stopped listening on port 33607
+1584822105434	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilebzzoy2"
+1584822106920	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584822108965	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584822108965	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584822108965	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584822108966	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584822113593	Marionette	INFO	Listening on port 46549
+1584822113710	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:35555/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:35555/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:35555/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:35555/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: AbortError: The operation was aborted. 
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: , line 0: AbortError: The operation was aborted. 
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:35555/static/js/recent_contact.cf8120e58435.js, line 15: TypeError: element1 is null
+JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
