@@ -136,3 +136,9 @@ def dashboard_meeting_display(request):
 def meeting_added(request):
     ''' the last page redirected to when a meeting is added '''
     return render(request, "meeting_added.html")
+
+
+@login_required(login_url='/')
+def report_added(request):
+    ''' the last page redirected to when a meeting is set '''
+    return render(request, "report_added.html")

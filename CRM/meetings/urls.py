@@ -17,4 +17,5 @@ urlpatterns = [
     path("meeting_display/", views.dashboard_meeting_display,
          name="meeting_display"),
     path("meeting_added/", views.meeting_added, name="meeting_added"),
+    path("report_added/", views.report_added, name="report_added"),
 ]
