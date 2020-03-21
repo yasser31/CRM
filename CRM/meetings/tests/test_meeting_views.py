@@ -57,7 +57,7 @@ class TestGetMeeting(TestCase):
                                user=self.user)
 
         SetMeeting.objects.create(place="oran",
-                                  date="2020-03-20",
+                                  date="2020-03-31",
                                   time="10:20:15",
                                   contact=self.contact,
                                   user=self.user)
