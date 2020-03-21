@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .forms import NewContactForm, NewCompanyForm, NewDepartementForm
 from .models import Company, Departement, Contact
 from django.contrib.auth.models import User
@@ -51,9 +51,9 @@ def add_company(request):
                     company_city=request.POST["company_city"])
             except Company.DoesNotExist:
                 form.save()
-                return redirect("/add_departement/")
+                return HttpResponseRedirect("/add_departement/")
             else:
-                return redirect("/add_departement/")
+                return HttpResponseRedirect("/add_departement/")
     else:
         form = NewCompanyForm()
     context = {
@@ -80,9 +80,9 @@ def add_departement(request):
                     cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement.cp = company
                 departement.save()
-                return redirect("/add_contact/")
+                return HttpResponseRedirect("/add_contact/")
             else:
-                return redirect("/add_contact/")
+                return HttpResponseRedirect("/add_contact/")
     else:
         form = NewDepartementForm()
     context = {
@@ -110,7 +110,7 @@ def add_contact(request):
                 contact.departement = departement
                 contact.user = user
                 contact.save()
-                return redirect('/thanks/')
+                return HttpResponseRedirect('/thanks/')
             else:
                 pass
     else:
