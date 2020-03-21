@@ -64,7 +64,7 @@ def add_company(request):
 
 @login_required(login_url='/')
 def add_departement(request):
-    ''' add departement view, use global ariable because needed later'''
+    ''' add departement view, use global variable because needed later'''
     if request.method == 'POST':
         global r2
         r2 = request.POST

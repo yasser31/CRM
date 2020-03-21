@@ -25,4 +25,4 @@ urlpatterns = [
     path('', include('users.urls')),
 ]
 handler404 = "contacts.views.p_404"
-handlet500 = "contacts.views.p_500"
+# handler500 = "contacts.views.p_500"
