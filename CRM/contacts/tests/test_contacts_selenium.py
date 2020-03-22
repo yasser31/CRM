@@ -67,6 +67,13 @@ class TestAdd(LiveServerTestCase):
         function = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.NAME, "function"))
         )
+        user = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "user"))
+        )
+        for option in user.find_elements_by_tag_name('option'):
+            if option.text == self.user.username:
+                option.click()
+                break
         name.send_keys("name")
         email.send_keys("email@email.com")
         country.send_keys("country")
