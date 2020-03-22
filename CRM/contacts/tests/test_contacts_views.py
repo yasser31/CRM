@@ -46,6 +46,7 @@ class TestGet(TestCase):
 
 class TestClientToProspect(TestCase):
     ''' test set and unset client '''
+
     def setUp(self):
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
@@ -71,7 +72,8 @@ class TestPost(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username="yasser", password="secret")
+        self.user = User.objects.create_user(
+            username="yasser", password="secret")
         self.client.force_login(self.user)
 
     def test_create_contact(self):
@@ -109,11 +111,11 @@ class TestStat(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username="yasser", password="secret")
+        self.user = User.objects.create_user(
+            username="yasser", password="secret")
         self.client.force_login(self.user)
 
     def test_cl_pros_percent(self):
-
         ''' test client prospects percent '''
         response = self.client.get("/contact_percent/")
         data = response.json()
