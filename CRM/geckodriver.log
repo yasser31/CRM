@@ -1375,3 +1375,81 @@ JavaScript error: , line 0: UnknownError: The operation failed for reasons unrel
 1584891185627	Marionette	INFO	Stopped listening on port 33807
 JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
 1584891187039	Marionette	INFO	Stopped listening on port 34071
+1584897253248	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilew22qJB"
+1584897253848	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584897255228	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584897255228	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584897255229	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584897255229	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584897257738	Marionette	INFO	Listening on port 44881
+1584897257779	Marionette	WARN	TLS certificate errors will be ignored for this session
+1584897259566	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0Y7z6l"
+1584897260500	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584897261906	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584897261906	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584897261906	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584897261906	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584897264516	Marionette	INFO	Listening on port 43665
+1584897264578	Marionette	WARN	TLS certificate errors will be ignored for this session
+1584897309224	Marionette	INFO	Stopped listening on port 43665
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1584897311903	Marionette	INFO	Stopped listening on port 44881
+1584897328232	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5h0Rq7"
+1584897328841	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584897330295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584897330295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584897330296	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584897330296	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584897332971	Marionette	INFO	Listening on port 38859
+1584897333045	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:41323/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:41323/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:41323/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:41323/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:41323/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: http://localhost:41323/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:41323/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+1584897368241	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileLJvyEI"
+1584897368864	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584897370280	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584897370280	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584897370280	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584897370280	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584897372837	Marionette	INFO	Listening on port 38007
+1584897372858	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:46361/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:46361/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:46361/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:46361/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:46361/static/js/recent_contact.cf8120e58435.js, line 15: TypeError: element1 is null
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:46361/static/js/recent_contact.cf8120e58435.js, line 15: TypeError: element1 is null
+JavaScript error: http://localhost:46361/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:46361/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1584897837407	Marionette	INFO	Stopped listening on port 38007
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1584897837868	Marionette	INFO	Stopped listening on port 38859

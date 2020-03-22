@@ -526,6 +526,7 @@ th, td {
                 <thead>
                     <tr class="row100 head">
                         <th class="cell100 column1">Edit</th>
+                        <th class="cell100 column1">Delete</th>
                         <th class="cell100 column1">Contact</th>
                         <th class="cell100 column2">Date</th>
                         <th class="cell100 column3">Time</th>
@@ -540,7 +541,8 @@ th, td {
                 <tbody>
                     {% for meeting in meetings %}
                     <tr class="row100 body">
-                        <td class="cell100 column1"><a href="{% url 'edit_met_get' meeting.id %}"><i class="fas fa-edit"></i></i></a></td>
+                        <td class="cell100 column1"><a href="{% url 'edit_met_get' meeting.id %}"><i class="fas fa-edit"></i></a></td>
+                        <td class="cell100 column1"><a href="{% url 'delete_meeting' meeting.id %}"><i class="fas fa-trash-alt"></i></a></td>
                         <td class="cell100 column4"><a href="{% url 'details' meeting.contact.id %}">{{ meeting.contact|title}}</a></td>
                         <td class="cell100 column2">{{ meeting.date }}</td>
                         <td class="cell100 column3">{{ meeting.time }}</td>

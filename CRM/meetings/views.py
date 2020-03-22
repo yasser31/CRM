@@ -226,3 +226,17 @@ def report_edited(request):
 @login_required(login_url='/')
 def meeting_edited(request):
     return render(request, "meeting_edited.html")
+
+
+@login_required(login_url='/')
+def delete_meeting(request, met_id):
+    meeting = SetMeeting.objects.get(id=met_id)
+    meeting.delete()
+    return render(request, "meeting_deleted.html")
+
+
+@login_required(login_url='/')
+def delete_report(request, rep_id):
+    rep = Meeting.objects.get(id=rep_id)
+    rep.delete()
+    return render(request, "report_deleted.html")
