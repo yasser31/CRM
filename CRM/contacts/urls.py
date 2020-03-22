@@ -18,4 +18,10 @@ urlpatterns = [
          name="contact_percent"),
     path('contact_month/', views.contact_month, name="contact_month"),
     path('recent_contact/', views.recent_contact, name="recent_contact"),
+    path('edit_company/<int:contact_id>',
+         views.edit_comp_get, name="edit_comp_get"),
+    path('edit_company/', views.edit_comp_post, name="edit_comp_post"),
+    path('edit_dep/', views.edit_departement, name="edit_dep"),
+    path('edit_contact/', views.edit_contact, name="edit_contact"),
+    path('contact_edited/', views.contact_edited, name="contact_edited"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

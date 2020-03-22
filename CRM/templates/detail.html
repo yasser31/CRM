@@ -46,6 +46,7 @@
       {% else %}
       <a class="btn" href="#"><i class="fab fa-linkedin-in"></i></a>
       {% endif %}
+      <a href="{% url 'edit_comp_get' contact.id %}"><i class="fas fa-edit"></i></i></a>
       <h2> Name : {{ contact.name|lower|title }}</h2>
     </div>
   </div>

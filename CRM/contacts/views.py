@@ -123,7 +123,7 @@ def add_contact(request, **kwargs):
                 contact.user = user
                 company.user = user
                 departement.user = user
-                company.savr()
+                company.save()
                 departement.save()
                 contact.save()
                 return redirect('/thanks/')
@@ -252,3 +252,119 @@ def p_404(request, exception):
 def p_500(request):
     ''' 500 view '''
     return render(request, "500.html", status=500)
+
+
+@login_required(login_url='/')
+def edit_comp_get(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    company = Company.objects.get(id=contact.company.id)
+    company_id = request.session["cp_id"] = contact.company.id
+    dep_id = request.session["dep_id"] = contact.departement.id
+    contact_id = request.session["contact_id"] = contact_id
+    data = {
+        "cp_name": company.cp_name,
+        "address": company.address,
+        "company_country": company.company_country,
+        "company_city": company.company_city,
+        "field": company.field,
+        "description": company.description
+    }
+    form = NewCompanyForm(data)
+    context = {
+        "form": form
+    }
+    return render(request, "edit_company.html", context)
+
+
+@login_required(login_url='/')
+def edit_comp_post(request):
+    cp_id = request.session["cp_id"]
+    company = Company.objects.get(id=cp_id)
+    form = NewCompanyForm(request.POST)
+    if form.is_valid():
+        company.cp_name = request.POST["cp_name"]
+        company.address = request.POST["address"]
+        company.company_country = request.POST["company_country"]
+        company.company_city = request.POST["company_city"]
+        company.field = request.POST["field"]
+        company.description = request.POST["description"]
+        company.user = request.user
+        company.save()
+        return redirect("/edit_dep/")
+
+
+@login_required(login_url='/')
+def edit_departement(request):
+    cp_id = request.session["cp_id"]
+    company = Company.objects.get(id=cp_id)
+    dep_id = request.session.get("dep_id")
+    dep = Departement.objects.get(id=dep_id)
+    if request.method == "POST":
+        form = NewDepartementForm(request.POST)
+        if form.is_valid():
+            dep.dep_name = request.POST["dep_name"]
+            dep.user = request.user
+            dep.cp = company
+            dep.save()
+            return redirect("/edit_contact/")
+    else:
+        data = {
+            "dep_name": dep.dep_name
+        }
+        form = NewDepartementForm(data)
+        context = {
+            "form": form
+        }
+    return render(request, "edit_dep.html", context)
+
+
+@login_required(login_url='/')
+def edit_contact(request):
+    c_id = request.session["contact_id"]
+    contact = Contact.objects.get(id=c_id)
+    if request.method == "POST":
+        form = NewContactForm(request.POST)
+        if form.is_valid():
+            contact.name = request.POST["name"],
+            contact.country = request.POST["country"]
+            contact.city = request.POST["city"]
+            contact.email = request.POST["email"]
+            contact.phone_number = request.POST["phone_number"]
+            contact.age = request.POST["age"]
+            contact.function = request.POST["function"]
+            contact.twitter = request.POST["twitter"]
+            contact.facebook = request.POST["facebook"]
+            contact.linkedin = request.POST["linkedin"]
+            if contact.client == "true":
+                contact.client = True
+            elif contact.client == "false":
+                contact.client = False
+            else:
+                contact.client = contact.client
+            contact.user = request.user
+            contact.save()
+            return redirect("/contact_edited/")
+    else:
+        data = {
+            "name": contact.name,
+            "country": contact.country,
+            "city": contact.city,
+            "email": contact.email,
+            "phone_number": contact.phone_number,
+            "age": contact.age,
+            "function": contact.function,
+            "twitter": contact.twitter,
+            "facebook": contact.facebook,
+            "linkedin": contact.linkedin,
+            "client": contact.client
+        }
+        form = NewContactForm(data)
+    context = {
+        "form": form
+    }
+    return render(request, "edit_contact.html", context)
+
+
+@login_required(login_url='/')
+def contact_edited(request):
+    return render(request, "contact_edited.html")

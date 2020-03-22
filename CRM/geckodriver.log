@@ -1102,3 +1102,4 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
 JavaScript error: http://localhost:35555/static/js/recent_contact.cf8120e58435.js, line 15: TypeError: element1 is null
 JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+1584870522884	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileDfAOpJ"
