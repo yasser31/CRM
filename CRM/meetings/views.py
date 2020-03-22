@@ -142,3 +142,76 @@ def meeting_added(request):
 def report_added(request):
     ''' the last page redirected to when a report is created '''
     return render(request, "report_added.html")
+
+
+@login_required(login_url='/')
+def edit_rep_get(request, rep_id):
+    met = Meeting.objects.get(id=rep_id)
+    request.session['met_id'] = rep_id
+    data = {
+        "title": met.title,
+        "summary": met.summary,
+        "contact": met.contact
+    }
+    form = MeetingForm(data)
+    context = {
+        "form": form
+    }
+    return render(request, "edit_rep.html", context)
+
+
+@login_required(login_url='/')
+def edit_rep_post(request):
+    form = MeetingForm(request.POST)
+    if form.is_valid():
+        met_id = request.session.get("met_id")
+        contact = Contact.objects.get(id=request.POST["contact"])
+        met = Meeting.objects.get(id=met_id)
+        met.title = request.POST["title"]
+        met.summary = request.POST["summary"]
+        met.contact = contact
+        met.save()
+        return HttpResponse("report edited thanks")
+    else:
+        context = {
+            "form": form
+        }
+    return render(request, "edit_rep.html", context)
+
+
+@login_required(login_url='/')
+def edit_met_get(request, met_id):
+    met = SetMeeting.objects.get(id=met_id)
+    request.session["meeting_id"] = met_id
+    data = {
+        "place": met.place,
+        "date": met.date,
+        "time": met.time,
+        "note": met.note,
+        "contact": met.contact
+    }
+    form = SetMeetingForm(data)
+    context = {
+        "form": form
+    }
+    return render(request, "edit_met.html", context)
+
+
+@login_required(login_url='/')
+def edit_met_post(request):
+    form = SetMeetingForm(request.POST)
+    if form.is_valid():
+        contact = Contact.objects.get(id=request.POST["contact"])
+        meeting = SetMeeting.objects.get(id=request.session.get("meeting_id"))
+        meeting.place = request.POST["place"]
+        meeting.date = request.POST["date"]
+        meeting.time = request.POST["time"]
+        meeting.note = request.POST["note"]
+        meeting.contact = contact
+        meeting.save()
+        return HttpResponse(" meeting edited thanks ")
+    else:
+        context = {
+             "form": form
+        }
+        return render(request, "edit_met.html", context)

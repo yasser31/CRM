@@ -18,4 +18,8 @@ urlpatterns = [
          name="meeting_display"),
     path("meeting_added/", views.meeting_added, name="meeting_added"),
     path("report_added/", views.report_added, name="report_added"),
+    path("edit_rep/<int:rep_id>", views.edit_rep_get, name="edit_rep_get"),
+    path("edit_rep/", views.edit_rep_post, name="edit_rep_post"),
+    path("edit_met/<int:met_id>", views.edit_met_get, name="edit_met_get"),
+    path("edit_met/", views.edit_met_post, name="edit_met_post"),
 ]

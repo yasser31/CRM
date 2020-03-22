@@ -544,6 +544,7 @@
       <thead>
         <tr class="row100 head">
           <th class="cell100 column1"><a href="{% url 'create_meeting' %}"><i class="fas fa-plus ml-2"></i></a></th>
+          <th class="cell100 column1">Edit</th>
           <th class="cell100 column2">Title</th>
           <th class="cell100 column3">Date</th>
           <th class="cell100 column4">Summary</th>
@@ -558,6 +559,7 @@
         {% for meeting in meetings %}
         <tr class="row100 body">
           <td class="cell100 column1"></td>
+          <td class="cell100 column1"><a href="{% url 'edit_rep_get' meeting.id %}"><i class="fas fa-edit"></i></i></a></td>
           <td class="cell100 column2"><a href="{% url 'meeting_details' meeting.id %}">{{ meeting.title|title }}</a>
           </td>
           <td class="cell100 column3">{{ meeting.date }}</td>
