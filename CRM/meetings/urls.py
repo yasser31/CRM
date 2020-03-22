@@ -22,4 +22,6 @@ urlpatterns = [
     path("edit_rep/", views.edit_rep_post, name="edit_rep_post"),
     path("edit_met/<int:met_id>", views.edit_met_get, name="edit_met_get"),
     path("edit_met/", views.edit_met_post, name="edit_met_post"),
+    path("report_edited/", views.report_edited, name="report_edited"),
+    path("meeting_edited/", views.meeting_edited, name="meeting_edited"),
 ]

@@ -95,7 +95,7 @@ def add_departement(request):
 
 
 @login_required(login_url='/')
-def add_contact(request, **kwargs):
+def add_contact(request):
     ''' add contact view '''
     if request.method == 'POST':
         r1 = request.session.get("r1")
@@ -120,7 +120,7 @@ def add_contact(request, **kwargs):
             else:
                 pass
     else:
-        form = NewContactForm()
+        form = NewContactForm(username=request.user.username)
     context = {
         "form": form,
     }
@@ -315,7 +315,7 @@ def edit_contact(request):
     if request.method == "POST":
         form = NewContactForm(request.POST)
         if form.is_valid():
-            contact.name = request.POST["name"],
+            contact.name = request.POST["name"]
             contact.country = request.POST["country"]
             contact.city = request.POST["city"]
             contact.email = request.POST["email"]
@@ -348,7 +348,7 @@ def edit_contact(request):
             "linkedin": contact.linkedin,
             "client": contact.client
         }
-        form = NewContactForm(data)
+        form = NewContactForm(data, username=request.user.username)
     context = {
         "form": form
     }

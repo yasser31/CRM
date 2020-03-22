@@ -1,7 +1,7 @@
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from contacts.models import Contact
 from .models import Meeting, SetMeeting
@@ -23,7 +23,7 @@ def set_meeting(request):
                 place=place, date=date, time=time, contact=contact, user=user)
             return HttpResponseRedirect("/meeting_added/")
     else:
-        form = SetMeetingForm()
+        form = SetMeetingForm(username=request.user.username)
 
     context = {
         "form": form
@@ -83,7 +83,7 @@ def create_meeting(request):
                                                  user=user)
             new_meeting.save()
             return HttpResponseRedirect("/report_added/")
-    context = {"form": MeetingForm()}
+    context = {"form": MeetingForm(username=request.user.username)}
     return render(request, "create_meeting.html", context)
 
 
@@ -154,7 +154,7 @@ def edit_rep_get(request, rep_id):
         "summary": met.summary,
         "contact": met.contact
     }
-    form = MeetingForm(data)
+    form = MeetingForm(data, username=request.user.username)
     context = {
         "form": form
     }
@@ -172,7 +172,7 @@ def edit_rep_post(request):
         met.summary = request.POST["summary"]
         met.contact = contact
         met.save()
-        return HttpResponse("report edited thanks")
+        return redirect("/report_edited/")
     else:
         context = {
             "form": form
@@ -191,7 +191,7 @@ def edit_met_get(request, met_id):
         "note": met.note,
         "contact": met.contact
     }
-    form = SetMeetingForm(data)
+    form = SetMeetingForm(data, username=request.user.username)
     context = {
         "form": form
     }
@@ -210,9 +210,19 @@ def edit_met_post(request):
         meeting.note = request.POST["note"]
         meeting.contact = contact
         meeting.save()
-        return HttpResponse(" meeting edited thanks ")
+        return redirect("/meeting_edited/")
     else:
         context = {
             "form": form
         }
         return render(request, "edit_met.html", context)
+
+
+@login_required(login_url='/')
+def report_edited(request):
+    return render(request, "report_edited.html")
+
+
+@login_required(login_url='/')
+def meeting_edited(request):
+    return render(request, "meeting_edited.html")
