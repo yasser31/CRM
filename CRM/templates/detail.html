@@ -3,16 +3,16 @@
 {% include 'nav.html' %}
 {% load static %}
 <style>
-  #detail{
+  #detail {
     background-image: url("../static/images/card.jpg");
   }
 
   .links {
-    color:mediumpurple;
+    color: mediumpurple;
   }
 
   h2 {
-    color:midnightblue;
+    color: midnightblue;
   }
 </style>
 <br>
@@ -20,7 +20,8 @@
 <div class="container mt-5" id="detail">
   <div class="row">
     <div class="col-lg-6">
-      <h2>Contact</h2>
+      <h2>Contact <span><a href="{% url 'edit_comp_get' contact.id %}"><i class="fas fa-edit"></i></i></a></span>
+        <span><a href="{% url 'delete_contact' contact.id %}"><i class="fas fa-trash-alt"></i></a></span></h2>
     </div>
     <div class="col-lg-6">
       <form method="GET" action="{% url 'add_contact' %}">
@@ -46,29 +47,44 @@
       {% else %}
       <a class="btn" href="#"><i class="fab fa-linkedin-in"></i></a>
       {% endif %}
-      <a href="{% url 'edit_comp_get' contact.id %}"><i class="fas fa-edit"></i></i></a>
       <h2> Name : {{ contact.name|lower|title }}</h2>
     </div>
   </div>
-    <div class="row">
-      <div class="col-lg-3"><p><em> Email :</em> {{ contact.email }}</p></div>
-      <div class="col-lg-3"><p><em> Age :</em> {{ contact.age }}</p></div>
-      <div class="col-lg-3"><p><em> Phone :</em> {{ contact.phone_number }}</p></div>
-      <div class="col-lg-3"><p>{{ contact.country }}, {{ contact.city }}</p></div>
-      <div class="col-lg-3"><p><em> Function :</em> {{ contact.function }}</p></div>
-      <div class="col-lg-3"><p><em> Company :</em> {{ contact.company }}</p></div>
-      <div class="col-lg-3"><p> Descritpion : {{ contact.description }}.</p></div>
-      <div class="col-lg-3"><p><em> Is A Client :</em> {{ contact.client }}</p></div>
+  <div class="row">
+    <div class="col-lg-3">
+      <p><em> Email :</em> {{ contact.email }}</p>
     </div>
-    <div class="row mt-5">
-      <div class="col-lg-4">
-        {% if contact.client is False %}
-        <h4><a href="{% url 'set' contact.id %}" class="links">Set As A Client</a></h4>
-        {% else %}
-        <h4><a href="{% url 'unset' contact.id %}" class="links">Set As A Prospect</a></h4>
-        {% endif %}</div>
-      <div class="col-lg-4"><a href="{% url 'contact_meetings' contact.id %}" class="links">Check Mettings</a></div>
-      <div class="col-lg-4"><a href="{% url 'create_meeting' %}" class="links">Create Meeting report</a><br></div>
+    <div class="col-lg-3">
+      <p><em> Age :</em> {{ contact.age }}</p>
+    </div>
+    <div class="col-lg-3">
+      <p><em> Phone :</em> {{ contact.phone_number }}</p>
+    </div>
+    <div class="col-lg-3">
+      <p>{{ contact.country }}, {{ contact.city }}</p>
+    </div>
+    <div class="col-lg-3">
+      <p><em> Function :</em> {{ contact.function }}</p>
+    </div>
+    <div class="col-lg-3">
+      <p><em> Company :</em> {{ contact.company }}</p>
+    </div>
+    <div class="col-lg-3">
+      <p> Descritpion : {{ contact.description }}.</p>
+    </div>
+    <div class="col-lg-3">
+      <p><em> Is A Client :</em> {{ contact.client }}</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-lg-4">
+      {% if contact.client is False %}
+      <h4><a href="{% url 'set' contact.id %}" class="links">Set As A Client</a></h4>
+      {% else %}
+      <h4><a href="{% url 'unset' contact.id %}" class="links">Set As A Prospect</a></h4>
+      {% endif %}</div>
+    <div class="col-lg-4"><a href="{% url 'contact_meetings' contact.id %}" class="links">Check Mettings</a></div>
+    <div class="col-lg-4"><a href="{% url 'create_meeting' %}" class="links">Create Meeting report</a><br></div>
   </div>
 </div>
 </div>

@@ -71,8 +71,8 @@ class TestPost(TestCase):
 
     def setUp(self):
         self.client = Client()
-        user = User.objects.create_user(username="yasser", password="secret")
-        self.client.force_login(user)
+        self.user = User.objects.create_user(username="yasser", password="secret")
+        self.client.force_login(self.user)
 
     def test_create_contact(self):
         ''' test create company departement contact '''
@@ -96,7 +96,8 @@ class TestPost(TestCase):
             "country": "algeria",
             "city": "oran",
             "function": "developer",
-            "client": False
+            "client": False,
+            "user": self.user.id
         })
         contact = Contact.objects.get(name="client")
         self.assertEqual(contact.name, "client")
@@ -108,8 +109,8 @@ class TestStat(TestCase):
 
     def setUp(self):
         self.client = Client()
-        user = User.objects.create_user(username="yasser", password="secret")
-        self.client.force_login(user)
+        self.user = User.objects.create_user(username="yasser", password="secret")
+        self.client.force_login(self.user)
 
     def test_cl_pros_percent(self):
 
@@ -133,7 +134,7 @@ class TestStat(TestCase):
         ''' test recent contact '''
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
-                               client=True)
+                               client=True, user=self.user)
         response = self.client.get("/recent_contact/")
         data = response.json()
         self.assertEqual(data["contact"][0]["name"], "contact")

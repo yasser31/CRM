@@ -23,4 +23,4 @@ class NewContactForm(ModelForm):
         model = Contact
         fields = ['name', 'email', 'country', 'city', 'phone_number', 'age',
                   'function', 'description', 'twitter',
-                  'facebook', 'linkedin', 'client']
+                  'facebook', 'linkedin', 'client', "user"]

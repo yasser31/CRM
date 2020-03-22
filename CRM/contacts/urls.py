@@ -24,4 +24,5 @@ urlpatterns = [
     path('edit_dep/', views.edit_departement, name="edit_dep"),
     path('edit_contact/', views.edit_contact, name="edit_contact"),
     path('contact_edited/', views.contact_edited, name="contact_edited"),
+    path('delete_contact/<int:contact_id>', views.delete_contact, name="delete_contact"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

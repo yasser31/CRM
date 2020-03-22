@@ -1103,3 +1103,98 @@ JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f
 JavaScript error: http://localhost:35555/static/js/recent_contact.cf8120e58435.js, line 15: TypeError: element1 is null
 JavaScript error: http://localhost:35555/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
 1584870522884	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileDfAOpJ"
+1584883508564	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileB3va4C"
+1584883509354	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584883511790	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584883511790	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584883511790	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584883511790	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584883515808	Marionette	INFO	Listening on port 36991
+1584883515902	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:50959/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:50959/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:50959/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:50959/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:50959/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: AbortError: The operation was aborted. 
+JavaScript error: http://localhost:50959/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:50959/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+1584883609404	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilel4iWXb"
+1584883610138	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584883612380	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584883612380	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584883612380	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584883612380	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584883615427	Marionette	INFO	Listening on port 41053
+1584883615528	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:36631/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:36631/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:36631/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:36631/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1584883738885	Marionette	INFO	Stopped listening on port 36991
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:36631/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+console.error: services.settings: 
+  Message: TypeError: NetworkError when attempting to fetch resource.
+1584884094144	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1YfVIa"
+1584884094743	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1584884096132	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1584884096132	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1584884096132	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1584884096132	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1584884098418	Marionette	INFO	Listening on port 41035
+1584884098458	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://localhost:33331/static/js/line_chart.8f49b149149f.js, line 4: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:33331/static/js/recent_contact.cf8120e58435.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:33331/static/js/zing_pie.ca0f784c1065.js, line 9: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: http://localhost:33331/static/js/dashboard_meetings.e7155c15b49b.js, line 5: SyntaxError: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: AbortError: The operation was aborted. 
+JavaScript error: http://localhost:33331/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:33331/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:33331/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: http://localhost:33331/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:33331/static/js/contacts_dashboard.138896fa9f5b.js, line 54: TypeError: element is null

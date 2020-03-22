@@ -7,7 +7,7 @@ class MeetingForm(forms.Form):
     ''' meeting report form '''
     title = forms.CharField(max_length=100)
     summary = forms.CharField(widget=forms.Textarea, required=False)
-    contact = forms.ModelChoiceField(queryset=Contact.objects.all())
+    contact = forms.ModelChoiceField(queryset=Contact.objects.filter())
 
 
 class SetMeetingForm(forms.Form):

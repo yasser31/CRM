@@ -49,9 +49,9 @@ def add_company(request):
             try:
                 Company.objects.get(
                     cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"],
-                    user__username=request.user.username)
+                    company_city=request.POST["company_city"])
             except Company.DoesNotExist:
+                form.user = request.user
                 form.save()
                 return redirect("/add_departement/")
             else:
@@ -74,16 +74,13 @@ def add_departement(request):
         form = NewDepartementForm(request.POST)
         if form.is_valid():
             try:
-                Departement.objects.get(dep_name=request.POST["dep_name"],
-                                        user__username=request.user.username)
+                Departement.objects.get(dep_name=request.POST["dep_name"])
             except Departement.DoesNotExist:
                 form.save()
                 departement = Departement.objects.get(
-                    dep_name=request.POST["dep_name"],
-                    user__username=request.user.username)
+                    dep_name=request.POST["dep_name"])
                 company = Company.objects.get(
-                    cp_name=r1["cp_name"], company_city=r1["company_city"],
-                    user__username=request.user.username)
+                    cp_name=r1["cp_name"], company_city=r1["company_city"])
                 departement.cp = company
                 departement.save()
                 return redirect("/add_contact/")
@@ -111,20 +108,13 @@ def add_contact(request, **kwargs):
                     user__username=request.user.username)
             except Contact.DoesNotExist:
                 form.save()
-                contact = Contact.objects.get(name=request.POST.get("name"))
+                contact = Contact.objects.get(name=request.POST.get(
+                    "name"), user=request.user)
                 company = Company.objects.get(
-                    cp_name=r1["cp_name"], company_city=r1["company_city"],
-                    user__username=request.user.username)
-                departement = Departement.objects.get(dep_name=r2["dep_name"],
-                                                      user__username=request.user.username)
-                user = User.objects.get(username=request.user.username)
+                    cp_name=r1["cp_name"], company_city=r1["company_city"])
+                departement = Departement.objects.get(dep_name=r2["dep_name"])
                 contact.company = company
                 contact.departement = departement
-                contact.user = user
-                company.user = user
-                departement.user = user
-                company.save()
-                departement.save()
                 contact.save()
                 return redirect('/thanks/')
             else:
@@ -368,3 +358,10 @@ def edit_contact(request):
 @login_required(login_url='/')
 def contact_edited(request):
     return render(request, "contact_edited.html")
+
+
+@login_required(login_url='/')
+def delete_contact(request, contact_id):
+    contact = Contact.objects.get(id=contact_id)
+    contact.delete()
+    return render(request, "contact_deleted.html")
