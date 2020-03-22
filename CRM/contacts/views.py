@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 @login_required(login_url='/')
 def contacts(request):
     ''' get contact page  view '''
-    contacts = Contact.objects.all()
+    contacts = Contact.objects.filter(user__username=request.user.username)
     context = {
         "contacts": contacts
     }
@@ -20,7 +20,8 @@ def contacts(request):
 @login_required(login_url='/')
 def prospects(request):
     ''' get prospects page view '''
-    contacts = Contact.objects.filter(client=False)
+    contacts = Contact.objects.filter(client=False,
+                                      user__username=request.user.username)
     context = {
         "contacts": contacts
     }
@@ -30,7 +31,8 @@ def prospects(request):
 @login_required(login_url='/')
 def clients(request):
     ''' get clients page views '''
-    contacts = Contact.objects.filter(client=True)
+    contacts = Contact.objects.filter(client=True,
+                                      user__username=request.user.username)
     context = {
         "contacts": contacts
     }
@@ -47,7 +49,8 @@ def add_company(request):
             try:
                 Company.objects.get(
                     cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"])
+                    company_city=request.POST["company_city"],
+                    user__username=request.user.username)
             except Company.DoesNotExist:
                 form.save()
                 return redirect("/add_departement/")
@@ -67,18 +70,20 @@ def add_departement(request):
     ''' add departement view, use global variable because needed later'''
     if request.method == 'POST':
         r2 = request.POST
-# request.session['r1'] = r1
         request.session['r2'] = request.POST
         form = NewDepartementForm(request.POST)
         if form.is_valid():
             try:
-                Departement.objects.get(dep_name=request.POST["dep_name"])
+                Departement.objects.get(dep_name=request.POST["dep_name"],
+                                        user__username=request.user.username)
             except Departement.DoesNotExist:
                 form.save()
                 departement = Departement.objects.get(
-                    dep_name=request.POST["dep_name"])
+                    dep_name=request.POST["dep_name"],
+                    user__username=request.user.username)
                 company = Company.objects.get(
-                    cp_name=r1["cp_name"], company_city=r1["company_city"])
+                    cp_name=r1["cp_name"], company_city=r1["company_city"],
+                    user__username=request.user.username)
                 departement.cp = company
                 departement.save()
                 return redirect("/add_contact/")
@@ -101,17 +106,25 @@ def add_contact(request, **kwargs):
         form = NewContactForm(request.POST)
         if form.is_valid():
             try:
-                Contact.objects.get(name=request.POST["name"])
+                Contact.objects.get(
+                    name=request.POST["name"],
+                    user__username=request.user.username)
             except Contact.DoesNotExist:
                 form.save()
                 contact = Contact.objects.get(name=request.POST.get("name"))
                 company = Company.objects.get(
-                    cp_name=r1["cp_name"], company_city=r1["company_city"])
-                departement = Departement.objects.get(dep_name=r2["dep_name"])
+                    cp_name=r1["cp_name"], company_city=r1["company_city"],
+                    user__username=request.user.username)
+                departement = Departement.objects.get(dep_name=r2["dep_name"],
+                                                      user__username=request.user.username)
                 user = User.objects.get(username=request.user.username)
                 contact.company = company
                 contact.departement = departement
                 contact.user = user
+                company.user = user
+                departement.user = user
+                company.savr()
+                departement.save()
                 contact.save()
                 return redirect('/thanks/')
             else:
@@ -155,9 +168,12 @@ def unset(request, contact_id):
 @login_required(login_url='/')
 def client_prospects_percent(request):
     ''' client prospect percent '''
-    total_contact = Contact.objects.all().count()
-    total_client = Contact.objects.filter(client=True).count()
-    total_prospects = Contact.objects.filter(client=False).count()
+    total_contact = Contact.objects.filter(
+        user__username=request.user.username).count()
+    total_client = Contact.objects.filter(
+        client=True, user__username=request.user.username).count()
+    total_prospects = Contact.objects.filter(
+        client=False, user__username=request.user.username).count()
     try:
         prospects_percent = (total_prospects / total_contact) * 100
     except ZeroDivisionError:
@@ -185,10 +201,11 @@ def contact_month(request):
     months = ['0' + str(n) if n < 10 else str(n) for n in range(1, 13)]
     for month in months:
         date = str(year) + '-' + month
-        contact_count = Contact.objects.filter(date__startswith=date).count()
+        contact_count = Contact.objects.filter(
+            date__startswith=date, user__username=request.user.username).count()
         contact_counts_month.append(contact_count)
-        client_month = Contact.objects.filter(
-            date__startswith=date, client=True).count()
+        client_month = Contact.objects.filter(user__username=request.user.username,
+                                              date__startswith=date, client=True).count()
         client_counts_month.append(client_month)
     data = {
         "contact": contact_counts_month,
@@ -207,6 +224,7 @@ def recent_contact(request):
     else:
         date = str(year) + "-" + str(month)
     contact_query = Contact.objects.filter(
+        user__username=request.user.username,
         date__startswith=date)[:6]
     contact = [{"name": contact.name, "date": contact.date,
                 "function": contact.function,

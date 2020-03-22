@@ -34,7 +34,7 @@ def set_meeting(request):
 @login_required(login_url='/')
 def meetings(request):
     ''' list of contacts for meetings view '''
-    contacts = Contact.objects.all()
+    contacts = Contact.objects.filter(user__username=request.user.username)
     if len(contacts) > 0:
         context = {
             "contacts": contacts
@@ -120,7 +120,8 @@ def dashboard_meeting_display(request):
     else:
         query_date = str(year) + '-' + str(month)
     query_date = str(year) + '-' + '0' + str(month)
-    meetings = SetMeeting.objects.filter(date__startswith=query_date)
+    meetings = SetMeeting.objects.filter(date__startswith=query_date,
+                                         user__username=request.user.username)
     meeting = [{"date": meeting.date,
                 "time": meeting.time,
                 "place": meeting.place,
@@ -212,6 +213,6 @@ def edit_met_post(request):
         return HttpResponse(" meeting edited thanks ")
     else:
         context = {
-             "form": form
+            "form": form
         }
         return render(request, "edit_met.html", context)

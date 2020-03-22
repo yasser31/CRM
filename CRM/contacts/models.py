@@ -11,6 +11,7 @@ class Company(models.Model):
     company_city = models.CharField(max_length=100, blank=False, default="")
     field = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.cp_name
@@ -20,6 +21,7 @@ class Departement(models.Model):
     ''' departement model '''
     dep_name = models.CharField(max_length=100, blank=True, null=True)
     cp = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.dep_name
