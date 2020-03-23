@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block edit_company %}
+<br>
+<div class="form-example-area">
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-4"></div>
+            <div class="col-lg-8">
+                <div class="form-example-wrap">
+                    <form method="post" action="{% url  'edit_comp_post' %}">
+                        {% csrf_token %}
+                        {% load crispy_forms_tags %}
+                        {{form|crispy}}
+                        <div class="form-example-int mg-t-15">
+                                <button id="submit" class="btn btn-success notika-btn-success">Edit Departement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+{% endblock %}

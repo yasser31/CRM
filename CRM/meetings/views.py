@@ -28,7 +28,7 @@ def set_meeting(request):
     context = {
         "form": form
     }
-    return render(request, "set_meeting.html", context)
+    return render(request, "meetings/set_meeting.html", context)
 
 
 @login_required(login_url='/')
@@ -39,7 +39,7 @@ def meetings(request):
         context = {
             "contacts": contacts
         }
-        return render(request, "meeting.html", context)
+        return render(request, "meetings/meeting.html", context)
     else:
         return HttpResponse("add contacts and reports first")
 
@@ -52,7 +52,7 @@ def contact_meetings(request, contact_id):
     context = {
         "meetings": meetings
     }
-    return render(request, "contact_meetings.html", context)
+    return render(request, "meetings/contact_meetings.html", context)
 
 
 @login_required(login_url='/')
@@ -63,7 +63,7 @@ def meeting_details(request, meeting_id):
         "meeting": meeting
     }
 
-    return render(request, "meeting_detail.html", context)
+    return render(request, "meetings/meeting_detail.html", context)
 
 
 @login_required(login_url='/')
@@ -84,7 +84,7 @@ def create_meeting(request):
             new_meeting.save()
             return HttpResponseRedirect("/report_added/")
     context = {"form": MeetingForm(username=request.user.username)}
-    return render(request, "create_meeting.html", context)
+    return render(request, "meetings/create_meeting.html", context)
 
 
 @login_required(login_url='/')
@@ -95,7 +95,7 @@ def meeting_information(request):
         "meetings": meetings
     }
 
-    return render(request, "meeting_information.html", context)
+    return render(request, "meetings/meeting_information.html", context)
 
 
 @login_required(login_url='/')
@@ -107,7 +107,7 @@ def meeting_notes(request, meeting_id):
         "meeting": meeting
     }
 
-    return render(request, "meeting_notes.html", context)
+    return render(request, "meetings/meeting_notes.html", context)
 
 
 @login_required(login_url='/')
@@ -136,13 +136,13 @@ def dashboard_meeting_display(request):
 @login_required(login_url='/')
 def meeting_added(request):
     ''' the last page redirected to when a meeting is added '''
-    return render(request, "meeting_added.html")
+    return render(request, "meetings/meeting_added.html")
 
 
 @login_required(login_url='/')
 def report_added(request):
     ''' the last page redirected to when a report is created '''
-    return render(request, "report_added.html")
+    return render(request, "meetings/report_added.html")
 
 
 @login_required(login_url='/')
@@ -158,7 +158,7 @@ def edit_rep_get(request, rep_id):
     context = {
         "form": form
     }
-    return render(request, "edit_rep.html", context)
+    return render(request, "meetings/edit_rep.html", context)
 
 
 @login_required(login_url='/')
@@ -177,7 +177,7 @@ def edit_rep_post(request):
         context = {
             "form": form
         }
-    return render(request, "edit_rep.html", context)
+    return render(request, "meetings/edit_rep.html", context)
 
 
 @login_required(login_url='/')
@@ -195,7 +195,7 @@ def edit_met_get(request, met_id):
     context = {
         "form": form
     }
-    return render(request, "edit_met.html", context)
+    return render(request, "meetings/edit_met.html", context)
 
 
 @login_required(login_url='/')
@@ -215,28 +215,28 @@ def edit_met_post(request):
         context = {
             "form": form
         }
-        return render(request, "edit_met.html", context)
+        return render(request, "meetings/edit_met.html", context)
 
 
 @login_required(login_url='/')
 def report_edited(request):
-    return render(request, "report_edited.html")
+    return render(request, "meetings/report_edited.html")
 
 
 @login_required(login_url='/')
 def meeting_edited(request):
-    return render(request, "meeting_edited.html")
+    return render(request, "meetings/meeting_edited.html")
 
 
 @login_required(login_url='/')
 def delete_meeting(request, met_id):
     meeting = SetMeeting.objects.get(id=met_id)
     meeting.delete()
-    return render(request, "meeting_deleted.html")
+    return render(request, "meetings/meeting_deleted.html")
 
 
 @login_required(login_url='/')
 def delete_report(request, rep_id):
     rep = Meeting.objects.get(id=rep_id)
     rep.delete()
-    return render(request, "report_deleted.html")
+    return render(request, "meetings/report_deleted.html")

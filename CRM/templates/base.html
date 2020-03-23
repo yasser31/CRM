@@ -19,8 +19,99 @@
   <link rel="stylesheet" href="{% static 'css/recent_contacts.css' %}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-  <div class="wrapper">
-    <!-- Main Menu area End-->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-sm-block 
+                d-md-block d-lg-block col-sm-4 col-md-4 col-lg-4">
+      <!-- Brand Logo -->
+      <div>
+          <img src="{% static 'images/logo.png' %}" alt="Logo" class="brand-image img-circle elevation-3 w-25"
+              style="opacity: .8">
+      </div>
+      <!-- Sidebar -->
+      <div class="sidebar">
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="info text-white">
+                  {{ request.user.username }}
+              </div>
+
+          </div>
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                  data-accordion="false">
+                  <!-- Add icons to the links using the .nav-icon class
+                          with font-awesome or any other icon font library -->
+                  <li class="nav-item">
+                      <a href="{% url 'dashboard' %}" class="nav-link">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              Dashboard
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{% url 'contacts' %}" class="nav-link">
+                          <i class="nav-icon fas fa-th"></i>
+                          <p>
+                              Contacts
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item ml-1">
+                          <a href="{% url 'clients' %}" class="nav-link">
+                                  <i class="far fa-smile"></i>
+                              <p>
+                                  Clients
+                              </p>
+                          </a>
+                      </li>
+                  <li class="nav-item">
+                      <a href="{% url 'meetings' %}" class="nav-link">
+                          <i class="nav-icon fas fa-copy"></i>
+                          <p>
+                              Meetings Reports
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                          <a href="{% url 'create_meeting' %}" class="nav-link">
+                              <i class="nav-icon fas fa-copy"></i>
+                              <p>
+                                  Create Report
+                              </p>
+                          </a>
+                      </li>
+                  <li class="nav-item ml-1">
+                      <a href="{% url 'set_meeting' %}" class="nav-link">
+                          <i class="fab fa-meetup"></i>
+                          <p>
+                              Set A Meeting
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{% url 'meeting_information' %}" class="nav-link">
+                              <i class="fas fa-bullhorn"></i>
+                              <p class="text-white ml-3 mt-4"> Next Meetings</p>
+                          </a>
+                              <ul>
+                                  <li>
+                                      <fieldset class="tasks-list" id="fieldset"></fieldset>
+                                  </li>
+                              </ul>
+                      
+                  </li>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                      <a href="{% url 'change_password' %}" class="nav-link"> Change Password</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt" title="logout"></i></a>
+                  </li>
+                  {% endif %}
+              </ul>
+          </nav>
+  </aside>
     {% block dashboard %}
     {% endblock %}
     {% block contact %}
@@ -55,8 +146,6 @@
     {% endblock %}
     {% block add_company %}
     {% endblock %}
-    {% block add_departement %}
-    {% endblock %}
     {% block reset_done %}
     {% endblock %}
     {% block reset_password %}
@@ -79,8 +168,6 @@
     {% endblock %}
     {% block edit_company %}
     {% endblock %}
-    {% block edit_dep %}
-    {% endblock %}
     {% block edit_contact %}
     {% endblock %}
     {% block contact_edited %}
@@ -95,7 +182,7 @@
     {% endblock %}
     {% block meeting_deleted %}
     {% endblock %}
-    
+    <!-- Main Menu area End-->
     <!-- jQuery -->
     <script src="{% static 'js/jquery.js' %}"></script>
     <!-- AdminLTE App -->

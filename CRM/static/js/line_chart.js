@@ -113,29 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             "background-color": "#007790",
                         }
                     },
-                    {
-                        "values": data.client,
-                        "text": "Client",
-                        "line-color": "#009872",
-                        "legend-item": {
-                            "background-color": "#009872",
-                            "borderRadius": 5,
-                            "font-color": "white"
-                        },
-                        "legend-marker": {
-                            "visible": false
-                        },
-                        "marker": {
-                            "background-color": "#009872",
-                            "border-width": 1,
-                            "shadow": 0,
-                            "border-color": "#69f2d0"
-                        },
-                        "highlight-marker": {
-                            "size": 6,
-                            "background-color": "#009872",
-                        }
-                    },
                 ]
             };
 

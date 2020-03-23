@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Company',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('cp_name', models.CharField(default='', max_length=100)),
                 ('address', models.TextField()),
                 ('company_country', models.CharField(default='', max_length=100)),
@@ -29,32 +30,42 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Departement',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('dep_name', models.CharField(blank=True, max_length=100, null=True)),
-                ('cp', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='contacts.Company')),
+                ('cp', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to='contacts.Company')),
             ],
         ),
         migrations.CreateModel(
             name='Contact',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateTimeField(auto_now_add=True, null=True)),
                 ('name', models.CharField(default='', max_length=100)),
                 ('country', models.CharField(default='', max_length=100)),
                 ('city', models.CharField(default='', max_length=100)),
                 ('email', models.EmailField(blank=True, max_length=254)),
-                ('phone_number', models.CharField(blank=True, max_length=100, null=True)),
+                ('phone_number', models.CharField(
+                    blank=True, max_length=100, null=True)),
                 ('age', models.IntegerField(blank=True, null=True)),
                 ('photo', models.ImageField(blank=True, upload_to='media')),
                 ('function', models.CharField(default='', max_length=100)),
                 ('description', models.TextField(blank=True)),
-                ('twitter', models.URLField(blank=True, max_length=128, null=True, unique=True)),
-                ('facebook', models.URLField(blank=True, max_length=128, null=True, unique=True)),
-                ('linkedin', models.URLField(blank=True, max_length=128, null=True, unique=True)),
+                ('twitter', models.URLField(blank=True,
+                                            max_length=128, null=True, unique=True)),
+                ('facebook', models.URLField(blank=True,
+                                             max_length=128, null=True, unique=True)),
+                ('linkedin', models.URLField(blank=True,
+                                             max_length=128, null=True, unique=True)),
                 ('client', models.BooleanField(default=False)),
-                ('company', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Company')),
-                ('departement', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Departement')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
+                ('company', models.ForeignKey(blank=True, null=True,
+                                              on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Company')),
+                ('departement', models.ForeignKey(blank=True, null=True,
+                                                  on_delete=django.db.models.deletion.DO_NOTHING, to='contacts.Departement')),
+                ('user', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

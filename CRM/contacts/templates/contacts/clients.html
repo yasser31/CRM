@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block contact %}
+<br>
+<!-- Contact area Start-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 id="contact">Contact</h2>
+    </div>
+    <div class="col-lg-6">
+      <form method="GET" action="{% url 'add_company' %}">
+        <button data-toggle="tooltip" data-placement="left" title="add client" class=" m-2 btn btn-success ml-5"> Add
+          Company</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-8">
+      <!-- Main content -->
+    <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Companies</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for client in clients %}
+                  <tr>
+                    <td><a href="{% url 'details' client.id %}">{{ client.cp_name }}</a></td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.phone_number }}</td>
+                    <td>{{ client.company_country }}</td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          </section>
+    </div>
+<br>
+<script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
+<!-- Contact area End-->
+{% endblock %}

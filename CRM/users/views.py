@@ -24,7 +24,7 @@ def registration(request):
     context = {
         "form": form
     }
-    return render(request, "registration.html", context)
+    return render(request, "users/registration.html", context)
 
 
 def Login(request):
@@ -45,7 +45,7 @@ def Login(request):
     context = {
         "form": form
     }
-    return render(request, "login.html", context)
+    return render(request, "users/login.html", context)
 
 
 @login_required(login_url='/')
@@ -65,9 +65,9 @@ def change_password(request):
     context = {
         "form": form,
     }
-    return render(request, "password_change.html", context)
+    return render(request, "users/password_change.html", context)
 
 
 def password_change_done(request):
     ''' password change done view '''
-    return render(request, "password_change_done.html")
+    return render(request, "users/password_change_done.html")

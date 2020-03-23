@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block set_meeting %}
+{% load crispy_forms_tags %}
+<br>
+<div class="form-example-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-example-wrap">
+                    <form method="post" action="{% url 'set_meeting' %}">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <button type="submit" class="btn btn-success"> Set Meeting </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

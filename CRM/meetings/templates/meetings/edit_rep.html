@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block edit_rep %}
+{% load crispy_forms_tags %}
+<div class="form-example-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    <div class="form-example-wrap">
+                        <br>
+                        <form method="post" action="{% url 'edit_rep_post' %}">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-success">Edit </button>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
