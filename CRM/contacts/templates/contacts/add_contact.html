@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="form-example-wrap">
-                    <form method="post" action="{% url  'add_contact' %}">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% load crispy_forms_tags %}
                         {{form|crispy}}

@@ -5,6 +5,7 @@ from django.conf import settings
 
 class Company(models.Model):
     ''' company model '''
+    date = models.DateField(auto_now_add=True, null=True, blank=True)
     cp_name = models.CharField(max_length=100, blank=False, default="")
     email = models.EmailField(blank=True)
     address = models.TextField()
@@ -29,6 +30,7 @@ class Contact(models.Model):
     email = models.EmailField(blank=True)
     phone_number = models.CharField(blank=True, null=True, max_length=100)
     age = models.IntegerField(null=True, blank=True)
+    photo = models.ImageField(upload_to="media", null=True, blank=True)
     dep_name = models.CharField(max_length=100, blank=True, null=True)
     function = models.CharField(max_length=100, default='', blank=False)
     company = models.ForeignKey(

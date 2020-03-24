@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block contact %}
+{% block company_detail %}
 {% load static %}
 <section class="content">
   <div class="container-fluid">
@@ -9,14 +9,14 @@
           <h5><i class="fas fa-info"></i> Note:</h5>
           This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
         </div>
-<!-- Main content -->
+        <!-- Main content -->
         <div class="invoice p-3 mb-3">
           <!-- title row -->
           <div class="row">
             <div class="col-12">
               <h4>
                 <i class="fas fa-globe"></i> {{ company.cp_name }}.
-                <small class="float-right">Date: 2/10/2014</small>
+                <small class="float-right">Date: {{ company.date }} </small>
               </h4>
             </div>
             <!-- /.col -->
@@ -25,10 +25,12 @@
           <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
               <address>
-                <strong>{{ company.cp_name }}.</strong><br>
+                <strong>{{ company.cp_name }}.</strong> <span><a href="{% url 'edit_comp_get' company.id %}"><i
+                      class="fas fa-eye-dropper"></i></span></a><br>
                 {{ company.address }}<br>
                 Phone: {{ company.phone_number }}<br>
-                Email: {{ company.email }}
+                Email: {{ company.email }}<br>
+                Description: {{ company.description }}
               </address>
             </div>
             <!-- /.col -->
@@ -37,9 +39,11 @@
                 <strong>{{ company.country }}</strong><br>
                 City: {{ company.city }}<br>
                 Field: {{ company.field }}<br>
-                Client: {% if company.client == 'true' %}%}
+                Client: {% if company.client == True %}
+                <i class="fas fa-check"></i>
+                {% else %}
+                <i class="fas fa-times"></i>
                 {% endif %}
-                Description: {{ company.description }}
               </address>
             </div>
             <!-- /.col -->
@@ -47,6 +51,7 @@
           <!-- /.row -->
           <!-- Table row -->
           <div class="row">
+            <h2>Contacts</h2><span><a href="{% url 'add_contact' company.id %}"><i class="fas fa-plus ml-2"></i></a></span>
             <div class="col-12 table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -77,5 +82,4 @@
     </div>
   </div>
 </section>
-
 {% endblock %}

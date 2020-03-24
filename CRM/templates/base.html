@@ -112,9 +112,11 @@
               </ul>
           </nav>
   </aside>
+    {% block company_detail %}
+    {% endblock %}
     {% block dashboard %}
     {% endblock %}
-    {% block contact %}
+    {% block clients %}
     {% endblock %}
     {% block add_contact %}
     {% endblock %}
@@ -181,6 +183,8 @@
     {% block report_deleted %}
     {% endblock %}
     {% block meeting_deleted %}
+    {% endblock %}
+    {% block contacts %}
     {% endblock %}
     <!-- Main Menu area End-->
     <!-- jQuery -->

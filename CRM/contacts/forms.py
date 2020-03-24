@@ -9,7 +9,7 @@ class NewCompanyForm(ModelForm):
         model = Company
         fields = ['cp_name', 'address', 'email', 'phone_number',
                   'company_country',
-                  'company_city', 'field', 'description']
+                  'company_city', 'field', 'description', "client"]
 
 
 class NewContactForm(ModelForm):
@@ -17,12 +17,15 @@ class NewContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'country', 'city', 'phone_number', 'age',
-                  'function', 'description', 'twitter',
-                  'facebook', 'linkedin', "user"]
+                  'photo', 'function', 'description', 'twitter',
+                  'facebook', 'linkedin', "user", "company"]
 
     def __init__(self, *args, **kwargs):
         username = kwargs.pop('username', None)
+        company_id = kwargs.pop('company_id', None)
         super(NewContactForm, self).__init__(*args, **kwargs)
         if username:
             self.fields["user"].queryset = User.objects.filter(
                 username=username)
+            self.fields["company"].queryset = Company.objects.filter(
+                user__username=username, id=company_id)
