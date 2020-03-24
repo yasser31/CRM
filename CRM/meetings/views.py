@@ -34,14 +34,16 @@ def set_meeting(request):
 @login_required(login_url='/')
 def meetings(request):
     ''' list of contacts for meetings view '''
+    nb_list = []
     contacts = Contact.objects.filter(user__username=request.user.username)
     if len(contacts) > 0:
         context = {
-            "contacts": contacts
+            "contacts": contacts,
+            "count": nb_list
         }
         return render(request, "meetings/meeting.html", context)
     else:
-        return HttpResponse("add contacts and reports first")
+        return render(request, "meetings/add_first.html")
 
 
 @login_required(login_url='/')
@@ -146,15 +148,26 @@ def report_added(request):
 
 
 @login_required(login_url='/')
-def edit_rep_get(request, rep_id):
-    met = Meeting.objects.get(id=rep_id)
-    request.session['met_id'] = rep_id
-    data = {
-        "title": met.title,
-        "summary": met.summary,
-        "contact": met.contact
-    }
-    form = MeetingForm(data, username=request.user.username)
+def edit_rep(request, rep_id):
+    if request.method == 'POST':
+        form = MeetingForm(request.POST)
+        if form.is_valid():
+            met_id = request.session.get("met_id")
+            contact = Contact.objects.get(id=request.POST["contact"])
+            met = Meeting.objects.get(id=met_id)
+            met.title = request.POST["title"]
+            met.summary = request.POST["summary"]
+            met.contact = contact
+            met.save()
+            return redirect("/report_edited/")
+    else:
+        met = Meeting.objects.get(id=rep_id)
+        data = {
+            "title": met.title,
+            "summary": met.summary,
+            "contact": met.contact
+        }
+        form = MeetingForm(data, username=request.user.username)
     context = {
         "form": form
     }
@@ -162,60 +175,34 @@ def edit_rep_get(request, rep_id):
 
 
 @login_required(login_url='/')
-def edit_rep_post(request):
-    form = MeetingForm(request.POST)
-    if form.is_valid():
-        met_id = request.session.get("met_id")
-        contact = Contact.objects.get(id=request.POST["contact"])
-        met = Meeting.objects.get(id=met_id)
-        met.title = request.POST["title"]
-        met.summary = request.POST["summary"]
-        met.contact = contact
-        met.save()
-        return redirect("/report_edited/")
+def edit_met(request, met_id):
+    if request.method == 'POST':
+        form = SetMeetingForm(request.POST)
+        if form.is_valid():
+            contact = Contact.objects.get(id=request.POST["contact"])
+            meeting = SetMeeting.objects.get(
+                id=met_id)
+            meeting.place = request.POST["place"]
+            meeting.date = request.POST["date"]
+            meeting.time = request.POST["time"]
+            meeting.note = request.POST["note"]
+            meeting.contact = contact
+            meeting.save()
+            return redirect("/meeting_edited/")
     else:
-        context = {
-            "form": form
+        met = SetMeeting.objects.get(id=met_id)
+        data = {
+            "place": met.place,
+            "date": met.date,
+            "time": met.time,
+            "note": met.note,
+            "contact": met.contact
         }
-    return render(request, "meetings/edit_rep.html", context)
-
-
-@login_required(login_url='/')
-def edit_met_get(request, met_id):
-    met = SetMeeting.objects.get(id=met_id)
-    request.session["meeting_id"] = met_id
-    data = {
-        "place": met.place,
-        "date": met.date,
-        "time": met.time,
-        "note": met.note,
-        "contact": met.contact
-    }
-    form = SetMeetingForm(data, username=request.user.username)
+        form = SetMeetingForm(data, username=request.user.username)
     context = {
         "form": form
     }
     return render(request, "meetings/edit_met.html", context)
-
-
-@login_required(login_url='/')
-def edit_met_post(request):
-    form = SetMeetingForm(request.POST)
-    if form.is_valid():
-        contact = Contact.objects.get(id=request.POST["contact"])
-        meeting = SetMeeting.objects.get(id=request.session.get("meeting_id"))
-        meeting.place = request.POST["place"]
-        meeting.date = request.POST["date"]
-        meeting.time = request.POST["time"]
-        meeting.note = request.POST["note"]
-        meeting.contact = contact
-        meeting.save()
-        return redirect("/meeting_edited/")
-    else:
-        context = {
-            "form": form
-        }
-        return render(request, "meetings/edit_met.html", context)
 
 
 @login_required(login_url='/')

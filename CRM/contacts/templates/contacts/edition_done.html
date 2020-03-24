@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block contact_edited %}
+{% if company == 'edited' %}
+<h2 class="text-center mt-5 lead"> Company edited thanks </h2>
+{% elif contact == 'edited' %}
+<h2 class="text-center mt-5 lead"> Contact edited thanks </h2>
+{% endif %}
+{% endblock %}

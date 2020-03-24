@@ -29,8 +29,8 @@ def clients(request):
 
 
 @login_required(login_url='/')
-def add_company(request):
-    ''' add company view, use global variable because needed later '''
+def add_client(request):
+    ''' add client '''
     if request.method == 'POST':
         form = NewCompanyForm(request.POST)
         if form.is_valid():
@@ -48,18 +48,23 @@ def add_company(request):
                 company.user = request.user
                 company.save()
                 context = {
-                    "company": True
+                    "company": "added"
                 }
                 return render(request, "contacts/thanks.html", context)
             else:
-                # if company exists we go to next form
-                return redirect("/company_exists/")
+                # if client exists we go to next form
+                context = {
+                    "company": "exists"
+                }
+                return render(request,
+                              "contacts/already_exists.html",
+                              context)
     else:
         form = NewCompanyForm()
     context = {
         "form": form
     }
-    return render(request, 'contacts/add_company.html', context)
+    return render(request, 'contacts/add_client.html', context)
 
 
 @login_required(login_url='/')
@@ -77,10 +82,19 @@ def add_contact(request, company_id):
             # if contact does not exists we create it
             except Contact.DoesNotExist:
                 form.save()
-                return redirect('/thanks/')
+                context = {
+                    "contact": "added"
+                }
+                return render(request, 'contacts/thanks.html',
+                              context)
             else:
                 # if contact exists we redirect to this page
-                return redirect("/contact_exists/")
+                context = {
+                    "contact": "exists"
+                }
+                return render(request,
+                              "contacts/already_exists.html",
+                              context)
     else:
         form = NewContactForm(username=request.user.username,
                               company_id=company_id)
@@ -91,7 +105,7 @@ def add_contact(request, company_id):
 
 
 @login_required(login_url='/')
-def details(request, company_id):
+def client_details(request, company_id):
     ''' contact detail page '''
     company = Company.objects.get(id=company_id)
     contacts = Contact.objects.filter(
@@ -101,7 +115,7 @@ def details(request, company_id):
         "company": company,
         "contacts": contacts
     }
-    return render(request, "contacts/company_detail.html", context)
+    return render(request, "contacts/client_detail.html", context)
 
 
 @login_required(login_url='/')
@@ -185,19 +199,39 @@ def p_500(request):
 
 
 @login_required(login_url='/')
-def edit_comp_get(request, company_id):
+def edit_comp(request, company_id):
     company = Company.objects.get(id=company_id)
-    request.session["cp_id"] = company_id
-    data = {
-        "cp_name": company.cp_name,
-        "address": company.address,
-        "company_country": company.company_country,
-        "company_city": company.company_city,
-        "field": company.field,
-        "description": company.description,
-        "client": company.client
-    }
-    form = NewCompanyForm(data)
+    if request.method == "POST":
+        form = NewCompanyForm(request.POST)
+        if form.is_valid():
+            company.cp_name = request.POST["cp_name"]
+            company.address = request.POST["address"]
+            company.company_country = request.POST["company_country"]
+            company.company_city = request.POST["company_city"]
+            company.field = request.POST["field"]
+            company.description = request.POST["description"]
+            company.user = request.user
+            if request.POST["client"] == 'true':
+                company.client = True
+            else:
+                company.client = False
+            company.save()
+            context = {
+                "company": "edited"
+            }
+            return render(request, "contacts/edition_done.html",
+                          context)
+    else:
+        data = {
+            "cp_name": company.cp_name,
+            "address": company.address,
+            "company_country": company.company_country,
+            "company_city": company.company_city,
+            "field": company.field,
+            "description": company.description,
+            "client": company.client
+        }
+        form = NewCompanyForm(data)
     context = {
         "form": form
     }
@@ -205,82 +239,69 @@ def edit_comp_get(request, company_id):
 
 
 @login_required(login_url='/')
-def edit_comp_post(request):
-    cp_id = request.session["cp_id"]
-    company = Company.objects.get(id=cp_id)
-    form = NewCompanyForm(request.POST)
-    if form.is_valid():
-        company.cp_name = request.POST["cp_name"]
-        company.address = request.POST["address"]
-        company.company_country = request.POST["company_country"]
-        company.company_city = request.POST["company_city"]
-        company.field = request.POST["field"]
-        company.description = request.POST["description"]
-        company.user = request.user
-        if request.POST["client"] == 'true':
-            company.client = True
-        else:
-            company.client = False
-        company.save()
-        return redirect("thanks")
-
-
-@login_required(login_url='/')
 def edit_contact(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     request.session["c_id"] = contact.id
-    data = {
-        "name": contact.name,
-        "country": contact.country,
-        "city": contact.city,
-        "email": contact.email,
-        "phone_number": contact.phone_number,
-        "age": contact.age,
-        "function": contact.function,
-        "twitter": contact.twitter,
-        "facebook": contact.facebook,
-        "linkedin": contact.linkedin,
-    }
-    form = NewContactForm(data, username=request.user.username)
+    if request.method == "POST":
+        form = NewContactForm(request.POST)
+        if form.is_valid():
+            contact.name = request.POST["name"]
+            contact.country = request.POST["country"]
+            contact.city = request.POST["city"]
+            contact.email = request.POST["email"]
+            contact.phone_number = request.POST["phone_number"]
+            contact.age = request.POST["age"]
+            contact.function = request.POST["function"]
+            contact.twitter = request.POST["twitter"]
+            contact.facebook = request.POST["facebook"]
+            contact.linkedin = request.POST["linkedin"]
+            contact.user = request.user
+            contact.save()
+            context = {
+                "contact": 'edited'
+            }
+            return render(request,
+                          "contacts/edition_done.html",
+                          context)
+    else:
+        data = {
+            "name": contact.name,
+            "country": contact.country,
+            "city": contact.city,
+            "email": contact.email,
+            "phone_number": contact.phone_number,
+            "age": contact.age,
+            "function": contact.function,
+            "twitter": contact.twitter,
+            "facebook": contact.facebook,
+            "linkedin": contact.linkedin,
+        }
+        form = NewContactForm(data,
+                              username=request.user.username,
+                              company_id=contact.company.id)
     context = {
         "form": form
     }
     return render(request, "contacts/edit_contact.html", context)
-
-
-@login_required(login_url='/')
-def edit_contact_post(request):
-    form = NewContactForm(request.POST)
-    c_id = request.session.get("c_id")
-    contact = Contact.objects.get(id=c_id)
-    if form.is_valid():
-        contact.name = request.POST["name"]
-        contact.country = request.POST["country"]
-        contact.city = request.POST["city"]
-        contact.email = request.POST["email"]
-        contact.phone_number = request.POST["phone_number"]
-        contact.age = request.POST["age"]
-        contact.function = request.POST["function"]
-        contact.twitter = request.POST["twitter"]
-        contact.facebook = request.POST["facebook"]
-        contact.linkedin = request.POST["linkedin"]
-        contact.user = request.user
-        contact.save()
-        return redirect("/contact_edited/")
-
-    context = {
-        "form": form
-    }
-    return render(request, "contacts/edit_contact.html", context)
-
-
-@login_required(login_url='/')
-def contact_edited(request):
-    return render(request, "contacts/contact_edited.html")
 
 
 @login_required(login_url='/')
 def delete_contact(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     contact.delete()
-    return render(request, "contacts/contact_deleted.html")
+    context = {
+        "contact": "deleted"
+    }
+    return render(request, "contacts/deletion_done.html",
+                  context)
+
+
+@login_required(login_url='/')
+def delete_company(request, company_id):
+    company = Company.objects.get(id=company_id)
+    company.delete()
+    context = {
+        "company": "deleted"
+    }
+    return render(request, "contacts/deletion_done.html",
+                  context)

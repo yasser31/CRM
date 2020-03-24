@@ -8,9 +8,9 @@
       <h2 id="contact">Contact</h2>
     </div>
     <div class="col-lg-6">
-      <form method="GET" action="{% url 'add_company' %}">
+      <form method="GET" action="{% url 'add_client' %}">
         <button data-toggle="tooltip" data-placement="left" title="add client" class=" m-2 btn btn-success ml-5"> Add
-          Company</button>
+          Client</button>
       </form>
     </div>
   </div>
@@ -40,7 +40,7 @@
                   <tbody>
                   {% for client in clients %}
                   <tr>
-                    <td><a href="{% url 'details' client.id %}">{{ client.cp_name }}</a></td>
+                    <td><a href="{% url 'client_details' client.id %}">{{ client.cp_name }}</a></td>
                     <td>{{ client.address }}</td>
                     <td>{{ client.email }}</td>
                     <td>{{ client.phone_number }}</td>

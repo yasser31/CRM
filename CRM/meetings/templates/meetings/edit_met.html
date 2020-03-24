@@ -8,7 +8,7 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-8">
                 <div class="form-example-wrap">
-                    <form method="post" action="{% url 'edit_met_post' %}">
+                    <form method="post">
                             {% csrf_token %}
                             {{form|crispy}}
                             <button type="submit" class="btn btn-success"> Edit </button>

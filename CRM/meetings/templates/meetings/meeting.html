@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 {% block meeting %}
-<style>
-  h5 {
-    color:rgb(153, 119, 150);
-  }
-  h5:hover {
-    color:magenta;
-  }
-</style>
-<br>
-<div class="col-lg-4"></div>
-<div class="list-group mt-5 col-lg-8">
-{% for contact in contacts %}
-<ul>
-  <li>
-      <a href="{% url 'contact_meetings' contact.id %}">
-        <h5 >{{ contact.name|lower|title }}</h5>
-      </a>
-  </li>
-</ul>
-</div>
-<br>
-{% endfor %}
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <h2>Reports contact list</h2>
+      <div class="col-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Contact</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for contact in contacts %}
+            <tr>
+              <td><a href="{% url 'contact_meetings' contact.id %}">
+                  {{ contact.name|lower|title }}
+                </a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
 {% endblock %}

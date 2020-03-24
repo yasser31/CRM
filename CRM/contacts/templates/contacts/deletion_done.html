@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block contact_deleted %}
+{% if contact == 'deleted' %}
+<h2 class="text-center mt-5 lead"> Contact deleted thanks </h2>
+{% elif company == 'deleted' %}
+<h2 class="text-center mt-5 lead"> Company deleted thanks </h2>
+{% endif %}
+{% endblock %}

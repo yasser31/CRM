@@ -19,11 +19,9 @@
               </thead>
               <tbody>
                   {% for meeting in meetings %}
-                <tr>
-                    {% for meeting in meetings %}
                     <tr>
                       <td></td>
-                      <td><a href="{% url 'edit_rep_get' meeting.id %}"><i class="fas fa-edit"></i></i></a></td>
+                      <td><a href="{% url 'edit_rep' meeting.id %}"><i class="fas fa-edit"></i></i></a></td>
                       <td><a href="{% url 'delete_report' meeting.id %}"><i class="fas fa-trash-alt"></i></a></td>
                       <td><a href="{% url 'meeting_details' meeting.id %}">{{ meeting.title|title }}</a>
                       </td>
@@ -33,7 +31,6 @@
                     </tr>
                     {% endfor %}
                 </tr>
-                {% endfor %}
               </tbody>
             </table>
           </div>
