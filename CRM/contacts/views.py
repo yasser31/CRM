@@ -71,6 +71,7 @@ def add_client(request):
 def add_contact(request, company_id):
     ''' add contact view '''
     if request.method == 'POST':
+        print(request.FILES)
         form = NewContactForm(request.POST, request.FILES)
         if form.is_valid():
             # check if contact exists
@@ -208,6 +209,7 @@ def edit_comp(request, company_id):
             company.company_city = request.POST["company_city"]
             company.field = request.POST["field"]
             company.description = request.POST["description"]
+            company.email = request.POST["email"]
             company.user = request.user
             if request.POST["client"] == 'true':
                 company.client = True
@@ -227,13 +229,14 @@ def edit_comp(request, company_id):
             "company_city": company.company_city,
             "field": company.field,
             "description": company.description,
-            "client": company.client
+            "client": company.client,
+            "email": company.email
         }
         form = NewCompanyForm(data)
     context = {
         "form": form
     }
-    return render(request, "contacts/edit_company.html", context)
+    return render(request, "contacts/edit_client.html", context)
 
 
 @login_required(login_url='/')
@@ -241,7 +244,7 @@ def edit_contact(request, contact_id):
     contact = Contact.objects.get(id=contact_id)
     request.session["c_id"] = contact.id
     if request.method == "POST":
-        form = NewContactForm(request.POST)
+        form = NewContactForm(request.POST, request.FILES)
         if form.is_valid():
             contact.name = request.POST["name"]
             contact.country = request.POST["country"]
@@ -251,6 +254,7 @@ def edit_contact(request, contact_id):
             contact.age = request.POST["age"]
             contact.dep_name = request.POST["dep_name"]
             contact.function = request.POST["function"]
+            contact.photo = request.FILES["photo"]
             contact.user = request.user
             contact.save()
             context = {
@@ -269,6 +273,7 @@ def edit_contact(request, contact_id):
             "age": contact.age,
             "dep_name": contact.dep_name,
             "function": contact.function,
+            "photo": contact.photo
         }
         form = NewContactForm(data,
                               username=request.user.username,

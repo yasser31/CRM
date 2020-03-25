@@ -13,7 +13,7 @@ class Company(models.Model):
     company_country = models.CharField(max_length=100, blank=False, default="")
     company_city = models.CharField(max_length=100, blank=False, default="")
     field = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(blank=True, null=True, max_length=255)
     client = models.BooleanField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
