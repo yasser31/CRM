@@ -97,8 +97,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'change_password' %}" class="nav-link"><i class=" nav-icon fas fa-eye-dropper"
-                                    title="change password"></i>
+                            <a href="{% url 'change_password' %}" class="nav-link"><i
+                                    class=" nav-icon fas fa-eye-dropper" title="change password"></i>
                                 <p class="text-white ml-3 mt-4"> Change Password </p>
                             </a>
                         </li>
@@ -186,6 +186,16 @@
     {% endblock %}
     {% block add_first %}
     {% endblock %}
+    <footer class="main-footer m-0">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.0.0-pre
+        </div>
+        <strong>Copyright &copy; 2020 <a href="https://github.com/yasser31/CRM">CRM</a>.</strong>
+        All
+        rights
+        reserved.
+    </footer>
+    </div>
     <!-- Main Menu area End-->
     <!-- jQuery -->
     <script src="{% static 'js/jquery.min.js' %}"></script>

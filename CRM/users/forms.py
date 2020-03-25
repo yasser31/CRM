@@ -31,15 +31,15 @@ def is_same_password(password1, password2):
 class RegisterForm(forms.Form):
     ''' registration form  '''
     username = forms.CharField(max_length=100, widget=forms.TextInput(
-        attrs={"class": "textbox", "placeholder": "username",
+        attrs={"class": "form-control", "placeholder": "username",
                "name": "username"}))
     email = forms.EmailField(max_length=100, widget=forms.EmailInput(
-        attrs={"class": "textbox", "placeholder": "Email", "name": "email"}))
+        attrs={"class": "form-control", "placeholder": "Email", "name": "email"}))
     password1 = forms.CharField(max_length=31, widget=forms.PasswordInput(
-        attrs={"class": "textbox", "placeholder": "Password",
+        attrs={"class": "form-control", "placeholder": "Password",
                "name": "password1"}))
     password2 = forms.CharField(max_length=31, widget=forms.PasswordInput(
-        attrs={"class": "textbox", "placeholder": "Confirm Password",
+        attrs={"class": "form-control", "placeholder": "Confirm Password",
                "name": "password2"}))
 
     def clean(self):
