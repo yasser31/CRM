@@ -124,7 +124,7 @@ def Set(request, company_id):
     company = Company.objects.get(id=company_id)
     company.client = True
     company.save()
-    return HttpResponseRedirect("/clients/")
+    return redirect("/clients/")
 
 
 @login_required(login_url='/')
@@ -139,23 +139,23 @@ def unset(request, contact_id):
 @login_required(login_url='/')
 def client_prospects_percent(request):
     ''' client prospect percent '''
-    total_contact = Contact.objects.filter(
+    total_companies = Company.objects.filter(
         user__username=request.user.username).count()
-    total_client = Company.objects.filter(
+    total_clients = Company.objects.filter(
         client=True, user__username=request.user.username).count()
     total_prospects = Company.objects.filter(
         client=False, user__username=request.user.username).count()
     try:
-        prospects_percent = (total_prospects / total_contact) * 100
+        prospects_percent = (total_prospects / total_companies) * 100
     except ZeroDivisionError:
         prospects_percent = 0
     try:
-        client_percent = (total_client / total_contact) * 100
+        client_percent = (total_clients / total_companies) * 100
     except ZeroDivisionError:
         client_percent = 0
     data = {
-        "total_contacts": total_contact,
-        "total_clients": total_client,
+        "total_companies": total_companies,
+        "total_clients": total_clients,
         "total_prospects": total_prospects,
         "clients_percent": client_percent,
         "prospects_percent": prospects_percent

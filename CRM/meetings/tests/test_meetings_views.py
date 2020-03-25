@@ -14,8 +14,7 @@ class TestPostMetting(TestCase):
         user = User.objects.create_user(username="yasser", password="secret")
         self.client.force_login(user)
         Contact.objects.create(name="contact", country="Algeria",
-                               city="Oran", function="Developer",
-                               client=False)
+                               city="Oran", function="Developer",)
 
     def test_create_meeting_rep(self):
         ''' test create met rep request '''
@@ -49,7 +48,7 @@ class TestGetMeeting(TestCase):
         self.client.force_login(self.user)
         Contact.objects.create(name="contact", country="Algeria",
                                city="Oran", function="Developer",
-                               client=False)
+                               )
         self.contact = Contact.objects.get(name="contact")
         Meeting.objects.create(title="title",
                                summary="summary",

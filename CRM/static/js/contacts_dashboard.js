@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <!-- small card -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3 class="text-white">${data.total_contacts}</h3>
-                <p>Tolal Contacts</p>
+                <h3 class="text-white">${data.total_companies}</h3>
+                <p>Tolal Companies</p>
             </div>
             <div class="icon">
             <i class="ion ion-stats-bars"></i>

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..models import Company, Departement, Contact
+from ..models import Company, Contact
 
 
 class TestCompany(TestCase):
@@ -27,49 +27,27 @@ class TestCompany(TestCase):
             Company.objects.get(cp_name="another_name")
 
 
-class TestClient(TestCase):
+class TestContact(TestCase):
     ''' tests contact model '''
+
     def setUp(self):
-        Contact.objects.create(name="contact", country="Algeria",
-                               city="Oran", function="Developer",
-                               client=False)
-        self.client = Contact.objects.get(name="contact")
+        self.contact = Contact.objects.create(name="contact",
+                                              country="Algeria",
+                                              city="Oran",
+                                              function="Developer",)
 
     def test_create(self):
         ''' test creation '''
-        self.assertEqual(self.client.name, "contact")
+        self.assertEqual(self.contact.name, "contact")
 
     def test_update(self):
         ''' test update '''
-        self.client.name = "another_name"
-        self.client.save()
-        self.assertEqual(self.client.name, "another_name")
+        self.contact.name = "another_name"
+        self.contact.save()
+        self.assertEqual(self.contact.name, "another_name")
 
     def test_delete(self):
         ''' test deletion '''
-        self.client.delete()
+        self.contact.delete()
         with self.assertRaises(Contact.DoesNotExist):
             Contact.objects.get(name="another_name")
-
-
-class TestDepartement(TestCase):
-    ''' test departement model '''
-    def setUp(self):
-        Departement.objects.create(dep_name="IT")
-        self.departement = Departement.objects.get(dep_name="IT")
-
-    def test_create(self):
-        ''' test creation '''
-        self.assertEqual(self.departement.dep_name, "IT")
-
-    def test_update(self):
-        ''' test update '''
-        self.departement.dep_name = "Web developement"
-        self.departement.save()
-        self.assertEqual(self.departement.dep_name, "Web developement")
-
-    def test_delete(self):
-        ''' test deletion '''
-        self.departement.delete()
-        with self.assertRaises(Departement.DoesNotExist):
-            Departement.objects.get(dep_name="IT")

@@ -1,5 +1,6 @@
 from django.contrib.staticfiles.testing import LiveServerTestCase
 from django.contrib.auth.models import User
+from contacts.models import Company
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,8 +16,8 @@ class TestAdd(LiveServerTestCase):
         self.user = User.objects.create_user(username="username",
                                              password="password")
 
-    def test_contact(self):
-        ''' test adding a company departement contact'''
+    def test_add_client(self):
+        ''' test adding a company '''
         self.driver.get("%s%s" % (self.live_server_url, "/"))
         username = self.driver.find_element_by_name("username")
         password = self.driver.find_element_by_name("password")
@@ -24,7 +25,7 @@ class TestAdd(LiveServerTestCase):
         username.send_keys("username")
         password.send_keys("password")
         login.click()
-        self.driver.get("%s%s" % (self.live_server_url, "/add_company/"))
+        self.driver.get("%s%s" % (self.live_server_url, "/add_client/"))
         el0 = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.NAME, "cp_name"))
         )
@@ -41,14 +42,30 @@ class TestAdd(LiveServerTestCase):
         el1.send_keys("address")
         el2.send_keys("country")
         el3.send_keys("city")
-        add_departement = self.driver.find_element_by_id("submit")
-        add_departement.click()
-        dep_name = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.NAME, "dep_name"))
+        client = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, "client"))
         )
-        dep_name.send_keys("dep_name")
-        add_contact = self.driver.find_element_by_id("submit")
-        add_contact.click()
+        for option in client.find_elements_by_tag_name('option'):
+            if option.text == "yes":
+                option.click()
+                break
+        add = self.driver.find_element_by_id("submit")
+        add.click()
+        self.assertTrue("Company added thanks" in self.driver.page_source)
+
+    def test_add_contact(self):
+        cp = Company.objects.create(cp_name="company",
+                                    company_country="Algeria",
+                                    company_city="Oran", address="address")
+        self.driver.get("%s%s" % (self.live_server_url, "/"))
+        username = self.driver.find_element_by_name("username")
+        password = self.driver.find_element_by_name("password")
+        login = self.driver.find_element_by_class_name("login100-form-btn")
+        username.send_keys("username")
+        password.send_keys("password")
+        login.click()
+        self.driver.get("%s%s" %
+                        (self.live_server_url, f"/add_contact/{cp.id}"))
         name = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.NAME, "name"))
         )
