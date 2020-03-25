@@ -71,7 +71,7 @@ def add_client(request):
 def add_contact(request, company_id):
     ''' add contact view '''
     if request.method == 'POST':
-        form = NewContactForm(request.POST)
+        form = NewContactForm(request.POST, request.FILES)
         if form.is_valid():
             # check if contact exists
             try:
@@ -122,18 +122,16 @@ def client_details(request, company_id):
 def Set(request, company_id):
     ''' set prospect to client view '''
     company = Company.objects.get(id=company_id)
-    company.client = True
+    if company.client is True:
+        company.client = False
+    elif company.client is False:
+        company.client = True
     company.save()
-    return redirect("/clients/")
-
-
-@login_required(login_url='/')
-def unset(request, contact_id):
-    ''' set client to prospect view '''
-    company = Company.objects.get(id=contact_id)
-    company.client = False
-    company.save()
-    return HttpResponseRedirect("/prospects/")
+    data = {
+        "client": company.client
+    }
+    print(data["client"])
+    return JsonResponse(data)
 
 
 @login_required(login_url='/')
@@ -251,10 +249,8 @@ def edit_contact(request, contact_id):
             contact.email = request.POST["email"]
             contact.phone_number = request.POST["phone_number"]
             contact.age = request.POST["age"]
+            contact.dep_name = request.POST["dep_name"]
             contact.function = request.POST["function"]
-            contact.twitter = request.POST["twitter"]
-            contact.facebook = request.POST["facebook"]
-            contact.linkedin = request.POST["linkedin"]
             contact.user = request.user
             contact.save()
             context = {
@@ -271,10 +267,8 @@ def edit_contact(request, contact_id):
             "email": contact.email,
             "phone_number": contact.phone_number,
             "age": contact.age,
+            "dep_name": contact.dep_name,
             "function": contact.function,
-            "twitter": contact.twitter,
-            "facebook": contact.facebook,
-            "linkedin": contact.linkedin,
         }
         form = NewContactForm(data,
                               username=request.user.username,

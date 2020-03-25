@@ -29,7 +29,7 @@
                   </td>
                   <td>{{ meeting.date }}</td>
                   <td>{{ meeting.summary|truncatechars:50 }}</td>
-                  <td>{{ meeting.contact }}</td>
+                  <td><a href="{% url 'contacts' %}">{{ meeting.contact }}</a></td>
                 </tr>
                 {% endfor %}
                 </tr>

@@ -11,7 +11,8 @@
                     {% if not contacts %}
                     <h2 class="mt-5 lead text-center">No Contacts for now </h2>
                     {% elif contacts %}
-                    <h2 class="mt-5 lead">Contacts </h2><span class="lead">* add contacts in your companies by clicking on clients</span>
+                    <h2 class="mt-5 lead">Contacts </h2><span class="lead">* add contacts in your companies by clicking
+                        on clients</span>
                     {% endif %}
                     <!-- Default box -->
                     <div class="card card-solid">
@@ -28,7 +29,7 @@
                                         <div class="card-body pt-0">
                                             <div class="row">
                                                 <div class="col-7">
-                                                    <h2 class="lead"><b> {{ contact.name }} </h2></b>
+                                                    <h2 class="lead"><b> {{ contact.name|lower|title }} </h2></b>
                                                     <h6 class="lead"><b> Age : {{ contact.age }} </b></h6>
                                                     <p class="text-muted text-sm"><b>About: </b>
                                                         {{ contact.description }} </p>
@@ -40,6 +41,9 @@
                                                         <li class="small"><span class="fa-li"><i
                                                                     class="fas fa-lg fa-phone"></i></span>
                                                             Phone: {{ contact.phone_number }} </li>
+                                                        <li class="small"><span class="fa-li"><i
+                                                                    class="fas fa-envelope-square"></i></span>
+                                                            Email: {{ contact.email }} </li>
                                                     </ul>
                                                     <br>
                                                     <a href="{% url 'delete_contact' contact.id %}"><i

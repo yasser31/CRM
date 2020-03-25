@@ -34,7 +34,8 @@ class RegisterForm(forms.Form):
         attrs={"class": "form-control", "placeholder": "username",
                "name": "username"}))
     email = forms.EmailField(max_length=100, widget=forms.EmailInput(
-        attrs={"class": "form-control", "placeholder": "Email", "name": "email"}))
+        attrs={"class": "form-control",
+               "placeholder": "Email", "name": "email"}))
     password1 = forms.CharField(max_length=31, widget=forms.PasswordInput(
         attrs={"class": "form-control", "placeholder": "Password",
                "name": "password1"}))
@@ -113,18 +114,19 @@ class ChangePasswordForm(forms.Form):
     ''' change password form '''
     username = forms.CharField(max_length=100, widget=forms.TextInput(
         attrs={"placeholder": "Username", "name": "username",
-               "class": "text"}))
+               "class": "form-control"}))
     old_password = forms.CharField(max_length=100, widget=forms.PasswordInput(
         attrs={"placeholder": "Old Password", "name": "old_password",
-               "class": "text"}))
+               "class": "form-control"}))
     new_password = forms.CharField(max_length=100, widget=forms.PasswordInput(
         attrs={"placeholder": "New Password", "name": "new_password",
-               "class": "text"}))
+               "class": "form-control"}))
     confirm_password = forms.CharField(max_length=100,
                                        widget=forms.PasswordInput(
-                                           attrs={"placeholder": "Confirm Password",
+                                           attrs={"placeholder":
+                                                  "Confirm Password",
                                                   "name": "confirm_password",
-                                                  "class": "text"}))
+                                                  "class": "form-control"}))
 
     def clean(self):
         ''' form validation '''

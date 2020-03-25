@@ -24,7 +24,7 @@
                 <tr class="row100 body">
                   <td><a href="{% url 'edit_met' meeting.id %}"><i class="fas fa-edit"></i></a></td>
                   <td><a href="{% url 'delete_meeting' meeting.id %}"><i class="fas fa-trash-alt"></i></a></td>
-                  <td><a href="#">{{ meeting.contact|title}}</a></td>
+                  <td><a href="{% url 'contacts' %}">{{ meeting.contact|title}}</a></td>
                   <td>{{ meeting.date }}</td>
                   <td>{{ meeting.time }}</td>
                   <td>{{ meeting.place|lower|title }}</td>

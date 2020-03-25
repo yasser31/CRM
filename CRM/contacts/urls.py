@@ -13,7 +13,6 @@ urlpatterns = [
      path('details/<int:company_id>', views.client_details,
           name="client_details"),
      path('set/<int:company_id>', views.Set, name="set"),
-     path('unset/<int:contact_id>', views.unset, name="unset"),
      path('contact_percent/', views.client_prospects_percent,
           name="contact_percent"),
      path('contact_month/', views.contact_month, name="contact_month"),

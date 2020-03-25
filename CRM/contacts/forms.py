@@ -17,8 +17,7 @@ class NewContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'email', 'country', 'city', 'phone_number', 'age',
-                  'photo', 'function', 'description', 'twitter',
-                  'facebook', 'linkedin', "user", "company"]
+                  'photo', 'function', 'dep_name', "user", "company"]
 
     def __init__(self, *args, **kwargs):
         username = kwargs.pop('username', None)

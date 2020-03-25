@@ -52,14 +52,10 @@ class TestClientToProspect(TestCase):
 
     def test_set(self):
         ''' test set prospect to client '''
-        response = self.client.get(f"/set/{self.cp.id}")
         cp = Company.objects.get(id=self.cp.id)
+        cp.client = False
+        response = self.client.get(f"/set/{self.cp.id}")
         self.assertTrue(cp.client)
-
-    def test_unset(self):
-        ''' test set client to prospect '''
-        self.client.get(f"/unset/{self.cp.id}/")
-        self.assertFalse(self.cp.client)
 
 
 class TestPost(TestCase):

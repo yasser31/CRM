@@ -41,9 +41,10 @@
                   City: {{ company.company_city }}<br>
                   Field: {{ company.field }}<br>
                   Client: {% if company.client == True %}
-                  <i class="fas fa-check"></i>
-                  {% else %}
-                  <i class="fas fa-times"></i>
+                  <a href="" id="set" class="set" cp_id="{{ company.id }}"><i class="fas fa-check"></i></a>
+                  {% elif company.client == False %}
+                  <a href="" id="unset" class="set" cp_id="{{ company.id }}">
+                  <i class="fas fa-times"></i></a>
                   {% endif %}<br>
                   <a href="{% url 'delete_company' company.id %}"><i title="drop company"
                       class="fas fa-trash-alt"></i></a>
@@ -70,7 +71,7 @@
                   <tbody>
                     {% for contact in contacts %}
                     <tr>
-                      <td>{{ contact.name }}</td>
+                      <td>{{ contact.name|lower|title }}</td>
                       <td>{{ contact.email }}</td>
                       <td> {{contact.phone_number}} </td>
                       <td> {{ contact.function }} </td>
