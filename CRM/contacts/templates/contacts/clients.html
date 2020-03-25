@@ -1,34 +1,30 @@
 {% extends 'base.html' %}
 {% block clients %}
-<br>
 <!-- Contact area Start-->
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-6">
-      <h2 id="contact">Contact</h2>
-    </div>
-    <div class="col-lg-6">
-      <form method="GET" action="{% url 'add_client' %}">
-        <button data-toggle="tooltip" data-placement="left" title="add client" class=" m-2 btn btn-success ml-5"> Add
-          Client</button>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-8">
-      <!-- Main content -->
-    <section class="content">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Companies</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 id="contact" class="mt-4">Clients</h2>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- Main content -->
+          <div class="card">
+            <div class="card-header">
+              <form method="GET" action="{% url 'add_client' %}" >
+                  <button data-toggle="tooltip" data-placement="left" title="add client" class="btn btn-success">
+                    Add
+                    Client</button>
+              </form>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
                   <tr>
                     <th>Name</th>
                     <th>Address</th>
@@ -36,8 +32,8 @@
                     <th>Phone</th>
                     <th>Country</th>
                   </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                   {% for client in clients %}
                   <tr>
                     <td><a href="{% url 'client_details' client.id %}">{{ client.cp_name }}</a></td>
@@ -47,26 +43,15 @@
                     <td>{{ client.company_country }}</td>
                   </tr>
                   {% endfor %}
-                  </tbody>
-                </table>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
-          </section>
+        </div>
+      </div>
     </div>
-<br>
-<script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
-  </script>
+</div>
+</section>
+</div>
 <!-- Contact area End-->
 {% endblock %}

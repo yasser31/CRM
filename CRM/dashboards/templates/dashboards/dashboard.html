@@ -47,45 +47,36 @@
 </div>
 <!-- end mobile menu -->
 <title>Dashbaord</title>
-<div class="container-fluid">
-    <div class="row">
-        <div class="d-none d-sm-block 
-        d-md-block d-lg-block col-sm-4 col-md-4 col-lg-4">
-            <!--aside-->
-        </div>
-        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-            <div class="container-fluid">
-                <!-- Small Box (Stat card) -->
-                <h5 class="mb-2 mt-4">Dashboard</h5>
-                <div class="row" id="contact_dashboard"></div>
-                <div class="row">
-                    <!-- Start Status area -->
-                    <div id='my_line_chart' class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered
-                            by
-                            ZingChart</a></div>
-                    <div id='myChart' class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered by
-                            ZingChart</a></div>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small Box (Stat card) -->
+            <h5 class="mb-2 mt-4">Dashboard</h5>
+            <div class="row" id="contact_dashboard">
+                <div class="col-lg-12"></div>
+            </div>
+            <div class="row">
+                <!-- Start Status area -->
+                <div id='my_line_chart' class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered
+                        by
+                        ZingChart</a></div>
+                <div id='myChart' class="col-lg-6"><a class="zc-ref" href="https://www.zingchart.com/">Powered by
+                        ZingChart</a></div>
+            </div>
+            <!-- End Realtime sts area-->
+            <div class="col-md-9">
+                <div class="card card-primary">
+                    <div class="card-body p-0">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- End Realtime sts area-->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="lead"> Recent Contacts</h2>
-                        <table id="rc">
-                            <thead>
-                                <th class="rcth">id</th>
-                                <th class="rcth">name</th>
-                                <th class="rcth">country</th>
-                                <th class="rcth">city</th>
-                                <th class="rcth">function</th>
-                                <th class="rcth">client</th>
-                            </thead>
-                            <tbody id="rctbd">
-                            </tbody>
-                        </table>
-                    </div><!-- .Col ends here -->
-                </div>
+                <!-- /.card -->
             </div>
         </div>
-    </div>
+    </section>
 </div>
+
+
 {% endblock %}

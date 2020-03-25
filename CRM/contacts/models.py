@@ -8,7 +8,7 @@ class Company(models.Model):
     date = models.DateField(auto_now_add=True, null=True, blank=True)
     cp_name = models.CharField(max_length=100, blank=False, default="")
     email = models.EmailField(blank=True)
-    address = models.TextField()
+    address = models.CharField(max_length=256, blank=False, default="")
     phone_number = models.CharField(blank=True, null=True, max_length=100)
     company_country = models.CharField(max_length=100, blank=False, default="")
     company_city = models.CharField(max_length=100, blank=False, default="")

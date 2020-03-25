@@ -3,115 +3,113 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
-  <!-- Next meetings style -->
-  <link rel="stylesheet" href="{% static 'css/next_meetings.css' %}">
-  <!-- Recent conatct style -->
-  <link rel="stylesheet" href="{% static 'css/recent_contacts.css' %}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+    <!-- Next meetings style -->
+    <link rel="stylesheet" href="{% static 'css/next_meetings.css' %}">
+    <!-- Recent conatct style -->
+    <link rel="stylesheet" href="{% static 'css/recent_contacts.css' %}">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 d-none d-sm-block 
-                d-md-block d-lg-block col-sm-4 col-md-4 col-lg-4">
-      <!-- Brand Logo -->
-      <div>
-          <img src="{% static 'images/logo.png' %}" alt="Logo" class="brand-image img-circle elevation-3 w-25"
-              style="opacity: .8">
-      </div>
-      <!-- Sidebar -->
-      <div class="sidebar">
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-              <div class="info text-white">
-                  {{ request.user.username }}
-              </div>
 
-          </div>
-          <!-- Sidebar Menu -->
-          <nav class="mt-2">
-              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                  data-accordion="false">
-                  <!-- Add icons to the links using the .nav-icon class
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <div>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="brand-image img-circle elevation-3 w-25"
+                    style="opacity: .8">
+            </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="info text-white">
+                        {{ request.user.username }}
+                    </div>
+
+                </div>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
                           with font-awesome or any other icon font library -->
-                  <li class="nav-item">
-                      <a href="{% url 'dashboard' %}" class="nav-link">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              Dashboard
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{% url 'contacts' %}" class="nav-link">
-                          <i class="nav-icon fas fa-th"></i>
-                          <p>
-                              Contacts
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item ml-1">
-                          <a href="{% url 'clients' %}" class="nav-link">
-                                  <i class="far fa-smile"></i>
-                              <p>
-                                  Clients
-                              </p>
-                          </a>
-                      </li>
-                  <li class="nav-item">
-                      <a href="{% url 'meetings' %}" class="nav-link">
-                          <i class="nav-icon fas fa-copy"></i>
-                          <p>
-                              Meetings Reports
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                          <a href="{% url 'create_meeting' %}" class="nav-link">
-                              <i class="nav-icon fas fa-copy"></i>
-                              <p>
-                                  Create Report
-                              </p>
-                          </a>
-                      </li>
-                  <li class="nav-item ml-1">
-                      <a href="{% url 'set_meeting' %}" class="nav-link">
-                          <i class="fab fa-meetup"></i>
-                          <p>
-                              Set A Meeting
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{% url 'meeting_information' %}" class="nav-link">
-                              <i class="fas fa-bullhorn"></i>
-                              <p class="text-white ml-3 mt-4"> Next Meetings</p>
-                          </a>
-                              <ul>
-                                  <li>
-                                      <fieldset class="tasks-list" id="fieldset"></fieldset>
-                                  </li>
-                              </ul>
-                      
-                  </li>
-                  {% if user.is_authenticated %}
-                  <li class="nav-item">
-                      <a href="{% url 'change_password' %}" class="nav-link"> Change Password</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt" title="logout"></i></a>
-                  </li>
-                  {% endif %}
-              </ul>
-          </nav>
-  </aside>
+                        <li class="nav-item">
+                            <a href="{% url 'dashboard' %}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'contacts' %}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Contacts
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'clients' %}" class="nav-link">
+                                <i class=" nav-icon far fa-smile"></i>
+                                <p>
+                                    Clients
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'meetings' %}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Meetings Reports
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'create_meeting' %}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Create Report
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'set_meeting' %}" class="nav-link">
+                                <i class=" nav-icon fab fa-meetup"></i>
+                                <p>
+                                    Set A Meeting
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'meeting_information' %}" class="nav-link">
+                                <i class=" nav-icon fas fa-bullhorn"></i>
+                                <p> Next Meetings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'change_password' %}" class="nav-link"><i class=" nav-icon fas fa-eye-dropper"
+                                    title="change password"></i>
+                                <p class="text-white ml-3 mt-4"> Change Password </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="nav-link"><i class=" nav-icon fas fa-sign-out-alt"
+                                    title="logout"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+        </aside>
+    </div>
     {% block company_detail %}
     {% endblock %}
     {% block dashboard %}
@@ -190,9 +188,9 @@
     {% endblock %}
     <!-- Main Menu area End-->
     <!-- jQuery -->
-    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <!-- AdminLTE App -->
-    <script src="{% static 'js/adminlte.js' %}"></script>
+    <script src="{% static 'js/adminlte.min.js' %}"></script>
     <!-- Zing CDN-->
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <!-- Zing pie chart -->
