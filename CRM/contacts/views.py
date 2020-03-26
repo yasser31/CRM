@@ -201,6 +201,7 @@ def p_500(request):
 def edit_comp(request, company_id):
     company = Company.objects.get(id=company_id)
     if request.method == "POST":
+        print(request.POST)
         form = NewCompanyForm(request.POST)
         if form.is_valid():
             company.cp_name = request.POST["cp_name"]
@@ -210,6 +211,7 @@ def edit_comp(request, company_id):
             company.field = request.POST["field"]
             company.description = request.POST["description"]
             company.email = request.POST["email"]
+            company.phone_number = request.POST["phone_number"]
             company.user = request.user
             if request.POST["client"] == 'true':
                 company.client = True
@@ -230,7 +232,8 @@ def edit_comp(request, company_id):
             "field": company.field,
             "description": company.description,
             "client": company.client,
-            "email": company.email
+            "email": company.email,
+            "phone_number": company.phone_number
         }
         form = NewCompanyForm(data)
     context = {
@@ -274,7 +277,7 @@ def edit_contact(request, contact_id):
             "age": contact.age,
             "dep_name": contact.dep_name,
             "function": contact.function,
-            "photo": contact.photo
+            "photo": contact.photo.url
         }
         form = NewContactForm(data,
                               username=request.user.username,
