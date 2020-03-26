@@ -1,0 +1,12 @@
+#rc, .rcth, .rctd, .rctr {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.rcth {
+  background-color: lightseagreen;
+}
+
+#rc {
+  width: 100%;
+}
