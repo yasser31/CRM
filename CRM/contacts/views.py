@@ -254,7 +254,8 @@ def edit_contact(request, contact_id):
             contact.age = request.POST["age"]
             contact.dep_name = request.POST["dep_name"]
             contact.function = request.POST["function"]
-            contact.photo = request.FILES["photo"]
+            if "photo" in request.FILES:
+                contact.photo = request.FILES["photo"]
             contact.user = request.user
             contact.save()
             context = {

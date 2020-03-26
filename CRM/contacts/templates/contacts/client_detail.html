@@ -41,10 +41,10 @@
                   City: {{ company.company_city }}<br>
                   Field: {{ company.field }}<br>
                   Client: {% if company.client == True %}
-                  <a href="" id="set" class="set" cp_id="{{ company.id }}"><i class="fas fa-check"></i></a>
+                  <a href="" id="set" class="set" cp_id="{{ company.id }}"><i class="fas fa-check" title="change"></i></a>
                   {% elif company.client == False %}
                   <a href="" id="unset" class="set" cp_id="{{ company.id }}">
-                  <i class="fas fa-times"></i></a>
+                  <i class="fas fa-times" title="change"></i></a>
                   {% endif %}<br>
                   <a href="{% url 'delete_company' company.id %}"><i title="drop company"
                       class="fas fa-trash-alt"></i></a>

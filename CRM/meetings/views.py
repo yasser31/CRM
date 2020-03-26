@@ -14,14 +14,27 @@ def set_meeting(request):
     if request.method == "POST":
         form = SetMeetingForm(request.POST)
         if form.is_valid():
-            user = User.objects.get(username=request.user.username)
-            place = form.cleaned_data["place"]
-            date = form.cleaned_data["date"]
-            time = form.cleaned_data["time"]
-            contact = form.cleaned_data["contact"]
-            SetMeeting.objects.create(
-                place=place, date=date, time=time, contact=contact, user=user)
-            return HttpResponseRedirect("/meeting_added/")
+            try:
+                SetMeeting.objects.get(
+                    user__username=request.user.username,
+                    date=request.POST["date"],
+                    time=request.POST["time"])
+            except SetMeeting.DoesNotExist:
+                user = User.objects.get(username=request.user.username)
+                place = form.cleaned_data["place"]
+                date = form.cleaned_data["date"]
+                time = form.cleaned_data["time"]
+                contact = form.cleaned_data["contact"]
+                SetMeeting.objects.create(
+                    place=place, date=date, time=time, contact=contact,
+                    user=user)
+                return HttpResponseRedirect("/meeting_added/")
+            else:
+                context = {
+                    "meeting": "exists"
+                }
+                return render(request, "contacts/already_exists.html",
+                              context)
     else:
         form = SetMeetingForm(username=request.user.username)
 
@@ -152,9 +165,8 @@ def edit_rep(request, rep_id):
     if request.method == 'POST':
         form = MeetingForm(request.POST)
         if form.is_valid():
-            met_id = request.session.get("met_id")
             contact = Contact.objects.get(id=request.POST["contact"])
-            met = Meeting.objects.get(id=met_id)
+            met = Meeting.objects.get(id=rep_id)
             met.title = request.POST["title"]
             met.summary = request.POST["summary"]
             met.contact = contact
