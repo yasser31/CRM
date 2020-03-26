@@ -3,13 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
         response.text().then(function (text) {
             var element = document.getElementById("meeting")
             var data = JSON.parse(text);
-            for (met of data.meeting){
-                console.log(met)
-                var elementToAdd =  `<span> ${met.date} at ${met.time} with ${met.name}
-                                    in ${met.place}`
-                element.insertAdjacentHTML("beforeend", elementToAdd);
-            }
-            
+            console.log
+            var elementToAdd = `<span> ${data.meeting[0].date} at ${data.meeting[0].time} with ${data.meeting[0].name}
+                                in ${data.meeting[0].place}`
+            element.insertAdjacentHTML("beforeend", elementToAdd);
+
+
         });
     });
 });
