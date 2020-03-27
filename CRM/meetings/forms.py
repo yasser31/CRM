@@ -46,7 +46,7 @@ class SetMeetingForm(forms.Form):
 
     def clean_time(self):
         tz_str = tzlocal.get_localzone().zone
-        tz = pytz.timezone(tz_str)
+        tz = pytz.timezone(tz_str) + '+1'
         time = self.cleaned_data["time"]
         now = datetime.datetime.now(tz).time()
         if self.date == datetime.date.today() and time < now:
