@@ -105,7 +105,7 @@ def create_meeting(request):
 @login_required(login_url='/')
 def meeting_information(request):
     ''' meetings with contacts information '''
-    meetings = SetMeeting.objects.filter(user__username=request.user.username)
+    meetings = SetMeeting.objects.filter(user__username=request.user.username).order_by("date", "time")
     context = {
         "meetings": meetings
     }
