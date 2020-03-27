@@ -1,3 +1,4 @@
+import datetime
 from django import forms
 from contacts.models import Contact
 from .models import Meeting, SetMeeting
@@ -33,3 +34,15 @@ class SetMeetingForm(forms.Form):
         if username:
             self.fields["contact"].queryset = Contact.objects.filter(
                 user__username=username)
+
+    def clean_date(self):
+        self.date = self.cleaned_data["date"]
+        now = datetime.datetime.now().time()
+        if self.date < datetime.date.today():
+            raise forms.ValidationError("please select a futur date")
+
+    def clean_time(self):
+        time = self.cleaned_data["time"]
+        now = datetime.datetime.now().time()
+        if self.date == datetime.date.today() and time < now:
+            raise forms.ValidationError("please select a futur time")

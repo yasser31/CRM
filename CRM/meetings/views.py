@@ -136,7 +136,7 @@ def dashboard_meeting_display(request):
     else:
         query_date = str(year) + '-' + str(month)
     meetings = SetMeeting.objects.filter(date__startswith=query_date,
-                                         user__username=request.user.username)
+                                         user__username=request.user.username).order_by("date", "time")
     meeting = [{"date": meeting.date,
                 "time": meeting.time,
                 "place": meeting.place,
