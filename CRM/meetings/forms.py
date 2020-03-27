@@ -40,9 +40,11 @@ class SetMeetingForm(forms.Form):
         now = datetime.datetime.now().time()
         if self.date < datetime.date.today():
             raise forms.ValidationError("please select a futur date")
+        return self.date
 
     def clean_time(self):
         time = self.cleaned_data["time"]
         now = datetime.datetime.now().time()
         if self.date == datetime.date.today() and time < now:
             raise forms.ValidationError("please select a futur time")
+        return time

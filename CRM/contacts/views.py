@@ -38,13 +38,15 @@ def add_client(request):
                 # check the name and the city of company if it exists
                 Company.objects.get(
                     cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"])
+                    company_city=request.POST["company_city"],
+                    user__username=request.user.username)
             except Company.DoesNotExist:
                 # if company does not exists we create it
                 form.save()
                 company = Company.objects.get(
                     cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"])
+                    company_city=request.POST["company_city"],
+                    )
                 company.user = request.user
                 company.save()
                 context = {
