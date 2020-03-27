@@ -130,18 +130,19 @@ def dashboard_meeting_display(request):
     ''' display of next meeting view '''
     month = datetime.date.today().month
     year = datetime.date.today().year
+    now = datetime.datetime.now().time()
     if month < 10:
         query_date = str(year) + '-' + '0' + str(month)
     else:
         query_date = str(year) + '-' + str(month)
-    query_date = str(year) + '-' + '0' + str(month)
     meetings = SetMeeting.objects.filter(date__startswith=query_date,
                                          user__username=request.user.username)
     meeting = [{"date": meeting.date,
                 "time": meeting.time,
                 "place": meeting.place,
                 "name": meeting.contact.name} for meeting in meetings
-               if meeting.date > datetime.date.today()]
+               if meeting.date >= datetime.date.today()
+               and meeting.time >= now]
     data = {
         "meeting": meeting
     }
