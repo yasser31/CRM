@@ -1,4 +1,6 @@
 import datetime
+import tzlocal
+import pytz
 from django import forms
 from contacts.models import Contact
 from .models import Meeting, SetMeeting
@@ -43,8 +45,10 @@ class SetMeetingForm(forms.Form):
         return self.date
 
     def clean_time(self):
+        tz_str = tzlocal.get_localzone().zone
+        tz = pytz.timezone(tz_str)
         time = self.cleaned_data["time"]
-        now = datetime.datetime.now().time()
+        now = datetime.datetime.now(tz).time()
         if self.date == datetime.date.today() and time < now:
             raise forms.ValidationError("please select a futur time")
         return time
