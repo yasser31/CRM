@@ -140,9 +140,11 @@ def dashboard_meeting_display(request):
     meeting = [{"date": meeting.date,
                 "time": meeting.time,
                 "place": meeting.place,
-                "name": meeting.contact.name} for meeting in meetings
+                "name": meeting.contact.name}
+               for meeting in meetings
                if meeting.date >= datetime.date.today()
-               and meeting.time >= now]
+               or (meeting.date == datetime.date.today()
+                   and meeting.time >= now)]
     data = {
         "meeting": meeting
     }
