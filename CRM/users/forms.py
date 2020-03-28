@@ -165,8 +165,6 @@ class ChangePasswordForm(forms.Form):
         if not is_same_password(password1, password2):
             raise forms.ValidationError("The passwords are not identical")
 
-        return password1
-
     def clean_old_password(self):
         ''' old password and username validation '''
         old_password = self.cleaned_data["old_password"]
@@ -174,4 +172,4 @@ class ChangePasswordForm(forms.Form):
         user = authenticate(username=username, password=old_password)
         if user is None:
             raise forms.ValidationError("Password or Username is not correct")
-        return old_password
+        return username

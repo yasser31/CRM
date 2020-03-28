@@ -88,8 +88,7 @@ def create_meeting(request):
         form = MeetingForm(request.POST)
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
-            contact_id = form.cleaned_data["contact"]
-            contact = Contact.objects.get(id=contact_id)
+            contact = form.cleaned_data["contact"]
             title = form.cleaned_data["title"]
             summary = form.cleaned_data["summary"]
             new_meeting = Meeting.objects.create(title=title,
