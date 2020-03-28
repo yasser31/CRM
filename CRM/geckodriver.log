@@ -1851,3 +1851,7 @@ JavaScript error: http://localhost:32865/static/js/dashboard_meetings.js, line 6
 JavaScript error: http://localhost:32865/static/js/contacts_dashboard.js, line 54: TypeError: element is null
 JavaScript error: http://localhost:32865/static/js/dashboard_meetings.js, line 6: TypeError: data.meeting[0] is undefined
 JavaScript error: http://localhost:32865/static/js/contacts_dashboard.js, line 54: TypeError: element is null
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1585397331678	Marionette	INFO	Stopped listening on port 44229
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1585397332166	Marionette	INFO	Stopped listening on port 36581
