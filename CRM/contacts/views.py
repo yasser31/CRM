@@ -132,7 +132,6 @@ def Set(request, company_id):
     data = {
         "client": company.client
     }
-    print(data["client"])
     return JsonResponse(data)
 
 

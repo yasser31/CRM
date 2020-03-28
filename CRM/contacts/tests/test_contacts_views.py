@@ -47,15 +47,16 @@ class TestClientToProspect(TestCase):
         self.cp = Company.objects.create(cp_name="name",
                                          company_country="Algeria",
                                          company_city="Oran",
-                                         address="address")
+                                         address="address",
+                                         client=False)
         self.client.force_login(user)
 
     def test_set(self):
         ''' test set prospect to client '''
         cp = Company.objects.get(id=self.cp.id)
-        cp.client = False
         response = self.client.get(f"/set/{self.cp.id}")
-        self.assertTrue(cp.client)
+        data = response.json()
+        self.assertTrue(data["client"])
 
 
 class TestPost(TestCase):
