@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    {% if not contacts %}
-                    <h2 class="mt-5 lead text-center">No Contacts for now </h2>
-                    {% elif contacts %}
+                    {% if contacts %}
                     <h2 class="mt-5 lead">Contacts </h2><span class="lead">* add contacts in your companies by clicking
                         on clients</span>
+                    {% else %}
+                    <h2 class="mt-5 lead text-center">No Contacts for now </h2>
                     {% endif %}
                     <!-- Default box -->
                     <div class="card card-solid">
@@ -27,7 +27,7 @@
                                                         class="fas fa-eye-dropper" title="edit contact"></i></span></a>
                                         </div>
                                         <div class="card-header text-muted border-bottom-0">
-                                                {{ contact.company.cp_name }} 
+                                            {{ contact.company.cp_name }}
                                         </div>
                                         <div class="card-body pt-0">
                                             <div class="row">

@@ -30,7 +30,7 @@ class Contact(models.Model):
     email = models.EmailField(blank=True)
     phone_number = models.CharField(blank=True, null=True, max_length=100)
     age = models.IntegerField(null=True, blank=True)
-    photo = models.ImageField(upload_to="media", null=True, blank=True)
+    photo = models.ImageField(upload_to="img", null=True, blank=True)
     dep_name = models.CharField(max_length=100, blank=True, null=True)
     function = models.CharField(max_length=100, default='', blank=False)
     company = models.ForeignKey(

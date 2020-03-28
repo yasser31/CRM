@@ -73,7 +73,6 @@ def add_client(request):
 def add_contact(request, company_id):
     ''' add contact view '''
     if request.method == 'POST':
-        print(request.FILES)
         form = NewContactForm(request.POST, request.FILES)
         if form.is_valid():
             # check if contact exists

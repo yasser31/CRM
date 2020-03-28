@@ -105,7 +105,9 @@ def create_meeting(request):
 @login_required(login_url='/')
 def meeting_information(request):
     ''' meetings with contacts information '''
-    meetings = SetMeeting.objects.filter(user__username=request.user.username).order_by("date", "time")
+    username = request.user.username
+    meetings = SetMeeting.objects.filter(
+        user__username=username).order_by("date", "time")
     context = {
         "meetings": meetings
     }
@@ -135,8 +137,10 @@ def dashboard_meeting_display(request):
         query_date = str(year) + '-' + '0' + str(month)
     else:
         query_date = str(year) + '-' + str(month)
+    username = request.user.username
     meetings = SetMeeting.objects.filter(date__startswith=query_date,
-                                         user__username=request.user.username).order_by("date", "time")
+                                         user__username=username).order_by(
+                                             "date", "time")
     meeting = [{"date": meeting.date,
                 "time": meeting.time,
                 "place": meeting.place,
