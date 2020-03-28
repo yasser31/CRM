@@ -54,7 +54,7 @@ def change_password(request):
     if request.method == "POST":
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
-            username = request.POST["username"]
+            username = form.cleaned_data["username"]
             password = form.cleaned_data
             user = User.objects.get(username=username)
             user.set_password(password)

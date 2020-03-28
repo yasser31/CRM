@@ -37,15 +37,15 @@ def add_client(request):
             try:
                 # check the name and the city of company if it exists
                 Company.objects.get(
-                    cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"],
+                    cp_name=form.cleaned_data["cp_name"],
+                    company_city=form.cleaned_data["company_city"],
                     user__username=request.user.username)
             except Company.DoesNotExist:
                 # if company does not exists we create it
                 form.save()
                 company = Company.objects.get(
-                    cp_name=request.POST["cp_name"],
-                    company_city=request.POST["company_city"],
+                    cp_name=form.cleaned_data["cp_name"],
+                    company_city=form.cleaned_data["company_city"],
                     )
                 company.user = request.user
                 company.save()
@@ -78,9 +78,9 @@ def add_contact(request, company_id):
             # check if contact exists
             try:
                 Contact.objects.get(
-                    name=request.POST["name"],
+                    name=form.cleaned_data["name"],
                     user__username=request.user.username,
-                    email=request.POST["email"])
+                    email=form.cleaned_data["email"])
             # if contact does not exists we create it
             except Contact.DoesNotExist:
                 form.save()
@@ -201,19 +201,18 @@ def p_500(request):
 def edit_comp(request, company_id):
     company = Company.objects.get(id=company_id)
     if request.method == "POST":
-        print(request.POST)
         form = NewCompanyForm(request.POST)
         if form.is_valid():
-            company.cp_name = request.POST["cp_name"]
-            company.address = request.POST["address"]
-            company.company_country = request.POST["company_country"]
-            company.company_city = request.POST["company_city"]
-            company.field = request.POST["field"]
-            company.description = request.POST["description"]
-            company.email = request.POST["email"]
-            company.phone_number = request.POST["phone_number"]
+            company.cp_name = form.cleaned_data["cp_name"]
+            company.address = form.cleaned_data["address"]
+            company.company_country = form.cleaned_data["company_country"]
+            company.company_city = form.cleaned_data["company_city"]
+            company.field = form.cleaned_data["field"]
+            company.description = form.cleaned_data["description"]
+            company.email = form.cleaned_data["email"]
+            company.phone_number = form.cleaned_data["phone_number"]
             company.user = request.user
-            if request.POST["client"] == 'true':
+            if form.cleaned_data["client"] == 'true':
                 company.client = True
             else:
                 company.client = False
@@ -249,16 +248,16 @@ def edit_contact(request, contact_id):
     if request.method == "POST":
         form = NewContactForm(request.POST, request.FILES)
         if form.is_valid():
-            contact.name = request.POST["name"]
-            contact.country = request.POST["country"]
-            contact.city = request.POST["city"]
-            contact.email = request.POST["email"]
-            contact.phone_number = request.POST["phone_number"]
-            contact.age = request.POST["age"]
-            contact.dep_name = request.POST["dep_name"]
-            contact.function = request.POST["function"]
-            if "photo" in request.FILES:
-                contact.photo = request.FILES["photo"]
+            contact.name = form.cleaned_data["name"]
+            contact.country = form.cleaned_data["country"]
+            contact.city = form.cleaned_data["city"]
+            contact.email = form.cleaned_data["email"]
+            contact.phone_number = form.cleaned_data["phone_number"]
+            contact.age = form.cleaned_data["age"]
+            contact.dep_name = form.cleaned_data["dep_name"]
+            contact.function = form.cleaned_data["function"]
+            if "photo" in form.cleaned_data:
+                contact.photo = form.cleaned_data["photo"]
             contact.user = request.user
             contact.save()
             context = {

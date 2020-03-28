@@ -17,8 +17,8 @@ def set_meeting(request):
             try:
                 SetMeeting.objects.get(
                     user__username=request.user.username,
-                    date=request.POST["date"],
-                    time=request.POST["time"])
+                    date=form.cleaned_data["date"],
+                    time=form.cleaned_data["time"])
             except SetMeeting.DoesNotExist:
                 user = User.objects.get(username=request.user.username)
                 place = form.cleaned_data["place"]
@@ -88,7 +88,7 @@ def create_meeting(request):
         form = MeetingForm(request.POST)
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
-            contact_id = request.POST["contact"]
+            contact_id = form.cleaned_data["contact"]
             contact = Contact.objects.get(id=contact_id)
             title = form.cleaned_data["title"]
             summary = form.cleaned_data["summary"]
@@ -146,12 +146,13 @@ def dashboard_meeting_display(request):
                 "place": meeting.place,
                 "name": meeting.contact.name}
                for meeting in meetings
-               if meeting.date >= datetime.date.today()
+               if meeting.date > datetime.date.today()
                or (meeting.date == datetime.date.today()
                    and meeting.time >= now)]
     data = {
         "meeting": meeting
     }
+    print(data)
     return JsonResponse(data)
 
 
@@ -172,10 +173,10 @@ def edit_rep(request, rep_id):
     if request.method == 'POST':
         form = MeetingForm(request.POST)
         if form.is_valid():
-            contact = Contact.objects.get(id=request.POST["contact"])
+            contact = Contact.objects.get(id=form.cleaned_data["contact"])
             met = Meeting.objects.get(id=rep_id)
-            met.title = request.POST["title"]
-            met.summary = request.POST["summary"]
+            met.title = form.cleaned_data["title"]
+            met.summary = form.cleaned_data["summary"]
             met.contact = contact
             met.save()
             return redirect("/report_edited/")
@@ -198,13 +199,13 @@ def edit_met(request, met_id):
     if request.method == 'POST':
         form = SetMeetingForm(request.POST)
         if form.is_valid():
-            contact = Contact.objects.get(id=request.POST["contact"])
+            contact = Contact.objects.get(id=form.cleaned_data["contact"])
             meeting = SetMeeting.objects.get(
                 id=met_id)
-            meeting.place = request.POST["place"]
-            meeting.date = request.POST["date"]
-            meeting.time = request.POST["time"]
-            meeting.note = request.POST["note"]
+            meeting.place = form.cleaned_data["place"]
+            meeting.date = form.cleaned_data["date"]
+            meeting.time = form.cleaned_data["time"]
+            meeting.note = form.cleaned_data["note"]
             meeting.contact = contact
             meeting.save()
             return redirect("/meeting_edited/")

@@ -1855,3 +1855,40 @@ JavaScript error: , line 0: UnknownError: The operation failed for reasons unrel
 1585397331678	Marionette	INFO	Stopped listening on port 44229
 JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
 1585397332166	Marionette	INFO	Stopped listening on port 36581
+1585412653987	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekd9bQl"
+1585412655497	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585412657401	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585412657401	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585412657402	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585412657402	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1585412662207	Marionette	INFO	Listening on port 43571
+1585412662257	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: http://localhost:51099/static/js/dashboard_meetings.js, line 6: TypeError: data.meeting[0] is undefined
+JavaScript error: http://localhost:51099/static/js/contacts_dashboard.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:51099/static/js/dashboard_meetings.js, line 6: TypeError: data.meeting[0] is undefined
+JavaScript error: http://localhost:51099/static/js/contacts_dashboard.js, line 54: TypeError: element is null
+1585412702434	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileW9mqZY"
+1585412703316	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1585412705336	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1585412705336	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1585412705336	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1585412705336	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1585412709029	Marionette	INFO	Listening on port 34903
+1585412709070	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: AbortError: The operation was aborted. 
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+JavaScript error: http://localhost:51099/static/js/dashboard_meetings.js, line 6: TypeError: data.meeting[0] is undefined
+JavaScript error: http://localhost:51099/static/js/contacts_dashboard.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:51099/static/js/contacts_dashboard.js, line 54: TypeError: element is null
+JavaScript error: http://localhost:51099/static/js/dashboard_meetings.js, line 6: TypeError: data.meeting[0] is undefined
+1585412816463	Marionette	INFO	Stopped listening on port 34903
+JavaScript error: , line 0: UnknownError: The operation failed for reasons unrelated to the database itself and not covered by any other error code.
+1585412818306	Marionette	INFO	Stopped listening on port 43571
