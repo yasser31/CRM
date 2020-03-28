@@ -172,7 +172,7 @@ def edit_rep(request, rep_id):
     if request.method == 'POST':
         form = MeetingForm(request.POST)
         if form.is_valid():
-            contact = Contact.objects.get(id=form.cleaned_data["contact"])
+            contact = form.cleaned_data["contact"]
             met = Meeting.objects.get(id=rep_id)
             met.title = form.cleaned_data["title"]
             met.summary = form.cleaned_data["summary"]
@@ -198,7 +198,7 @@ def edit_met(request, met_id):
     if request.method == 'POST':
         form = SetMeetingForm(request.POST)
         if form.is_valid():
-            contact = Contact.objects.get(id=form.cleaned_data["contact"])
+            contact = form.cleaned_data["contact"]
             meeting = SetMeeting.objects.get(
                 id=met_id)
             meeting.place = form.cleaned_data["place"]
