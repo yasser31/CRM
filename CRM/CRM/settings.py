@@ -145,14 +145,3 @@ STATICFILES_DIRS = [
 
 # static files engine
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = 'Happy Customer Team <noreply@example.com>'
-
-if DEBUG is False:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
