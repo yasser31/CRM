@@ -151,7 +151,6 @@ def dashboard_meeting_display(request):
     data = {
         "meeting": meeting
     }
-    print(data)
     return JsonResponse(data)
 
 

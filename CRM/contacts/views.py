@@ -29,6 +29,31 @@ def clients(request):
 
 
 @login_required(login_url='/')
+def clients_true(request):
+    ''' get customers page views '''
+    clients = Company.objects.filter(
+        user__username=request.user.username,
+        client=True)
+    print(clients)
+    context = {
+        "clients": clients
+    }
+    return render(request, 'contacts/clients.html', context)
+
+
+@login_required(login_url='/')
+def prospects(request):
+    ''' get prospects page views '''
+    clients = Company.objects.filter(
+        user__username=request.user.username,
+        client=False)
+    context = {
+        "clients": clients
+    }
+    return render(request, 'contacts/clients.html', context)
+
+
+@login_required(login_url='/')
 def add_client(request):
     ''' add client '''
     if request.method == 'POST':

@@ -22,6 +22,10 @@ urlpatterns = [
           name="edit_contact"),
      path('delete_contact/<int:contact_id>', views.delete_contact,
           name="delete_contact"),
+     path('customers/', views.clients_true,
+          name="customers"),
+     path('prospects/', views.prospects,
+          name="prospects"),
      path('delete_company/<int:company_id>', views.delete_company,
           name="delete_company"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

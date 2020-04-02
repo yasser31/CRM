@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
             <i class="ion ion-stats-bars"></i>
             </div>
+            <a href="/clients/" class="small-box-footer text-white">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
     <!-- ./col -->
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="/clients/" class="small-box-footer text-white">
+            <a href="/customers/" class="small-box-footer text-white">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -42,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="icon">
             <i class="ion ion-stats-bars"></i>
             </div>
+            <a href="/prospects/" class="small-box-footer text-white">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
         </div>
     </div>
 </div>`
